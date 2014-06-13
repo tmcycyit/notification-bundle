@@ -1,0 +1,19 @@
+
+<div style="float: left; margin-left:30px ">
+    <a href="{{  path('show-receive') }}">Inbox</a> {{ allRecieve }}
+    {% if unreaduble >0 %}
+       <b> ({{ unreaduble }})</b>
+    {% endif %}
+</div>
+
+<div style="float: left; margin-left:30px ">
+    <a href="{{  path('show-send') }}">Outbox</a> {{ allSend }}
+</div>
+
+<div style="float: left; margin-left:30px ">
+    <a href="{{  path('send') }}">New Notification</a>
+</div>
+
+<div style="float: left; margin-left:30px ">
+    <a href="{{  path('fos_user_security_logout') }}">Logout</a>
+</div>

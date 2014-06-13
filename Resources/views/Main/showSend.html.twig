@@ -1,0 +1,27 @@
+
+<!--  for send notification  -->
+{% if sends is defined %}
+    {% if sends is not null %}
+        <table>
+            <tr>
+                <td style="width: 20px" >#</td>
+                <td style="width: 300px">Header</td>
+                <td style="width: 200px">to</td>
+                <td style="width: 200px">Date</td>
+                <td>read/unRead</td>
+            </tr>
+            {% for send in sends %}
+                <tr>
+                    <td style="width: 20px" ><input type="checkbox"></td>
+                    <td style="width: 300px"><a href="{{  path('send-detailed', {'notificId' : send.id }) }}">{{ send.notification.header }}</a></td>
+                    <td style="width: 200px">{{ send.toUser }}</td><td>{{ send.notification.created|date }}</td>
+                    {% if send.status == 0 %}
+                        <td><b>UnRead</b></td>
+                    {% else %}
+                        <td>Read</td>
+                        {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endif %}
