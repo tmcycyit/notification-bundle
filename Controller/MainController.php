@@ -40,7 +40,7 @@ class MainController extends Controller
     }
 
     /**
-     *
+     * This action is used to open dashboard
      *
      * @Route("/dashboard" , name = "dashboard")
      * @Template()
@@ -48,7 +48,12 @@ class MainController extends Controller
     public function dashboardAction()
     {
         $em = $this->getDoctrine()->getManager(); //get entity manager
+
         $user = $this->getUser();  // get current user
+        if(!$user)
+        {
+            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
+        }
 
         // get all current user`s recieved notificiation
         $allRecieve = $em->getRepository(self::ENTITY)->countOfAllReceiveByUserId($user->getId());
@@ -73,6 +78,10 @@ class MainController extends Controller
         $em = $this->getDoctrine()->getManager(); //get entity manager
 
         $fromUser = $this->getUser(); // get current user
+        if(!$fromUser)
+        {
+            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
+        }
 
         $notification = new Notification();
         $notificationStatus = new NotificationStatus();
@@ -122,8 +131,19 @@ class MainController extends Controller
     public function showSendAction()
     {
         $user = $this->getUser(); // get current user
+        if(!$user)
+        {
+            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
+        }
+
         $em = $this->getDoctrine()->getManager();   //get entity manager
+
         $sends = $em->getRepository(self::ENTITY)->findAllSendedByUserId($user->getId());
+        if (!$sends) //return 404 if notification not found
+        {
+            throw $this->createNotFoundException("send notification Not Found");
+        }
+
         return array('sends' =>$sends);
 
     }
@@ -137,8 +157,19 @@ class MainController extends Controller
     public function showReceiveAction()
     {
         $user = $this->getUser(); // get current user
+        if(!$user)
+        {
+            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
+        }
+
         $em = $this->getDoctrine()->getManager();   //get entity manager
+
         $receives = $em->getRepository(self::ENTITY)->findAllReceiveByUserId($user->getId());
+        if (!$receives) //return 404 if notification not found
+        {
+            throw $this->createNotFoundException("receive notification Not Found");
+        }
+
         return array('receives' => $receives);
     }
 
@@ -151,7 +182,12 @@ class MainController extends Controller
     public function receiveDetailedAction($notificId)
     {
         $em = $this->getDoctrine()->getManager(); //get entity manager
+
         $notification = $em->getRepository(self::ENTITY)->findNotificationById($notificId);
+        if (!$notification) //return 404 if notification not found
+        {
+            throw $this->createNotFoundException("Notification Not Found");
+        }
 
         if($notification->getStatus() == 0) // if notification is unread? (status = 0 unread, status = 1 read)
         {
@@ -171,7 +207,13 @@ class MainController extends Controller
     public function sendDetailedAction($notificId)
     {
         $em = $this->getDoctrine()->getManager(); //get entity manager
+
         $notification = $em->getRepository(self::ENTITY)->findNotificationById($notificId);
+        if (!$notification) //return 404 if notification not found
+        {
+            throw $this->createNotFoundException("Notification Not Found");
+        }
+
         return array('notification' => $notification);
     }
 }
