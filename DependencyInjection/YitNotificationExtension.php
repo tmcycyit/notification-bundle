@@ -24,5 +24,7 @@ class YitNotificationExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->setParameter($this->getAlias() . '.note_user', $config['note_user']);
     }
 }

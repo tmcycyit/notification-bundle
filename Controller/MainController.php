@@ -77,6 +77,8 @@ class MainController extends Controller
     {
         $em = $this->getDoctrine()->getManager(); //get entity manager
 
+        $userClassName = $this->container->getParameter('yit_notification.note_user'); // get user className
+
         $fromUser = $this->getUser(); // get current user
         if(!$fromUser)
         {
@@ -88,9 +90,9 @@ class MainController extends Controller
 
         //form for send notification
         $form = $this->createFormBuilder()
-            ->add('user', 'entity', array('class' =>'YitUserBundle:User') )
-            ->add('header')
-            ->add('content', 'textarea')
+            ->add('user', 'entity', array('label'=>'To', 'class' =>$userClassName) )
+            ->add('header', null, array('label'=>'Subject'))
+            ->add('content', 'textarea', array('label'=>'Subject'))
             ->add('send', 'submit')
             ->getForm();
 

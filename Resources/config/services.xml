@@ -17,4 +17,7 @@
         </service>
     </services>
     -->
+    <parameters>
+        <parameter key="yit_notification.note_user">%note_user_classname%</parameter>
+    </parameters>
 </container>
