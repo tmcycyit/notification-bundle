@@ -28,7 +28,7 @@ class NotificationStatus
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\UserBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
      * @ORM\JoinColumn(name="to_user_id", referencedColumnName="id")
      */
     protected $toUser;

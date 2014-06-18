@@ -47,7 +47,7 @@ class MainController extends Controller
      */
     public function dashboardAction()
     {
-        $em = $this->getDoctrine()->getManager(); //get entity manager
+       $em = $this->getDoctrine()->getManager(); //get entity manager
 
         $user = $this->getUser();  // get current user
         if(!$user)
@@ -64,7 +64,11 @@ class MainController extends Controller
         // get all current user`s sended notificiation
         $allSend =  $em->getRepository(self::ENTITY)->countOfAllSendByUserId($user->getId());
 
-        return array('unreaduble' => $unreaduble, 'allRecieve' => $allRecieve, 'allSend' => $allSend);
+        $templates = $this->container->getParameter('yit_notification.templates.dashboard'); // get templates name
+        return $this->render(
+            $templates,
+            array('unreaduble' => $unreaduble, 'allRecieve' => $allRecieve, 'allSend' => $allSend)
+        );
     }
 
     /**
@@ -121,7 +125,10 @@ class MainController extends Controller
                 return $this->redirect($this->generateUrl('dashboard'));
             }
         }
-       return array('form' => $form->createView());
+
+        $templates = $this->container->getParameter('yit_notification.templates.send'); // get templates name
+        return $this->render( $templates, array('form' => $form->createView()) );
+
     }
 
     /**
@@ -146,7 +153,8 @@ class MainController extends Controller
             throw $this->createNotFoundException("send notification Not Found");
         }
 
-        return array('sends' =>$sends);
+        $templates = $this->container->getParameter('yit_notification.templates.showSend'); // get templates name
+        return $this->render( $templates, array('sends' =>$sends) );
 
     }
 
@@ -172,7 +180,8 @@ class MainController extends Controller
             throw $this->createNotFoundException("receive notification Not Found");
         }
 
-        return array('receives' => $receives);
+        $templates = $this->container->getParameter('yit_notification.templates.showReceive'); // get templates name
+        return $this->render( $templates, array('receives' => $receives) );
     }
 
     /**
@@ -197,7 +206,9 @@ class MainController extends Controller
             $em->persist($notification); //update notificationstatus
             $em->flush();
         }
-        return array('notification' => $notification);
+
+        $templates = $this->container->getParameter('yit_notification.templates.receiveDetailed'); // get templates name
+        return $this->render( $templates, array('notification' => $notification) );
     }
 
     /**
@@ -216,6 +227,7 @@ class MainController extends Controller
             throw $this->createNotFoundException("Notification Not Found");
         }
 
-        return array('notification' => $notification);
+        $templates = $this->container->getParameter('yit_notification.templates.sendDetailed'); // get templates name
+        return $this->render( $templates, array('notification' => $notification) );
     }
 }

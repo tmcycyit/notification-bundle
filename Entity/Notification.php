@@ -33,7 +33,7 @@ class Notification
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\UserBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
      * @ORM\JoinColumn(name="from_user_id", referencedColumnName="id")
      */
     protected $fromUser;
