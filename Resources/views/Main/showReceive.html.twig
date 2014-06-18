@@ -1,30 +1,59 @@
-<style>
-    a {color: #000000; text-decoration: none}
-</style>
+{% extends 'YitNotificationBundle:Main:layout.html.twig' %}
 
-<!--  for receive notification  -->
-{% if receives is defined %}
-    {% if receives is not null %}
-        <table >
-            <tr>
-                <td style="width: 20px" >Select</td>
-                <td style="width: 300px">Subject</td>
-                <td style="width: 200px">Sender</td>
-                <td style="width: 200px">Created at</td>
-            </tr>
-            {% for receive in receives %}
-                <tr>
-                    {% if receive.status == 1  %} <!-- if notification is read show without bold-->
-                        <td style="width: 20px" ><input type="checkbox"></td>
-                        <td style="width: 300px"><a href="{{  path('receive-detailed', {'notificId' : receive.id }) }}">{{ receive.notification.header }}</td></a>
-                        <td style="width: 200px">{{ receive.notification.fromUser }}</td><td>{{ receive.notification.created|date }}</td>
-                    {% else %} <!-- else  show bold-->
-                        <td style="width: 20px" ><input type="checkbox"></td>
-                        <td style="width: 300px"><a href="{{  path('receive-detailed', {'notificId' : receive.id  }) }}"><b>{{ receive.notification.header }}</b></a></td>
-                        <td style="width: 200px"><b>{{ receive.notification.fromUser }}</b></td><td><b>{{ receive.notification.created|date }}</b></td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-        </table>
+{# for receive notification  #}
+
+{% block header %}
+    <header>
+        <div class="menu">
+            <ul>
+                <li>
+                    <button type="button" class="btn btn-default btn-xs">Back</button>
+                </li>
+                <li>
+                    <span>Inbox</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+{% endblock %}
+
+{% block showreceive %}
+   <div id="container">
+    {% if receives is defined %}
+        {% if receives is not null %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox">
+                        </th>
+                        <th>Subject</th>
+                        <th>Sender</th>
+                        <th>Created at</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for receive in receives %}
+                        {% if receive.status == 1  %} <!-- if notification is read show without bold-->
+                            <tr>
+                        {% else %}
+                            <tr  class="bold">
+                        {% endif %}
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>
+                                <a href="{{  path('receive-detailed', {'notificId' : receive.id }) }}">{{ receive.notification.header }}</td>
+                            </a>
+                            <td>{{ receive.notification.fromUser }}</td>
+                            <td>{{ receive.notification.created|date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        {% endif %}
     {% endif %}
-{% endif %}
+   </div>
+{% endblock %}

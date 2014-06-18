@@ -92,7 +92,7 @@ class MainController extends Controller
         $form = $this->createFormBuilder()
             ->add('user', 'entity', array('label'=>'To', 'class' =>$userClassName) )
             ->add('header', null, array('label'=>'Subject'))
-            ->add('content', 'textarea', array('label'=>'Subject'))
+            ->add('content', 'textarea', array('label'=>'Content'))
             ->add('send', 'submit')
             ->getForm();
 

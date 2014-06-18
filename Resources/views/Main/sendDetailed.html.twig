@@ -1,6 +1,40 @@
-ID: {{ notification.id }}<br>
-from: {{ notification.notification.fromUser }}<br>
-to: {{ notification.toUser }}<br>
-header: {{ notification.notification.header }}<br>
-content: {{ notification.notification.content }}<br>
-created: {{ notification.notification.created | date }}<br>
+{% extends 'YitNotificationBundle:Main:layout.html.twig' %}
+
+{% block header %}
+    <header>
+        <div class="menu">
+            <ul>
+                <li>
+                    <button type="button" class="btn btn-default btn-xs">Back</button>
+                </li>
+                <li>
+                    <span>Content</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+{% endblock %}
+{% block compose %}
+    <div id="container">
+        <div class="content">
+            <div>
+                <span>ID:</span> {{ notification.id }}
+            </div>
+            <div>
+                <span>from:</span> {{ notification.notification.fromUser }}
+            </div>
+            <div>
+                <span>to:</span> {{ notification.toUser }}
+            </div>
+            <div>
+                <span>header:</span> {{ notification.notification.header }}
+            </div>
+            <div>
+                <span>content:</span> {{ notification.notification.content }}
+            </div>
+            <div>
+                <span>created:</span> {{ notification.notification.created | date }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

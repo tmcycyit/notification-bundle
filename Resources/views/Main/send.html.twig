@@ -1,7 +1,37 @@
-{{ form_start(form) }}
-    {{ form_label(form.user) }}    {{ form_widget(form.user) }}<br>
-    {{ form_label(form.header) }}    {{ form_widget(form.header) }}<br>
-    {{ form_label(form.content) }}    {{ form_widget(form.content) }}<br>
-    {{ form_widget(form.send) }}<br>
+{% extends 'YitNotificationBundle:Main:layout.html.twig' %}
 
-{{ form_end(form) }}
+{% block header %}
+    <header>
+        <div class="menu">
+            <ul>
+                <li>
+                    <button type="button" class="btn btn-default btn-xs">Back</button>
+                </li>
+                <li>
+                    <span>Compose</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+{% endblock %}
+{% block compose %}
+    <div id="container">
+        <div id="form">
+            {{ form_start(form) }}
+                <div>
+                    {{ form_label(form.user) }}   {{ form_widget(form.user) }}
+                </div>
+                <div>
+                    {{ form_label(form.header) }}    {{ form_widget(form.header) }}
+                </div>
+                <div>
+                    {{ form_label(form.content) }}    {{ form_widget(form.content) }}
+                </div>
+                <div>
+                    {{ form_widget(form.send) }}
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+

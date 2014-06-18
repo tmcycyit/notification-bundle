@@ -1,27 +1,59 @@
+{% extends 'YitNotificationBundle:Main:layout.html.twig' %}
 
-<!--  for send notification  -->
-{% if sends is defined %}
-    {% if sends is not null %}
-        <table>
-            <tr>
-                <td style="width: 20px" >Select</td>
-                <td style="width: 300px">Subject</td>
-                <td style="width: 200px">Recipient</td>
-                <td style="width: 200px">Created at</td>
-                <td>Status</td>
-            </tr>
-            {% for send in sends %}
+{#for send notification  #}
+
+{% block header %}
+    <header>
+        <div class="menu">
+            <ul>
+                <li>
+                    <button type="button" class="btn btn-default btn-xs">Back</button>
+                </li>
+                <li>
+                    <span>Outbox</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+{% endblock %}
+
+{% block showsend %}
+    <div id="container">
+    {% if sends is defined %}
+        {% if sends is not null %}
+            <table class="table table-bordered">
+                <thead>
                 <tr>
-                    <td style="width: 20px" ><input type="checkbox"></td>
-                    <td style="width: 300px"><a href="{{  path('send-detailed', {'notificId' : send.id }) }}">{{ send.notification.header }}</a></td>
-                    <td style="width: 200px">{{ send.toUser }}</td><td>{{ send.notification.created|date }}</td>
-                    {% if send.status == 0 %}
-                        <td><b>UnRead</b></td>
-                    {% else %}
-                        <td>Read</td>
-                        {% endif %}
+                    <th>
+                        <input type="checkbox">
+                    </th>
+                    <th>Subject</th>
+                    <th>Recipient</th>
+                    <th>Created at</th>
+                    <th>Status</th>
                 </tr>
-            {% endfor %}
-        </table>
+                </thead>
+                <tbody>
+                    {% for send in sends %}
+                        <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td style="width: 300px">
+                                <a href="{{  path('send-detailed', {'notificId' : send.id }) }}">{{ send.notification.header }}</a>
+                            </td>
+                            <td style="width: 200px">{{ send.toUser }}</td>
+                            <td>{{ send.notification.created|date }}</td>
+                            {% if send.status == 0 %}
+                                <td><b>UnRead</b></td>
+                            {% else %}
+                                <td>Read</td>
+                                {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
     {% endif %}
-{% endif %}
+    </div>
+{% endblock %}

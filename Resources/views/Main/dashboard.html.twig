@@ -1,19 +1,25 @@
+{% extends 'YitNotificationBundle:Main:layout.html.twig' %}
 
-<div style="float: left; margin-left:30px ">
-    <a href="{{  path('show-receive') }}">Inbox</a> {{ allRecieve }}
-    {% if unreaduble >0 %}
-       <b> ({{ unreaduble }})</b>
-    {% endif %}
-</div>
-
-<div style="float: left; margin-left:30px ">
-    <a href="{{  path('show-send') }}">Outbox</a> {{ allSend }}
-</div>
-
-<div style="float: left; margin-left:30px ">
-    <a href="{{  path('send') }}">Compose</a>
-</div>
-
-<div style="float: left; margin-left:30px ">
-    <a href="{{  path('fos_user_security_logout') }}">Logout</a>
-</div>
+{% block header %}
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{  path('show-receive') }}">Inbox</a> {{ allRecieve }}
+                    {% if unreaduble >0 %}
+                        <b> ({{ unreaduble }})</b>
+                    {% endif %}
+                </li>
+                <li>
+                    <a href="{{  path('show-send') }}">Outbox</a> {{ allSend }}
+                </li>
+                <li>
+                    <a href="{{  path('send') }}">Compose</a>
+                </li>
+                <li>
+                    <a href="{{  path('fos_user_security_logout') }}">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+{% endblock %}
