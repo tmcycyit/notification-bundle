@@ -10,7 +10,7 @@
                 <thead>
                     <tr>
                         <th>
-                            <input type="checkbox">
+                            <input type="checkbox" />
                         </th>
                         <th>Subject</th>
                         <th>Sender</th>
@@ -26,11 +26,11 @@
                             <tr  class="bold">
                         {% endif %}
                             <td>
-                                <input type="checkbox">
+                                <input type="checkbox" />
                             </td>
                             <td>
-                                <a href="{{  path('receive-detailed', {'notificId' : receive.id }) }}">{{ receive.notification.header }}</td>
-                            </a>
+                                <a href="{{  path('receive-detailed', {'notificId' : receive.id }) }}">{{ receive.notification.header }}</a>
+                            </td>
                             <td>{{ receive.notification.fromUser }}</td>
                             <td>{{ receive.notification.created|date }}</td>
                         </tr>

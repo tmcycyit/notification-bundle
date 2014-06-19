@@ -8,32 +8,34 @@
         {% if sends is not null %}
             <table class="table table-bordered">
                 <thead>
-                <tr>
-                    <th>
-                        <input type="checkbox">
-                    </th>
-                    <th>Subject</th>
-                    <th>Recipient</th>
-                    <th>Created at</th>
-                    <th>Status</th>
-                </tr>
+                    <tr>
+                        <th>
+                            <input type="checkbox" />
+                        </th>
+                        <th>Subject</th>
+                        <th>Recipient</th>
+                        <th>Created at</th>
+                        <th>Status</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {% for send in sends %}
                         <tr>
                             <td>
-                                <input type="checkbox">
+                                <input type="checkbox" />
                             </td>
-                            <td style="width: 300px">
+                            <td>
                                 <a href="{{  path('send-detailed', {'notificId' : send.id }) }}">{{ send.notification.header }}</a>
                             </td>
-                            <td style="width: 200px">{{ send.toUser }}</td>
+                            <td>{{ send.toUser }}</td>
                             <td>{{ send.notification.created|date }}</td>
                             {% if send.status == 0 %}
-                                <td><b>UnRead</b></td>
+                                <td>
+                                    <b>UnRead</b>
+                                </td>
                             {% else %}
                                 <td>Read</td>
-                                {% endif %}
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>

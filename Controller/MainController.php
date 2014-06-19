@@ -9,12 +9,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Yit\NotificationBundle\Entity\Notification;
 use Yit\NotificationBundle\Entity\NotificationStatus;
+use Yit\NotificationBundle\Entity\NotificationType;
+use Yit\NotificationBundle\Entity\PreparedNotification;
 
 
 /**
  *
  * Class MainController
  * @package Yit\NotificationBundle\Controller
+ * @Route("notification")
  */
 class MainController extends Controller
 {
@@ -22,16 +25,34 @@ class MainController extends Controller
 
 
     /**
-     * This action is used to open homepage, ig user is logged or redirect to login page
+     * This action is used to show all receive notifications of current user
      *
-     * @Route("/" , name = "homepage")
+     * @Route("/" , name = "show-receive")
      * @Template()
      */
-    public function indexAction()
+    public function showReceiveAction()
     {
         if ($this->get('security.context')->isGranted('ROLE_USER'))
         {
-            return $this->redirect($this->generateUrl('dashboard')); //if user logged go to dashboard
+            $user = $this->getUser(); // get current user
+            if(!$user)
+            {
+                throw $this->createNotFoundException("User Not Found, You must authenticate first ");
+            }
+
+            $em = $this->getDoctrine()->getManager();   //get entity manager
+
+            $receives = $em->getRepository(self::ENTITY)->findAllReceiveByUserId($user->getId());
+            if (!$receives) //return 404 if notification not found
+            {
+                throw $this->createNotFoundException("receive notification Not Found");
+            }
+
+            //get note`s count
+            $noteCount = $this->getNoteCount();
+
+            $templates = $this->container->getParameter('yit_notification.templates.showReceive'); // get templates name
+            return $this->render( $templates, array('receives' => $receives, 'noteCount' => $noteCount) );
         }
         else
         {
@@ -39,37 +60,6 @@ class MainController extends Controller
         }
     }
 
-    /**
-     * This action is used to open dashboard
-     *
-     * @Route("/dashboard" , name = "dashboard")
-     * @Template()
-     */
-    public function dashboardAction()
-    {
-       $em = $this->getDoctrine()->getManager(); //get entity manager
-
-        $user = $this->getUser();  // get current user
-        if(!$user)
-        {
-            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
-        }
-
-        // get all current user`s recieved notificiation
-        $allRecieve = $em->getRepository(self::ENTITY)->countOfAllReceiveByUserId($user->getId());
-
-        // get all current user`s unreadable notificiation
-        $unreaduble =  $em->getRepository(self::ENTITY)->findAllUnReadableNotificationByUserId($user->getId());
-
-        // get all current user`s sended notificiation
-        $allSend =  $em->getRepository(self::ENTITY)->countOfAllSendByUserId($user->getId());
-
-        $templates = $this->container->getParameter('yit_notification.templates.dashboard'); // get templates name
-        return $this->render(
-            $templates,
-            array('unreaduble' => $unreaduble, 'allRecieve' => $allRecieve, 'allSend' => $allSend)
-        );
-    }
 
     /**
      * This action is used to send notifications
@@ -122,7 +112,7 @@ class MainController extends Controller
                 $em->persist($notificationStatus);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('dashboard'));
+                return $this->redirect($this->generateUrl('show-receive'));
             }
         }
 
@@ -154,34 +144,12 @@ class MainController extends Controller
         }
 
         $templates = $this->container->getParameter('yit_notification.templates.showSend'); // get templates name
-        return $this->render( $templates, array('sends' =>$sends) );
 
-    }
+        //get note`s count
+        $noteCount = $this->getNoteCount();
 
-    /**
-     * This action is used to show all receive notifications of current user
-     *
-     * @Route("/show-receive/" , name = "show-receive")
-     * @Template()
-     */
-    public function showReceiveAction()
-    {
-        $user = $this->getUser(); // get current user
-        if(!$user)
-        {
-            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
-        }
+        return $this->render( $templates, array('sends' =>$sends, 'noteCount' => $noteCount ) );
 
-        $em = $this->getDoctrine()->getManager();   //get entity manager
-
-        $receives = $em->getRepository(self::ENTITY)->findAllReceiveByUserId($user->getId());
-        if (!$receives) //return 404 if notification not found
-        {
-            throw $this->createNotFoundException("receive notification Not Found");
-        }
-
-        $templates = $this->container->getParameter('yit_notification.templates.showReceive'); // get templates name
-        return $this->render( $templates, array('receives' => $receives) );
     }
 
     /**
@@ -207,8 +175,11 @@ class MainController extends Controller
             $em->flush();
         }
 
+        //get note`s count
+        $noteCount = $this->getNoteCount();
+
         $templates = $this->container->getParameter('yit_notification.templates.receiveDetailed'); // get templates name
-        return $this->render( $templates, array('notification' => $notification) );
+        return $this->render( $templates, array('notification' => $notification, 'noteCount' => $noteCount) );
     }
 
     /**
@@ -227,7 +198,36 @@ class MainController extends Controller
             throw $this->createNotFoundException("Notification Not Found");
         }
 
+        //get note`s count
+        $noteCount = $this->getNoteCount();
+
         $templates = $this->container->getParameter('yit_notification.templates.sendDetailed'); // get templates name
-        return $this->render( $templates, array('notification' => $notification) );
+        return $this->render( $templates, array('notification' => $notification, 'noteCount' => $noteCount) );
+    }
+
+    /**
+     * @return mixed
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function getNoteCount()
+    {
+        $em = $this->getDoctrine()->getManager(); //get entity manager
+
+        $user = $this->getUser();  // get current user
+        if(!$user)
+        {
+            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
+        }
+
+        // get all current user`s recieved notificiation
+        $massageCount['allRecieve'] = $em->getRepository(self::ENTITY)->countOfAllReceiveByUserId($user->getId());
+
+        // get all current user`s unreadable notificiation
+        $massageCount['unreaduble'] =  $em->getRepository(self::ENTITY)->findAllUnReadableNotificationByUserId($user->getId());
+
+        // get all current user`s sended notificiation
+        $massageCount['allSend'] =  $em->getRepository(self::ENTITY)->countOfAllSendByUserId($user->getId());
+
+        return $massageCount;
     }
 }

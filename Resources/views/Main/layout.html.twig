@@ -38,21 +38,21 @@
                                 </li>
 
                                 <li>
-                                    {% if route == 'show-receive' %}
+                                    {% if route == 'show-receive'  or route == 'receive-detailed' %}
                                         <a  class ="red" href="{{  path('show-receive') }}">Inbox
-                                            <span>{{ allRecieve | default(0) }}</span>
-                                            {% if unreaduble is defined  %}
-                                                {% if unreaduble >0 %}
-                                                    <b> ({{ unreaduble | default(0) }})</b>
+                                            <span>{{ noteCount.allRecieve | default(0) }}</span>
+                                            {% if noteCount.unreaduble is defined  %}
+                                                {% if noteCount.unreaduble >0 %}
+                                                    <b> ({{ noteCount.unreaduble }})</b>
                                                 {% endif %}
                                             {% endif %}
                                         </a>
                                     {% else %}
                                         <a href="{{  path('show-receive') }}">Inbox
-                                            <span>{{ allRecieve | default(0) }}</span>
-                                            {% if unreaduble is defined  %}
-                                                {% if unreaduble >0 %}
-                                                    <b> ({{ unreaduble | default(0) }})</b>
+                                            <span>{{ noteCount.allRecieve | default(0) }}</span>
+                                            {% if noteCount.unreaduble is defined  %}
+                                                {% if noteCount.unreaduble >0 %}
+                                                    <b> ({{ noteCount.unreaduble }})</b>
                                                 {% endif %}
                                             {% endif %}
                                         </a>
@@ -60,13 +60,13 @@
                                 </li>
 
                                 <li>
-                                    {% if route == 'show-send' %}
+                                    {% if route == 'show-send'  or route == 'send-detailed' %}
                                     <a class="red" href="{{  path('show-send') }}">Outbox
-                                        <span>{{ allSend | default(0) }}</span>
+                                        <span>{{ noteCount.allSend | default(0) }}</span>
                                     </a>
                                     {% else %}
                                         <a href="{{  path('show-send') }}">Outbox
-                                            <span>{{ allSend | default(0) }}</span>
+                                            <span>{{ noteCount.allSend | default(0) }}</span>
                                         </a>
                                     {% endif %}
                                 </li>
@@ -74,7 +74,9 @@
                                 <li>
                                     <a href="{{  path('fos_user_security_logout') }}">Logout</a>
                                 </li>
+
                             </ul>
+
                         </aside>
 
                         <section>
@@ -84,6 +86,7 @@
                         </section>
 
                     </main>
+
             {% endblock %}
         </div>
 
