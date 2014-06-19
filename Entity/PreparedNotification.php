@@ -118,4 +118,23 @@ class PreparedNotification
         return $this->content;
     }
 
+    /**
+     * This function is used to replace substring in notifications.
+     * Sub-strings like %address% would be replaced by array('address' => 'some value')
+     *
+     * @param array $values
+     * @return string
+     */
+    public function getReplacedNotification(array $values)
+    {
+        // loop array and replace each key
+        $rawContent = $this->content;
+
+        foreach($values as $key => $value){
+            $rawContent = str_replace("%$key%", $value, $rawContent);
+        }
+
+        return $rawContent;
+    }
+
 }
