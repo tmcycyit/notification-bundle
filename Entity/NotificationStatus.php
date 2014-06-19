@@ -36,7 +36,7 @@ class NotificationStatus
     /**
      * @var integer status
      *
-     * @ORM\Column(type="integer", name="status")
+     * @ORM\Column(type="boolean", name="status")
      */
     protected $status;
 
@@ -53,7 +53,7 @@ class NotificationStatus
     /**
      * Set status
      *
-     * @param integer $status
+     * @param boolean $status
      * @return NotificationStatus
      */
     public function setStatus($status)
@@ -66,7 +66,7 @@ class NotificationStatus
     /**
      * Get status
      *
-     * @return integer
+     * @return boolean
      */
     public function getStatus()
     {

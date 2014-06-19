@@ -20,13 +20,13 @@ class Notification
 
     /**
      *
-     * @ORM\Column(type="string", length=200, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     protected $header;
 
     /**
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=false)
      */
     protected $content;
 
@@ -44,7 +44,6 @@ class Notification
      * @ORM\Column(name="created", type="datetime")
      */
     protected $created;
-
 
     /**
      * Get id

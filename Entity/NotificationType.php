@@ -20,13 +20,13 @@ class NotificationType
 
     /**
      *
-     * @ORM\Column(type="string", unique=true, length=200, nullable=true)
+     * @ORM\Column(type="string", unique=true, length=50, nullable=false)
      */
     protected $code;
 
     /**
      *
-     * @ORM\Column(type="string", length=200, nullable=true)
+     * @ORM\Column(type="string", length=200, nullable=false)
      */
     protected $title;
 
