@@ -21,12 +21,70 @@
     </head>
 
     <body>
-
         <div id="mainframe">
-            {% block header %}{% endblock %}
-            {% block showreceive %}{% endblock %}
-            {% block showsend %}{% endblock %}
-            {% block compose %}{% endblock %}
+            {% block content %}
+                {% set route =  app.request.attributes.get('_route') %}
+                    <main>
+                        <aside>
+
+                            <ul>
+                                <li>
+                                    {% if route == 'send' %}
+                                        <a class ="red" href="{{  path('send') }}">Compose</a>
+                                    {% else %}
+                                        <a href="{{  path('send') }}">Compose</a>
+                                    {% endif %}
+
+                                </li>
+
+                                <li>
+                                    {% if route == 'show-receive' %}
+                                        <a  class ="red" href="{{  path('show-receive') }}">Inbox
+                                            <span>{{ allRecieve | default(0) }}</span>
+                                            {% if unreaduble is defined  %}
+                                                {% if unreaduble >0 %}
+                                                    <b> ({{ unreaduble | default(0) }})</b>
+                                                {% endif %}
+                                            {% endif %}
+                                        </a>
+                                    {% else %}
+                                        <a href="{{  path('show-receive') }}">Inbox
+                                            <span>{{ allRecieve | default(0) }}</span>
+                                            {% if unreaduble is defined  %}
+                                                {% if unreaduble >0 %}
+                                                    <b> ({{ unreaduble | default(0) }})</b>
+                                                {% endif %}
+                                            {% endif %}
+                                        </a>
+                                    {% endif %}
+                                </li>
+
+                                <li>
+                                    {% if route == 'show-send' %}
+                                    <a class="red" href="{{  path('show-send') }}">Outbox
+                                        <span>{{ allSend | default(0) }}</span>
+                                    </a>
+                                    {% else %}
+                                        <a href="{{  path('show-send') }}">Outbox
+                                            <span>{{ allSend | default(0) }}</span>
+                                        </a>
+                                    {% endif %}
+                                </li>
+
+                                <li>
+                                    <a href="{{  path('fos_user_security_logout') }}">Logout</a>
+                                </li>
+                            </ul>
+                        </aside>
+
+                        <section>
+                            {% block showreceive %}{% endblock %}
+                            {% block showsend %}{% endblock %}
+                            {% block compose %}{% endblock %}
+                        </section>
+
+                    </main>
+            {% endblock %}
         </div>
 
     </body>
