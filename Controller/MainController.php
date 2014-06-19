@@ -116,8 +116,11 @@ class MainController extends Controller
             }
         }
 
+        //get note`s count
+        $noteCount = $this->getNoteCount();
+
         $templates = $this->container->getParameter('yit_notification.templates.send'); // get templates name
-        return $this->render( $templates, array('form' => $form->createView()) );
+        return $this->render( $templates, array('form' => $form->createView(), 'noteCount'=>$noteCount) );
 
     }
 
