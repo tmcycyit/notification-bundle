@@ -39,6 +39,14 @@ class Notification
     protected $fromUser;
 
     /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\NotificationType", cascade={"persist"})
+     * @ORM\JoinColumn(name="notification_type_id", referencedColumnName="id")
+     */
+    protected $notificationType;
+
+
+    /**
      * @var datetime $created
      *
      * @ORM\Column(name="created", type="datetime")
@@ -145,5 +153,26 @@ class Notification
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * @param NotificationType $notificationType
+     * @return $this
+     */
+    public function setNotificationType(\Yit\NotificationBundle\Entity\NotificationType $notificationType = null)
+    {
+        $this->notificationType = $notificationType;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationType
+     *
+     * @return \Yit\UserBundle\Entity\User
+     */
+    public function getNotificationType()
+    {
+        return $this->notificationType;
     }
 }

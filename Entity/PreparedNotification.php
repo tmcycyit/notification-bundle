@@ -37,6 +37,13 @@ class PreparedNotification
     protected $content;
 
     /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\NotificationType", cascade={"persist"})
+     * @ORM\JoinColumn(name="notification_type_id", referencedColumnName="id")
+     */
+    protected $notificationType;
+
+    /**
      * Get id
      *
      * @return integer
@@ -117,6 +124,28 @@ class PreparedNotification
     {
         return $this->content;
     }
+
+    /**
+     * @param NotificationType $notificationType
+     * @return $this
+     */
+    public function setNotificationType(\Yit\NotificationBundle\Entity\NotificationType $notificationType = null)
+    {
+        $this->notificationType = $notificationType;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationType
+     *
+     * @return \Yit\UserBundle\Entity\User
+     */
+    public function getNotificationType()
+    {
+        return $this->notificationType;
+    }
+
 
     /**
      * This function is used to replace substring in notifications.
