@@ -30,7 +30,7 @@ class MainController extends Controller
      * @Route("/" , name = "show-receive")
      * @Template()
      */
-    public function showReceiveAction()
+    public function showReceiveAction(Request $request)
     {
         if ($this->get('security.context')->isGranted('ROLE_USER'))
         {
@@ -48,11 +48,21 @@ class MainController extends Controller
                 throw $this->createNotFoundException("receive notification Not Found");
             }
 
+            // get pagination
+            $paginator  = $this->get('knp_paginator');
+
+            //get count off notes
+            $per_page = $this->container->getParameter('yit_notification.item_notes_page');
+
+            //number of pages
+            $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
+
             //get note`s count
             $noteCount = $this->getNoteCount();
 
             $templates = $this->container->getParameter('yit_notification.templates.showReceive'); // get templates name
-            return $this->render( $templates, array('receives' => $receives, 'noteCount' => $noteCount) );
+           // return $this->render( $templates, array('receives' => $receives, 'noteCount' => $noteCount) );
+            return $this->render( $templates, array('receives' => $pagination, 'noteCount' => $noteCount) );
         }
         else
         {
@@ -130,7 +140,7 @@ class MainController extends Controller
      * @Route("/show-send/" , name = "show-send")
      * @Template()
      */
-    public function showSendAction()
+    public function showSendAction(Request $request)
     {
         $user = $this->getUser(); // get current user
         if(!$user)
@@ -146,12 +156,22 @@ class MainController extends Controller
             throw $this->createNotFoundException("send notification Not Found");
         }
 
-        $templates = $this->container->getParameter('yit_notification.templates.showSend'); // get templates name
+        // get pagination
+        $paginator  = $this->get('knp_paginator');
+
+        //get count off notes
+        $per_page = $this->container->getParameter('yit_notification.item_notes_page');
+
+        //number of pages
+        $pagination = $paginator->paginate($sends, $this->get('request')->query->get('page', 1), $per_page );
+
+        // get templates name
+        $templates = $this->container->getParameter('yit_notification.templates.showSend');
 
         //get note`s count
         $noteCount = $this->getNoteCount();
 
-        return $this->render( $templates, array('sends' =>$sends, 'noteCount' => $noteCount ) );
+        return $this->render( $templates, array('sends' =>$pagination, 'noteCount' => $noteCount ) );
 
     }
 
@@ -209,6 +229,8 @@ class MainController extends Controller
     }
 
     /**
+     * This function is used to get count of al sended, received, and unreaedable notification
+     *
      * @return mixed
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
@@ -223,13 +245,13 @@ class MainController extends Controller
         }
 
         // get all current user`s recieved notificiation
-        $massageCount['allRecieve'] = $em->getRepository(self::ENTITY)->countOfAllReceiveByUserId($user->getId());
+        $massageCount['allRecieve'] = count($em->getRepository(self::ENTITY)->findAllReceiveByUserId($user->getId()));
 
         // get all current user`s unreadable notificiation
         $massageCount['unreaduble'] =  $em->getRepository(self::ENTITY)->findAllUnReadableNotificationByUserId($user->getId());
 
         // get all current user`s sended notificiation
-        $massageCount['allSend'] =  $em->getRepository(self::ENTITY)->countOfAllSendByUserId($user->getId());
+        $massageCount['allSend'] =  count($em->getRepository(self::ENTITY)->findAllSendedByUserId($user->getId()));
 
         return $massageCount;
     }

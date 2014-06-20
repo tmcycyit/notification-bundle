@@ -8,24 +8,9 @@ use Doctrine\ORM\Query;
 class NotificationStatusRepository extends EntityRepository
 {
 
-
     /**
-     * @param $userId
-     * @return int
-     */
-    public function countOfAllReceiveByUserId($userId)
-    {
-        $query = $this->getEntityManager()
-            ->createQuery('SELECT ns FROM YitNotificationBundle:NotificationStatus ns
-                           LEFT JOIN ns.toUser u
-                           LEFT JOIN ns.notification n
-                           WHERE u = :userid
-                          ');
-        $query->setParameter('userid' , $userId);
-        return count($query->getResult());
-    }
-
-    /**
+     * This function is used to find all receive notification by given user`s id
+     *
      * @param $userId
      * @return array
      */
@@ -44,6 +29,8 @@ class NotificationStatusRepository extends EntityRepository
 
 
     /**
+     *  This function is used to find all unreadable receive notifications by given user`s id
+     *
      * @param $userId
      * @return array
      */
@@ -60,6 +47,8 @@ class NotificationStatusRepository extends EntityRepository
     }
 
     /**
+     *  This function is used to find notification by given notification`s id
+     *
      * @param $notificationId
      * @return array
      */
@@ -76,6 +65,8 @@ class NotificationStatusRepository extends EntityRepository
     }
 
     /**
+     *  This function is used to find all sended notifications by given user`s id
+     *
      * @param $userId
      * @return array
      */
@@ -91,22 +82,4 @@ class NotificationStatusRepository extends EntityRepository
         $query->setParameter('userid' , $userId);
         return $query->getResult();
     }
-
-    /**
-     * @param $userId
-     * @return int
-     */
-    public function countOfAllSendByUserId($userId)
-    {
-        $query = $this->getEntityManager()
-            ->createQuery('SELECT ns FROM YitNotificationBundle:NotificationStatus ns
-                           LEFT JOIN ns.toUser u
-                           LEFT JOIN ns.notification n
-                           WHERE n.fromUser = :userid
-                          ');
-        $query->setParameter('userid' , $userId);
-        return count($query->getResult());
-    }
-
-
 }

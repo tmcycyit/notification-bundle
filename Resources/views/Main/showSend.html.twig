@@ -43,4 +43,8 @@
         {% endif %}
     {% endif %}
     </div>
+    {% block pagenav %}
+        <div class="pagination-nav">{{ knp_pagination_render(sends) }} </div>
+        <div>count of send {{ noteCount.allSend }}</div>
+    {% endblock %}
 {% endblock %}

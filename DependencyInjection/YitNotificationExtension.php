@@ -26,11 +26,19 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
+        if(isset($config['item_notes_page']))
+        {
+            $pageItemCount = $config['item_notes_page'];
+        }
+        else
+            $pageItemCount = 4;
+
         //insert user
         $container->setParameter($this->getAlias() . '.note_user', $config['note_user']);
+        //insert page`s item
+        $container->setParameter($this->getAlias() . '.item_notes_page', $pageItemCount);
 
         //set tamplate
-        $container->setParameter($this->getAlias() . '.templates.dashboard', $config['templates']['dashboard']);
         $container->setParameter($this->getAlias() . '.templates.receiveDetailed', $config['templates']['receiveDetailed']);
         $container->setParameter($this->getAlias() . '.templates.sendDetailed', $config['templates']['sendDetailed']);
         $container->setParameter($this->getAlias() . '.templates.showReceive', $config['templates']['showReceive']);

@@ -40,7 +40,6 @@
                                 <li>
                                     {% if route == 'show-receive'  or route == 'receive-detailed' %}
                                         <a  class ="red" href="{{  path('show-receive') }}">Inbox
-                                            <span>{{ noteCount.allRecieve | default(0) }}</span>
                                             {% if noteCount.unreaduble is defined  %}
                                                 {% if noteCount.unreaduble >0 %}
                                                     <b> ({{ noteCount.unreaduble }})</b>
@@ -49,7 +48,6 @@
                                         </a>
                                     {% else %}
                                         <a href="{{  path('show-receive') }}">Inbox
-                                            <span>{{ noteCount.allRecieve | default(0) }}</span>
                                             {% if noteCount.unreaduble is defined  %}
                                                 {% if noteCount.unreaduble >0 %}
                                                     <b> ({{ noteCount.unreaduble }})</b>
@@ -61,18 +59,10 @@
 
                                 <li>
                                     {% if route == 'show-send'  or route == 'send-detailed' %}
-                                    <a class="red" href="{{  path('show-send') }}">Outbox
-                                        <span>{{ noteCount.allSend | default(0) }}</span>
-                                    </a>
+                                    <a class="red" href="{{  path('show-send') }}">Outbox</a>
                                     {% else %}
-                                        <a href="{{  path('show-send') }}">Outbox
-                                            <span>{{ noteCount.allSend | default(0) }}</span>
-                                        </a>
+                                        <a href="{{  path('show-send') }}">Outbox</a>
                                     {% endif %}
-                                </li>
-
-                                <li>
-                                    <a href="{{  path('fos_user_security_logout') }}">Logout</a>
                                 </li>
 
                             </ul>

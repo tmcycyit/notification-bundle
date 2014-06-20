@@ -4,20 +4,31 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+
     <parameters>
-        <parameter key="yit_notification.example.class">Yit\YitNotificationBundle\Example</parameter>
+        <!-- parameter for  user bundle class -->
+        <parameter key="yit_notification.note_user">%note_user_classname%</parameter>
+        <!--parameter for pagination-->
+        <parameter key="yit_notification.item_notes_page">%note_item_notes_page%</parameter>
     </parameters>
 
     <services>
-        <service id="yit_notification.example" class="%yit_notification.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <!-- Admin page for prepared notification  -->
+        <service id="yit.note.prepared.notification" class="Yit\NotificationBundle\Admin\PreparedNotificationAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Notification" label="Prepared Notification"/>
+            <argument/>
+            <argument>Yit\NotificationBundle\Entity\PreparedNotification</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
         </service>
+
+        <!-- Admin page for Notification type  -->
+        <service id="yit.note.notification.type_note" class="Yit\NotificationBundle\Admin\NotificationTypeAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Notification" label="Notification type"/>
+            <argument/>
+            <argument>Yit\NotificationBundle\Entity\NotificationType</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+
     </services>
-    -->
-    <parameters>
-        <parameter key="yit_notification.note_user">%note_user_classname%</parameter>
-    </parameters>
+
 </container>
