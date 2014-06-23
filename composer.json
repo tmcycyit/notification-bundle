@@ -6,7 +6,8 @@
         "psr-0": { "Yit\\NotificationBundle": "" }
     },
     "require": {
-        "friendsofsymfony/user-bundle": "~1.3"
+        "friendsofsymfony/user-bundle": "~1.3",
+        "knplabs/knp-paginator-bundle": "~2.4"
     },
 
     "target-dir": "Yit/NotificationBundle"
