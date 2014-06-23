@@ -11,7 +11,7 @@ Add NotificationBundle in your composer.json:
 ```js
 {
     "require": {
-        "friendsofsymfony/user-bundle": "~1.3"
+        "yit/notification-bundle": "dev-master",
     }
 }
 ```
@@ -44,18 +44,18 @@ Add the following configuration to your `config.yml` file
 ``` yaml
 # app/config/config.yml
 yit_notification:
-    note_user: Yit\UserBundle\Entity\User
+    note_user: path\to\yourUser\Entity\User
 ```
 
 ###Step 4: Import NotificationBundle routing files
 
-`` yaml
+``` yaml
 # app/config/routing.yml
 yit_notification:
     resource: "@YitNotificationBundle/Controller/"
     type:     annotation
     prefix:   /
-
+```
 ### Step 5: Update your database schema
 
 Now that the bundle is configured, the last thing you need to do is update your
