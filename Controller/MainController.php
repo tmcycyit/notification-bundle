@@ -51,18 +51,17 @@ class MainController extends Controller
             // get pagination
             $paginator  = $this->get('knp_paginator');
 
-            //get count off notes
+            //get count off notes in page
             $per_page = $this->container->getParameter('yit_notification.item_notes_page');
 
             //number of pages
             $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
 
-            //get note`s count
-            $noteCount = $this->getNoteCount();
+            //get note`s count, and set it in twig global
+            $this->getNoteCount();
 
             $templates = $this->container->getParameter('yit_notification.templates.showReceive'); // get templates name
-           // return $this->render( $templates, array('receives' => $receives, 'noteCount' => $noteCount) );
-            return $this->render( $templates, array('receives' => $pagination, 'noteCount' => $noteCount) );
+            return $this->render( $templates, array('receives' => $pagination) );
         }
         else
         {
@@ -79,6 +78,7 @@ class MainController extends Controller
      */
     public function sendAction(Request $request)
     {
+
         $em = $this->getDoctrine()->getManager(); //get entity manager
 
         $userClassName = $this->container->getParameter('yit_notification.note_user'); // get user className
@@ -126,11 +126,11 @@ class MainController extends Controller
             }
         }
 
-        //get note`s count
-        $noteCount = $this->getNoteCount();
+        //get note`s count, and set it in twig global
+        $this->getNoteCount();
 
         $templates = $this->container->getParameter('yit_notification.templates.send'); // get templates name
-        return $this->render( $templates, array('form' => $form->createView(), 'noteCount'=>$noteCount) );
+        return $this->render( $templates, array('form' => $form->createView()) );
 
     }
 
@@ -159,7 +159,7 @@ class MainController extends Controller
         // get pagination
         $paginator  = $this->get('knp_paginator');
 
-        //get count off notes
+        //get count off notes in page
         $per_page = $this->container->getParameter('yit_notification.item_notes_page');
 
         //number of pages
@@ -168,10 +168,10 @@ class MainController extends Controller
         // get templates name
         $templates = $this->container->getParameter('yit_notification.templates.showSend');
 
-        //get note`s count
-        $noteCount = $this->getNoteCount();
+        //get note`s count, and set it in twig global
+        $this->getNoteCount();
 
-        return $this->render( $templates, array('sends' =>$pagination, 'noteCount' => $noteCount ) );
+        return $this->render( $templates, array('sends' =>$pagination ) );
 
     }
 
@@ -198,11 +198,11 @@ class MainController extends Controller
             $em->flush();
         }
 
-        //get note`s count
-        $noteCount = $this->getNoteCount();
+        //get note`s count, and set it in twig global
+        $this->getNoteCount();
 
         $templates = $this->container->getParameter('yit_notification.templates.receiveDetailed'); // get templates name
-        return $this->render( $templates, array('notification' => $notification, 'noteCount' => $noteCount) );
+        return $this->render( $templates, array('notification' => $notification) );
     }
 
     /**
@@ -221,15 +221,17 @@ class MainController extends Controller
             throw $this->createNotFoundException("Notification Not Found");
         }
 
-        //get note`s count
-        $noteCount = $this->getNoteCount();
+        //get note`s count, and set it in twig global
+        $this->getNoteCount();
+
 
         $templates = $this->container->getParameter('yit_notification.templates.sendDetailed'); // get templates name
-        return $this->render( $templates, array('notification' => $notification, 'noteCount' => $noteCount) );
+        return $this->render( $templates, array('notification' => $notification) );
     }
 
     /**
-     * This function is used to get count of al sended, received, and unreaedable notification
+     * This function is used to get count of al sended, received, and unreaedable notification,
+     *      is compose added, and set it in twig global
      *
      * @return mixed
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
@@ -253,6 +255,11 @@ class MainController extends Controller
         // get all current user`s sended notificiation
         $massageCount['allSend'] =  count($em->getRepository(self::ENTITY)->findAllSendedByUserId($user->getId()));
 
-        return $massageCount;
+        $compose = $this->container->getParameter('yit_notification.add_compose');
+
+        // set massage count to twig global
+        $this->container->get('twig')->addGlobal('noteCount', $massageCount);
+        //set compose to twig global
+        $this->container->get('twig')->addGlobal('compose' , $compose);
     }
 }

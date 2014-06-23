@@ -1,6 +1,7 @@
 {% extends 'YitNotificationBundle:Main:layout.html.twig' %}
 
 {% block compose %}
+    {% if compose %}
     <div id="container">
         <div id="form">
             {{ form_start(form) }}
@@ -19,5 +20,6 @@
             {{ form_end(form) }}
         </div>
     </div>
+{% endif %}
 {% endblock %}
 

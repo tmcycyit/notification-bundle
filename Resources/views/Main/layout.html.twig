@@ -28,6 +28,7 @@
                         <aside>
 
                             <ul>
+                                {% if compose %}
                                 <li>
                                     {% if route == 'send' %}
                                         <a class ="red" href="{{  path('send') }}">Compose</a>
@@ -36,6 +37,7 @@
                                     {% endif %}
 
                                 </li>
+                                {% endif %}
 
                                 <li>
                                     {% if route == 'show-receive'  or route == 'receive-detailed' %}
@@ -68,7 +70,6 @@
                             </ul>
 
                         </aside>
-
                         <section>
                             {% block showreceive %}{% endblock %}
                             {% block showsend %}{% endblock %}
