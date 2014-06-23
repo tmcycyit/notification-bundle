@@ -44,7 +44,7 @@ Add the following configuration to your `config.yml` file
 ``` yaml
 # app/config/config.yml
 yit_notification:
-    note_user: path\to\yourUser\Entity\User
+    note_user: pathToYourUserBundle\Entity\User
 ```
 
 ###Step 4: Import NotificationBundle routing files
