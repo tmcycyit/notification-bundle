@@ -31,6 +31,11 @@
             <argument>SonataAdminBundle:CRUD</argument>
         </service>
 
+
+        <service id="yitnote" class="Yit\NotificationBundle\Services\YitNote">
+            <argument type="service" id="service_container" > </argument>
+        </service>
+
     </services>
 
 </container>
