@@ -57,4 +57,19 @@ class YitNote
         $em->persist($notification); //persist status
         $em->flush();
     }
+
+    public function getNotesCount($user)
+    {
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        // get all current user`s recieved notificiation
+        $massageCount['all'] = count($em->getRepository('YitNotificationBundle:NotificationStatus')->findAllReceiveByUserId($user->getId()));
+
+        // get all current user`s unreadable notificiation
+        $massageCount['unreadable'] =  $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserId($user->getId());
+
+        return $massageCount;
+
+    }
 }
