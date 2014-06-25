@@ -26,6 +26,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('add_compose')->end()
             ->arrayNode('templates')->addDefaultsIfNotSet()
             ->children()
+            ->scalarNode('layout')->defaultValue('YitNotificationBundle::noteLayout.html.twig')->cannotBeEmpty()->end()
             ->scalarNode('receiveDetailed')->defaultValue('YitNotificationBundle:Main:receiveDetailed.html.twig')->cannotBeEmpty()->end()
             ->scalarNode('sendDetailed')->defaultValue('YitNotificationBundle:Main:sendDetailed.html.twig')->cannotBeEmpty()->end()
             ->scalarNode('showReceive')->defaultValue('YitNotificationBundle:Main:showReceive.html.twig')->cannotBeEmpty()->end()

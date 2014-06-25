@@ -109,5 +109,34 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
                 }
             }
         }
+
+        //
+        if(isset($config['layout']))
+        {
+            $tamplate = '';
+        }
+        else
+        {
+            $tamplate = 'sdg';
+        }
+
+        if (isset($bundles['TwigBundle'])) //is twig bundle set
+        {
+            //array for twig
+            $insertionForTwig = array(
+                'globals' => array('yit_template' =>$config['templates']['layout'] )
+            );
+
+            // insert assetic bundle nume  into config.yml
+            foreach ($container->getExtensions() as $name => $extension)
+            {
+                switch ($name)
+                {
+                    case 'twig':
+                        $container->prependExtensionConfig($name, $insertionForTwig);
+                        break;
+                }
+            }
+        }
     }
 }
