@@ -112,10 +112,10 @@ class Notification
     /**
      * Set fromUser
      *
-     * @param \Yit\UserBundle\Entity\User $fromUser
+     * @param  $fromUser
      * @return Notification
      */
-    public function setFromUser(\Yit\UserBundle\Entity\User $fromUser = null)
+    public function setFromUser($fromUser = null)
     {
         $this->fromUser = $fromUser;
 
@@ -125,7 +125,7 @@ class Notification
     /**
      * Get fromUser
      *
-     * @return \Yit\UserBundle\Entity\User 
+     * @return user
      */
     public function getFromUser()
     {

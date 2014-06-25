@@ -99,10 +99,10 @@ class NotificationStatus
     /**
      * Set toUser
      *
-     * @param \Yit\UserBundle\Entity\User $toUser
+     * @param  $toUser
      * @return NotificationStatus
      */
-    public function setToUser(\Yit\UserBundle\Entity\User $toUser = null)
+    public function setToUser($toUser = null)
     {
         $this->toUser = $toUser;
 
@@ -112,7 +112,7 @@ class NotificationStatus
     /**
      * Get toUser
      *
-     * @return \Yit\UserBundle\Entity\User 
+     * @return user
      */
     public function getToUser()
     {

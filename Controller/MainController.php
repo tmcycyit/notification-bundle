@@ -42,11 +42,8 @@ class MainController extends Controller
 
             $em = $this->getDoctrine()->getManager();   //get entity manager
 
+            // return all receives notes, or null
             $receives = $em->getRepository(self::ENTITY)->findAllReceiveByUserId($user->getId());
-            if (!$receives) //return 404 if notification not found
-            {
-                throw $this->createNotFoundException("receive notification Not Found");
-            }
 
             // get pagination
             $paginator  = $this->get('knp_paginator');
@@ -150,11 +147,8 @@ class MainController extends Controller
 
         $em = $this->getDoctrine()->getManager();   //get entity manager
 
+        // return all sent notes, or null
         $sends = $em->getRepository(self::ENTITY)->findAllSendedByUserId($user->getId());
-        if (!$sends) //return 404 if notification not found
-        {
-            throw $this->createNotFoundException("send notification Not Found");
-        }
 
         // get pagination
         $paginator  = $this->get('knp_paginator');
