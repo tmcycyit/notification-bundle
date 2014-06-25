@@ -1,4 +1,4 @@
-{% extends 'YitNotificationBundle:Main:layout.html.twig' %}
+{% extends 'YitNotificationBundle::noteLayout.html.twig' %}
 
 {# for receive notification  #}
 
@@ -29,7 +29,7 @@
                                 <input type="checkbox" />
                             </td>
                             <td>
-                                <a href="{{  path('receive-detailed', {'notificId' : receive.id }) }}">{{ receive.notification.header }}</a>
+                                <a href="{{  path('receive-detailed', {'notificId' : receive.notification.id }) }}">{{ receive.notification.header }}</a>
                             </td>
                             <td>{{ receive.notification.fromUser }}</td>
                             <td>{{ receive.notification.created|date }}</td>

@@ -1,4 +1,4 @@
-{% extends 'YitNotificationBundle:Main:layout.html.twig' %}
+{% extends 'YitNotificationBundle::noteLayout.html.twig' %}
 
 {#for send notification  #}
 
@@ -25,7 +25,7 @@
                                 <input type="checkbox" />
                             </td>
                             <td>
-                                <a href="{{  path('send-detailed', {'notificId' : send.id }) }}">{{ send.notification.header }}</a>
+                                <a href="{{  path('send-detailed', {'notificId' : send.notification.id }) }}">{{ send.notification.header }}</a>
                             </td>
                             <td>{{ send.toUser }}</td>
                             <td>{{ send.notification.created|date }}</td>
