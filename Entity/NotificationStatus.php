@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="notification_status")
+ * @ORM\Table(name="yit_notification_status")
  * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\NotificationStatusRepository")
  */
 class NotificationStatus
