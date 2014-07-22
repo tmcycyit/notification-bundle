@@ -23,15 +23,11 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->scalarNode('note_user')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('item_notes_page')->end()
-            ->scalarNode('add_compose')->end()
             ->arrayNode('templates')->addDefaultsIfNotSet()
             ->children()
             ->scalarNode('layout')->defaultValue('YitNotificationBundle::noteLayout.html.twig')->cannotBeEmpty()->end()
             ->scalarNode('receiveDetailed')->defaultValue('YitNotificationBundle:Main:receiveDetailed.html.twig')->cannotBeEmpty()->end()
-            ->scalarNode('sendDetailed')->defaultValue('YitNotificationBundle:Main:sendDetailed.html.twig')->cannotBeEmpty()->end()
             ->scalarNode('showReceive')->defaultValue('YitNotificationBundle:Main:showReceive.html.twig')->cannotBeEmpty()->end()
-            ->scalarNode('showSend')->defaultValue('YitNotificationBundle:Main:showSend.html.twig')->cannotBeEmpty()->end()
-            ->scalarNode('send')->defaultValue('YitNotificationBundle:Main:send.html.twig')->cannotBeEmpty()->end()
             ->end()
             ->end();
 

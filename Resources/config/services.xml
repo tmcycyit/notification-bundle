@@ -10,8 +10,6 @@
         <parameter key="yit_notification.note_user">%note_user_classname%</parameter>
         <!--parameter for pagination-->
         <parameter key="yit_notification.item_notes_page">%note_item_notes_page%</parameter>
-        <!--parameter for compose-->
-        <parameter key="yit_notification.add_compose">%compose%</parameter>
     </parameters>
 
     <services>

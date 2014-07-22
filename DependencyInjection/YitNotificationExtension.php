@@ -36,28 +36,14 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
             $pageItemCount = 4; // else set default value
         }
 
-        if (isset($config['add_compose']))
-        {
-            $compose = $config['add_compose']; // if is set compose, get from config
-        }
-        else
-        {
-            $compose = false; // else set dafault false
-        }
-
         //insert user
         $container->setParameter($this->getAlias() . '.note_user', $config['note_user']);
         //insert page`s item
         $container->setParameter($this->getAlias() . '.item_notes_page', $pageItemCount);
-        //insert compose
-        $container->setParameter($this->getAlias() . '.add_compose', $compose);
 
         //set tamplate
         $container->setParameter($this->getAlias() . '.templates.receiveDetailed', $config['templates']['receiveDetailed']);
-        $container->setParameter($this->getAlias() . '.templates.sendDetailed', $config['templates']['sendDetailed']);
         $container->setParameter($this->getAlias() . '.templates.showReceive', $config['templates']['showReceive']);
-        $container->setParameter($this->getAlias() . '.templates.showSend', $config['templates']['showSend']);
-        $container->setParameter($this->getAlias() . '.templates.send', $config['templates']['send']);
     }
 
     /**
@@ -108,16 +94,6 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
                         break;
                 }
             }
-        }
-
-        //
-        if(isset($config['layout']))
-        {
-            $tamplate = '';
-        }
-        else
-        {
-            $tamplate = 'sdg';
         }
 
         if (isset($bundles['TwigBundle'])) //is twig bundle set
