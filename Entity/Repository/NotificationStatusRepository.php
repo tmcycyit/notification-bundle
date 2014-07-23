@@ -82,4 +82,25 @@ class NotificationStatusRepository extends EntityRepository
         $query->setParameter('userid' , $userId);
         return $query->getResult();
     }
+
+
+    public function findUserNotificationById($notificationId, $userId)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT ns FROM YitNotificationBundle:NotificationStatus ns
+                           LEFT JOIN ns.toUser u
+                           LEFT JOIN ns.notification n
+                           WHERE n.id = :notificationId AND u.id = :userId
+                          ');
+        $query->setParameter('notificationId' , $notificationId);
+        $query->setParameter('userId' , $userId);
+
+        if(!$query->getResult()) // if query is empty, return null
+        {
+            return null;
+        }
+        $query->setMaxResults(1);
+        return $query->getSingleResult();
+    }
+
 }

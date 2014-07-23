@@ -7,6 +7,7 @@ use  Yit\NotificationBundle\Entity\Notification;
 use  Yit\NotificationBundle\Entity\NotificationStatus;
 use Yit\NotificationBundle\Entity\PreparedNotification;
 use Yit\NotificationBundle\Model\NoteUserInterface;
+use Symfony\Component\HttpKernel\Exception\HttpNotFoundException;
 
 class YitNote
 {
@@ -58,6 +59,10 @@ class YitNote
         $em->flush();
     }
 
+    /**
+     * @param $user
+     * @return mixed
+     */
     public function getNotesCount($user)
     {
         // get entity manager
@@ -70,6 +75,27 @@ class YitNote
         $massageCount['unreadable'] =  $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserId($user->getId());
 
         return $massageCount;
+
+    }
+
+    /**
+     * @param $id
+     * @param $userId
+     * @return bool
+     */
+    public function deleteNote($id, $userId)
+    {
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        $note = $em->getRepository('YitNotificationBundle:NotificationStatus')->findUserNotificationById($id, $userId);
+        if($note)
+        {
+            $em->remove($note);
+            $em->flush();
+            return true;
+        }
+        return false;
 
     }
 }
