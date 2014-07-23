@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->scalarNode('note_user')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('item_notes_page')->end()
+            ->scalarNode('item_notes_dropdown')->end()
             ->arrayNode('templates')->addDefaultsIfNotSet()
             ->children()
             ->scalarNode('layout')->defaultValue('YitNotificationBundle::noteLayout.html.twig')->cannotBeEmpty()->end()

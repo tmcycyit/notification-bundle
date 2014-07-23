@@ -84,6 +84,11 @@ class NotificationStatusRepository extends EntityRepository
     }
 
 
+    /**
+     * @param $notificationId
+     * @param $userId
+     * @return mixed|null
+     */
     public function findUserNotificationById($notificationId, $userId)
     {
         $query = $this->getEntityManager()
@@ -101,6 +106,24 @@ class NotificationStatusRepository extends EntityRepository
         }
         $query->setMaxResults(1);
         return $query->getSingleResult();
+    }
+
+    /**
+     * @param $userId
+     * @param $count
+     * @return array
+     */
+    public function findReceiveByUserId($userId, $count)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT ns, n, u FROM YitNotificationBundle:NotificationStatus ns
+                           LEFT JOIN ns.toUser u
+                           LEFT JOIN ns.notification n
+                           WHERE u = :userid
+                           ORDER BY n.created DESC
+                          ')->setMaxResults($count);
+        $query->setParameter('userid' , $userId);
+        return $query->getResult();
     }
 
 }

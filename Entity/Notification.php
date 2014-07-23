@@ -4,6 +4,7 @@
 namespace Yit\NotificationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity
@@ -15,18 +16,21 @@ class Notification
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Groups({"list"})
      */
     protected $id;
 
     /**
      *
      * @ORM\Column(type="string", length=255, nullable=false)
+     * @JMS\Groups({"list"})
      */
     protected $header;
 
     /**
      *
      * @ORM\Column(type="text", nullable=false)
+     * @JMS\Groups({"list"})
      */
     protected $content;
 
@@ -35,6 +39,7 @@ class Notification
      * @var
      * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
      * @ORM\JoinColumn(name="from_user_id", referencedColumnName="id")
+     *
      */
     protected $fromUser;
 
@@ -50,6 +55,7 @@ class Notification
      * @var datetime $created
      *
      * @ORM\Column(name="created", type="datetime")
+     * @JMS\Groups({"list"})
      */
     protected $created;
 

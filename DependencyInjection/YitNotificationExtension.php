@@ -36,10 +36,25 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
             $pageItemCount = 4; // else set default value
         }
 
+        //get item`s count in page from config
+        if(isset($config['item_notes_dropdown']))
+        {
+            $pageItemNotesCount = $config['item_notes_dropdown']; // if set, get from config
+        }
+        else
+        {
+            $pageItemNotesCount = 5; // else set default value
+        }
+
+
+
+
         //insert user
         $container->setParameter($this->getAlias() . '.note_user', $config['note_user']);
         //insert page`s item
         $container->setParameter($this->getAlias() . '.item_notes_page', $pageItemCount);
+        //insert page`s item in drop down
+        $container->setParameter($this->getAlias() . '.item_notes_dropdown', $pageItemNotesCount);
 
         //set tamplate
         $container->setParameter($this->getAlias() . '.templates.receiveDetailed', $config['templates']['receiveDetailed']);

@@ -4,6 +4,7 @@
 namespace Yit\NotificationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity
@@ -23,6 +24,7 @@ class NotificationStatus
      * @var
      * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\Notification", cascade={"persist"})
      * @ORM\JoinColumn(name="notification_id", referencedColumnName="id")
+     * @JMS\Groups({"list"})
      */
     protected $notification;
 
