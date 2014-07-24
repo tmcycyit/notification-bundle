@@ -74,7 +74,7 @@ class RestNoteController extends FOSRestController
         // get Last Modified field
         $count = $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserId($userId);
 
-        return $count;
+        return array("count"=>$count);
     }
 
     /**
@@ -106,7 +106,7 @@ class RestNoteController extends FOSRestController
         if($notification)
         {
             $notification->setStatus(1);
-
+            $em->flush();
         }
         else
         {

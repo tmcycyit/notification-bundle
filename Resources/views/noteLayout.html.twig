@@ -26,7 +26,6 @@
         {% set route =  app.request.attributes.get('_route') %}
         <main>
             <aside>
-
                 <ul>
                     <li>
                         <a href="{{  path('show-receive') }}">Inbox
@@ -38,7 +37,6 @@
                         </a>
                     </li>
                 </ul>
-
             </aside>
             <section>
                 {% block showreceive %}{% endblock %}

@@ -119,7 +119,7 @@ class NotificationStatusRepository extends EntityRepository
             ->createQuery('SELECT ns, n, u FROM YitNotificationBundle:NotificationStatus ns
                            LEFT JOIN ns.toUser u
                            LEFT JOIN ns.notification n
-                           WHERE u = :userid
+                           WHERE u = :userid AND ns.status = 0
                            ORDER BY n.created DESC
                           ')->setMaxResults($count);
         $query->setParameter('userid' , $userId);
