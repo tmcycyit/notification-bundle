@@ -21,12 +21,12 @@ use FOS\RestBundle\Util\Codes;
 class RestNoteController extends FOSRestController
 {
     /**
-     * This function is used to get all Main`s entities ;
+     * This function is used to get all Notification ;
      *
      * @ApiDoc(
      *  resource=true,
-     *  section="Main",
-     *  description="This function is used to get Main`s Entity ",
+     *  section="Note",
+     *  description="This function is used to get all Notification",
      *  statusCodes={
      *         200="Returned when successful",
      *     }
@@ -50,15 +50,14 @@ class RestNoteController extends FOSRestController
     }
 
     /**
-     * This function is used to get all Main`s entities ;
+     * This function is used to get count of unreadable notifications ;
      *
      * @ApiDoc(
      *  resource=true,
-     *  section="Main",
-     *  description="This function is used to get Main`s Entity ",
+     *  section="Note",
+     *  description="This function is used to get count of unreadable notifications",
      *  statusCodes={
      *         200="Returned when successful",
-     *         304="Returned when date is not modified",
      *     }
      * )
      *
@@ -76,6 +75,44 @@ class RestNoteController extends FOSRestController
         $count = $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserId($userId);
 
         return $count;
+    }
+
+    /**
+     * This function is used to set notification readable;
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  section="Note",
+     *  description="This function is used to set notification readable",
+     *  statusCodes={
+     *         200="Returned when successful",
+     *
+     *     }
+     * )
+     *
+     * @param $noteId
+     * @Rest\View()
+     * @return mixed
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     */
+
+    public function patchReadAction($noteId)
+    {
+        // get entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // get Last Modified field
+        $notification = $em->getRepository('YitNotificationBundle:NotificationStatus')->findNotificationById($noteId);
+        if($notification)
+        {
+            $notification->setStatus(1);
+
+        }
+        else
+        {
+            throw new HttpException (Codes::HTTP_NOT_FOUND);
+        }
+
     }
 
 
