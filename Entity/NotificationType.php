@@ -30,6 +30,7 @@ class NotificationType
      */
     protected $title;
 
+
     /**
      * Get id
      *
