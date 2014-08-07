@@ -4,10 +4,11 @@
 namespace Yit\NotificationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="notification")
+ * @ORM\Table(name="yit_notification")
  */
 class Notification
 {
@@ -15,36 +16,48 @@ class Notification
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Groups({"list"})
      */
     protected $id;
 
     /**
      *
-     * @ORM\Column(type="string", length=200, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @JMS\Groups({"list"})
      */
     protected $header;
 
     /**
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=false)
+     * @JMS\Groups({"list"})
      */
     protected $content;
 
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="FOS\UserBundle\Entity", cascade={"persist"})
-     * @ORM\JoinColumn(name="from_user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
+     * @ORM\JoinColumn(name="from_user_id", referencedColumnName="id", onDelete="SET NULL")
+     *
      */
     protected $fromUser;
+
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\NotificationType", cascade={"persist"})
+     * @ORM\JoinColumn(name="notification_type_id", referencedColumnName="id")
+     */
+    protected $notificationType;
+
 
     /**
      * @var datetime $created
      *
      * @ORM\Column(name="created", type="datetime")
+     * @JMS\Groups({"list"})
      */
     protected $created;
-
 
     /**
      * Get id
@@ -105,10 +118,10 @@ class Notification
     /**
      * Set fromUser
      *
-     * @param \Yit\UserBundle\Entity\User $fromUser
+     * @param  $fromUser
      * @return Notification
      */
-    public function setFromUser(\Yit\UserBundle\Entity\User $fromUser = null)
+    public function setFromUser($fromUser = null)
     {
         $this->fromUser = $fromUser;
 
@@ -118,7 +131,7 @@ class Notification
     /**
      * Get fromUser
      *
-     * @return \Yit\UserBundle\Entity\User 
+     * @return user
      */
     public function getFromUser()
     {
@@ -146,5 +159,26 @@ class Notification
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * @param NotificationType $notificationType
+     * @return $this
+     */
+    public function setNotificationType(\Yit\NotificationBundle\Entity\NotificationType $notificationType = null)
+    {
+        $this->notificationType = $notificationType;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationType
+     *
+     * @return \Yit\UserBundle\Entity\User
+     */
+    public function getNotificationType()
+    {
+        return $this->notificationType;
     }
 }

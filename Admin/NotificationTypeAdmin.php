@@ -21,8 +21,7 @@ class NotificationTypeAdmin extends Admin
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('code')
-            ->add('title');
+                ->add('title');
     }
 
     /**
@@ -33,13 +32,12 @@ class NotificationTypeAdmin extends Admin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->addIdentifier('code')
-            ->addIdentifier('title')
-            ->add('_action', 'actions', array ('actions' => array (
-                'show' => array (),
-                'edit' => array (),
-                'delete' => array ()
-            )));
+                ->addIdentifier('title')
+                ->add('_action', 'actions', array ('actions' => array (
+                        'show' => array (),
+                        'edit' => array (),
+                        'delete' => array ()
+                )));
     }
 
     /**
@@ -50,8 +48,9 @@ class NotificationTypeAdmin extends Admin
     public function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('code')
-            ->add('title');
+                ->add('file', 'file', array('required' => false))
+                ->add('path', 'fileField', array('required' => false, 'label' => ' '))
+                ->add('title');
     }
 
     /**
@@ -62,7 +61,26 @@ class NotificationTypeAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('code')
-            ->add('title');
+                ->add('title');
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function prePersist($type)
+    {
+        $type->upload();
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function preUpdate($type)
+    {
+        $type->upload();
+    }
+
+    public function getFormTheme() {
+        return array('YitNotificationBundle:Admin:file.html.twig');
     }
 }

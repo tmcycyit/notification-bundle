@@ -6,8 +6,6 @@ namespace Yit\NotificationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
-use JMS\Serializer\Annotation as JMS;
-use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * @ORM\Entity
@@ -44,17 +42,6 @@ class NotificationType
     private $file;
 
     /**
-     * @VirtualProperty
-     * @JMS\Groups({"list"})
-     */
-    public function getPath()
-    {
-        return '/' . $this->getUploadDir() . '/' . $this->getFileName();
-    }
-
-    public function setPath() {}
-
-    /**
      * Sets file.
      *
      * @param UploadedFile $file
@@ -79,9 +66,9 @@ class NotificationType
      */
     public function getAbsolutePath()
     {
-        return null === $this->fileName
+        return null === $this->$fileName
                 ? null
-                : $this->getUploadRootDir().$this->fileName;
+                : $this->getUploadRootDir().'/'.$this->$fileName;
     }
 
     /**
@@ -89,9 +76,9 @@ class NotificationType
      */
     public function getWebPath()
     {
-        return null === $this->fileName
+        return null === $this->$fileName
                 ? null
-                : $this->getUploadDir().'/'.$this->fileName;
+                : $this->getUploadDir().'/'.$this->$fileName;
     }
 
     /**
@@ -111,7 +98,7 @@ class NotificationType
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'upload/notification';
+        return 'upload/';
     }
 
 
@@ -187,50 +174,4 @@ class NotificationType
         return ($this->title) ? $this->title : '';
     }
 
-
-    /**
-     * Set fileName
-     *
-     * @param string $fileName
-     * @return NotificationType
-     */
-    public function setFileName($fileName)
-    {
-        $this->fileName = $fileName;
-    
-        return $this;
-    }
-
-    /**
-     * Get fileName
-     *
-     * @return string 
-     */
-    public function getFileName()
-    {
-        return $this->fileName;
-    }
-
-    /**
-     * Set fileSize
-     *
-     * @param integer $fileSize
-     * @return NotificationType
-     */
-    public function setFileSize($fileSize)
-    {
-        $this->fileSize = $fileSize;
-    
-        return $this;
-    }
-
-    /**
-     * Get fileSize
-     *
-     * @return integer 
-     */
-    public function getFileSize()
-    {
-        return $this->fileSize;
-    }
 }

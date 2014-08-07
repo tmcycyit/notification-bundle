@@ -47,6 +47,7 @@ class Notification
      * @var
      * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\NotificationType", cascade={"persist"})
      * @ORM\JoinColumn(name="notification_type_id", referencedColumnName="id")
+     * @JMS\Groups({"list"})
      */
     protected $notificationType;
 

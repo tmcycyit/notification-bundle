@@ -36,6 +36,10 @@
             <argument type="service" id="service_container" > </argument>
         </service>
 
+        <service id="notification.form.type.file" class="Yit\NotificationBundle\Form\Type\FileFieldType">
+            <tag name="form.type" alias="fileField" />
+        </service>
+
     </services>
 
 </container>
