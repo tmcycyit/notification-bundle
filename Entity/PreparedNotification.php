@@ -38,6 +38,11 @@ class PreparedNotification
     protected $notificationType;
 
     /**
+     * @ORM\Column(name="code", type="string", length=50)
+     */
+    protected $code;
+
+    /**
      * Get id
      *
      * @return integer
@@ -69,7 +74,6 @@ class PreparedNotification
     {
         return $this->title;
     }
-
 
     /**
      * Set content
@@ -140,5 +144,28 @@ class PreparedNotification
     public function __toString()
     {
         return ($this->title) ? $this->title : '';
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     * @return PreparedNotification
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string 
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }

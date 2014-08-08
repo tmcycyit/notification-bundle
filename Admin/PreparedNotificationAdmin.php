@@ -21,6 +21,7 @@ class PreparedNotificationAdmin extends Admin
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
+            ->add('code')
             ->add('title')
             ->add('content');
     }
@@ -34,6 +35,7 @@ class PreparedNotificationAdmin extends Admin
     {
         $list
             ->addIdentifier('notificationType')
+            ->addIdentifier('code')
             ->addIdentifier('title')
             ->addIdentifier('content')
             ->add('_action', 'actions', array ('actions' => array (
@@ -52,6 +54,7 @@ class PreparedNotificationAdmin extends Admin
     {
         $formMapper
             ->add('notificationType')
+            ->add('code', null, array('required' => true))
             ->add('title')
             ->add('content');
     }
@@ -64,6 +67,7 @@ class PreparedNotificationAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('code')
             ->add('title')
             ->add('content');
     }
