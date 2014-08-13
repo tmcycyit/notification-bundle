@@ -2,6 +2,7 @@
 
 namespace Yit\NotificationBundle\Controller;
 
+use APY\DataGridBundle\Grid\Source\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -11,6 +12,9 @@ use Yit\NotificationBundle\Entity\Notification;
 use Yit\NotificationBundle\Entity\NotificationStatus;
 use Yit\NotificationBundle\Entity\NotificationType;
 use Yit\NotificationBundle\Entity\PreparedNotification;
+use APY\DataGridBundle\Grid\Export\CSVExport;
+use APY\DataGridBundle\Grid\Export\PHPExcelPDFExport;
+use APY\DataGridBundle\Grid\Export\ExcelExport;
 
 
 /**
@@ -32,7 +36,42 @@ class MainController extends Controller
      */
     public function showReceiveAction(Request $request)
     {
-        if ($this->get('security.context')->isGranted('ROLE_USER'))
+        $user = $this->getUser(); // get current user
+        if(!$user)
+        {
+            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
+        }
+
+        // Creates a simple grid based on your entity (ORM)
+        $source = new Entity('YitNotificationBundle:NotificationStatus');
+
+        // create query
+        /*  $entity = $source->getTableAlias();
+        /*$source->manipulateQuery(
+              function ($query) use ($entity, $user)
+              {
+                  $query->andWhere($entity . '.status = ' . $user);
+              }
+          );*/
+
+        // Get a Grid instance
+        $grid = $this->get('grid');
+
+        // Attach the source to the grid
+        $grid->setSource($source);
+
+        // adding exports
+        $grid->addExport(new CSVExport('CSV', 'place_list'));
+
+        $grid->addExport(new ExcelExport('Excel', 'place_list'));
+
+        $grid->addExport(new PHPExcelPDFExport('PDF', 'place_list'));
+
+
+
+        return $grid->getGridResponse('YitNotificationBundle:Main:showReceive.html.twig');
+
+        /*if ($this->get('security.context')->isGranted('ROLE_USER'))
         {
             $user = $this->getUser(); // get current user
             if(!$user)
@@ -63,7 +102,7 @@ class MainController extends Controller
         else
         {
             return $this->redirect($this->generateUrl('fos_user_security_login')); // else go to login page
-        }
+        }*/
     }
 
 

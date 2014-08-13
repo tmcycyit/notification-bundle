@@ -5,11 +5,13 @@ namespace Yit\NotificationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
+use APY\DataGridBundle\Grid\Mapping as Grid;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="yit_notification_status")
  * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\NotificationStatusRepository")
+ * @Grid\Source(columns="id, notification.header, notification.fromUser.email, notification.created, notification.content")
  */
 class NotificationStatus
 {
@@ -25,6 +27,10 @@ class NotificationStatus
      * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\Notification", cascade={"persist"})
      * @ORM\JoinColumn(name="notification_id", referencedColumnName="id")
      * @JMS\Groups({"list"})
+     * @Grid\Column(field="notification.header", title="note.title")
+     * @Grid\Column(field="notification.fromUser.email", title="note.sender")
+     * @Grid\Column(field="notification.content", title="note.content")
+     * @Grid\Column(field="notification.created", title="note.created", type="date", format="d-m-Y")
      */
     protected $notification;
 

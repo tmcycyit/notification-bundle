@@ -1,48 +1,55 @@
 {% extends yit_template %}
-
-{# for receive notification  #}
-
 {% block showreceive %}
-   <div id="container">
-    {% if receives is defined %}
-        {% if receives is not null %}
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            <input type="checkbox" />
-                        </th>
-                        <th>Subject</th>
-                        <th>Sender</th>
-                        <th>Created at</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for receive in receives %}
-                        {% if receive.status == 1  %} <!-- if notification is read show without bold-->
-                            <tr>
-                        {% else %}
-                            <tr  class="bold">
-                        {% endif %}
-                            <td>
-                                <input type="checkbox" />
-                            </td>
-                            <td>
-                                <a href="{{  path('receive-detailed', {'notificId' : receive.notification.id }) }}">{{ receive.notification.header }}</a>
-                            </td>
-                            <td>{{ receive.notification.fromUser }}</td>
-                            <td>{{ receive.notification.created|date }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-
-            </table>
-        {% endif %}
-    {% endif %}
-   </div>
-    {% block pagenav %}
-        <div class="pagination-nav">{{ knp_pagination_render(receives ) }} </div>
-        <div class="count">received : {{ noteCount.allRecieve }}</div>
-    {% endblock %}
+{{ grid(grid) }}
 {% endblock %}
+
+
+
+{#{% extends yit_template %}#}
+
+{#&#123;&#35; for receive notification  &#35;&#125;#}
+
+{#{% block showreceive %}#}
+   {#<div id="container">#}
+    {#{% if receives is defined %}#}
+        {#{% if receives is not null %}#}
+            {#<table class="table table-bordered">#}
+                {#<thead>#}
+                    {#<tr>#}
+                        {#<th>#}
+                            {#<input type="checkbox" />#}
+                        {#</th>#}
+                        {#<th>Subject</th>#}
+                        {#<th>Sender</th>#}
+                        {#<th>Created at</th>#}
+                    {#</tr>#}
+                {#</thead>#}
+
+                {#<tbody>#}
+                    {#{% for receive in receives %}#}
+                        {#{% if receive.status == 1  %} <!-- if notification is read show without bold-->#}
+                            {#<tr>#}
+                        {#{% else %}#}
+                            {#<tr  class="bold">#}
+                        {#{% endif %}#}
+                            {#<td>#}
+                                {#<input type="checkbox" />#}
+                            {#</td>#}
+                            {#<td>#}
+                                {#<a href="{{  path('receive-detailed', {'notificId' : receive.notification.id }) }}">{{ receive.notification.header }}</a>#}
+                            {#</td>#}
+                            {#<td>{{ receive.notification.fromUser }}</td>#}
+                            {#<td>{{ receive.notification.created|date }}</td>#}
+                        {#</tr>#}
+                    {#{% endfor %}#}
+                {#</tbody>#}
+
+            {#</table>#}
+        {#{% endif %}#}
+    {#{% endif %}#}
+   {#</div>#}
+    {#{% block pagenav %}#}
+        {#<div class="pagination-nav">{{ knp_pagination_render(receives ) }} </div>#}
+        {#<div class="count">received : {{ noteCount.allRecieve }}</div>#}
+    {#{% endblock %}#}
+{#{% endblock %}#}

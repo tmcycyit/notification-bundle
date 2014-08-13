@@ -18,32 +18,25 @@ class YitNote
         $this->container = $container;
     }
 
+
     /**
-     * This function is used to send notification
-     *
-     * @param $sender
      * @param array $recievers
      * @param PreparedNotification $PreparedNotification
-     * @param array $arguments
      */
-    public function sendNote( $sender, array $recievers, PreparedNotification $PreparedNotification, array $arguments = NULL)
+    public function sendNote( array $recievers, PreparedNotification $PreparedNotification)
     {
+        $carrentUser = $this->container->get('security.context')->getToken()->getUser();
+        $tr = $this->container->get('translator');
+
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
         $notification = new Notification();
-        //$notificationStatus = new NotificationStatus();
 
-        $notification->setFromUser($sender); //set sender
-        $notification->setHeader($PreparedNotification->getTitle()); //set title
+        $notification->setFromUser($carrentUser); //set sender
+        $notification->setHeader($tr->trans($PreparedNotification->getCode(), array(), 'note'));  //set title
 
-        if($arguments)
-        {
-            //if is set argyments, replace it in content
-            $PreparedNotification->getReplacedNotification($arguments);
-        }
         $notification->setContent($PreparedNotification->getContent()); // set content
-
         foreach($recievers as $reciever)
         {
             $notificationStatus = new NotificationStatus();

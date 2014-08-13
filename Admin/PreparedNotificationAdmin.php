@@ -22,8 +22,7 @@ class PreparedNotificationAdmin extends Admin
     {
         $showMapper
             ->add('code')
-            ->add('title')
-            ->add('content');
+        ;
     }
 
     /**
@@ -36,8 +35,6 @@ class PreparedNotificationAdmin extends Admin
         $list
             ->addIdentifier('notificationType')
             ->addIdentifier('code')
-            ->addIdentifier('title')
-            ->addIdentifier('content')
             ->add('_action', 'actions', array ('actions' => array (
                 'show' => array (),
                 'edit' => array (),
@@ -52,11 +49,46 @@ class PreparedNotificationAdmin extends Admin
      */
     public function configureFormFields(FormMapper $formMapper)
     {
+        // get action from config
+        $actions = $this->getConfigurationPool()->getContainer()->getParameter('actions');
+        // get entity manager
+        $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getEntityManager();
+        // get all groups
+        $groups = $em->getRepository('ApplicationUserBundle:Group')->findAll();
+
+        // array for user to send note
+        $toUsers = array();
+        foreach($groups as $group)
+        {
+            // set selected value and selected options
+            $toUsers[$group->getCode()] = $group->getName();
+        }
+
+        $codes = array();
+        foreach($actions as $action)
+        {
+            $codes[$action] = $this->trans($action, array(), 'note');
+        }
         $formMapper
-            ->add('notificationType')
-            ->add('code', null, array('required' => true))
-            ->add('title')
-            ->add('content');
+            ->add('notificationType', null, array(
+                'label'=> $this->trans('note_type', array(), 'note'),
+                'required' => true,
+                'empty_value' => $this->trans('choose_type', array(), 'note'),
+                'empty_data'  => null
+                ))
+            ->add('code', 'choice', array(
+                'label'=> $this->trans('note_code', array(), 'note'),
+                'choices' =>$codes,
+                'required' => true,
+                'empty_value' => $this->trans('choose_code', array(), 'note'),
+                'empty_data'  => null
+            ))
+            ->add('userGroups', 'choice', array(
+                'label'=> $this->trans('not_to_user', array(), 'note'),
+                'choices' =>$toUsers, 'required' => true,
+                'expanded' => true,
+                'multiple' => true,
+            ));
     }
 
     /**
@@ -67,8 +99,8 @@ class PreparedNotificationAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('notificationType')
             ->add('code')
-            ->add('title')
-            ->add('content');
+            ;
     }
 }

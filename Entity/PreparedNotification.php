@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="yit_prepared_notification")
+ * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\PreparedNoteRepository")
  */
 class PreparedNotification
 {
@@ -20,13 +21,13 @@ class PreparedNotification
 
     /**
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $title;
 
     /**
      *
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $content;
 
@@ -41,6 +42,12 @@ class PreparedNotification
      * @ORM\Column(name="code", type="string", length=50)
      */
     protected $code;
+
+    /**
+     * @var
+     * @ORM\Column(name="userGroups", type="array")
+     */
+    protected $userGroups;
 
     /**
      * Get id
@@ -167,5 +174,28 @@ class PreparedNotification
     public function getCode()
     {
         return $this->code;
+    }
+
+    /**
+     * Set userGroups
+     *
+     * @param array $userGroups
+     * @return PreparedNotification
+     */
+    public function setUserGroups($userGroups)
+    {
+        $this->userGroups = $userGroups;
+    
+        return $this;
+    }
+
+    /**
+     * Get userGroups
+     *
+     * @return array 
+     */
+    public function getUserGroups()
+    {
+        return $this->userGroups;
     }
 }
