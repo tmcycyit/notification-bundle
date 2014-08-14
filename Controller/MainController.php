@@ -117,7 +117,11 @@ class MainController extends Controller
     {
         $em = $this->getDoctrine()->getManager(); //get entity manager
 
-        $notification = $em->getRepository(self::ENTITY)->findNotificationById($notificId);
+        $user = $this->getUser();  // get current user
+
+        $notification = $em->getRepository(self::ENTITY)->findNotificationById($notificId, $user->getId());
+
+
         if (!$notification) //return 404 if notification not found
         {
             throw $this->createNotFoundException("Notification Not Found");

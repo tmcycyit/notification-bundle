@@ -47,20 +47,21 @@ class NotificationStatusRepository extends EntityRepository
     }
 
     /**
-     *  This function is used to find notification by given notification`s id
-     *
+     * This function is used to find notification by given notification`s id
      * @param $notificationId
-     * @return array
+     * @param $userId
+     * @return mixed
      */
-    public function findNotificationById($notificationId)
+    public function findNotificationById($notificationId, $userId)
     {
         $query = $this->getEntityManager()
             ->createQuery('SELECT ns FROM YitNotificationBundle:NotificationStatus ns
                            LEFT JOIN ns.toUser u
                            LEFT JOIN ns.notification n
-                           WHERE n.id = :notificationId
+                           WHERE n.id = :notificationId and u.id =:userId
                           ');
         $query->setParameter('notificationId' , $notificationId);
+        $query->setParameter('userId' , $userId);
         return $query->getSingleResult();
     }
 

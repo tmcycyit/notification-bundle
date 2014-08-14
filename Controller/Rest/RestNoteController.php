@@ -101,9 +101,11 @@ class RestNoteController extends FOSRestController
         // get entity manager
         $em = $this->getDoctrine()->getManager();
 
+        // get  user
+        $userId = $this->container->get('security.context')->getToken()->getUser()->getId();
+
         if($noteId == -1)
         {
-            $userId = $this->container->get('security.context')->getToken()->getUser()->getId();
 
             $notifications = $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllReceiveByUserId($userId);
             if(!$notifications)
@@ -119,7 +121,7 @@ class RestNoteController extends FOSRestController
         else
         {
             // get Last Modified field
-            $notification = $em->getRepository('YitNotificationBundle:NotificationStatus')->findNotificationById($noteId);
+            $notification = $em->getRepository('YitNotificationBundle:NotificationStatus')->findNotificationById($noteId, $userId);
             if($notification)
             {
                 $notification->setStatus(1);
