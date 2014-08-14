@@ -46,13 +46,14 @@ class MainController extends Controller
         $source = new Entity('YitNotificationBundle:NotificationStatus');
 
         // create query
-        /*  $entity = $source->getTableAlias();
-        /*$source->manipulateQuery(
+        $entity = $source->getTableAlias();
+
+        $source->manipulateQuery(
               function ($query) use ($entity, $user)
               {
-                  $query->andWhere($entity . '.status = ' . $user);
+                  $query->andWhere($entity . '.toUser = ' . $user->getId());
               }
-          );*/
+          );
 
         // Get a Grid instance
         $grid = $this->get('grid');
