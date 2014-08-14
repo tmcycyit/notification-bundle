@@ -33,6 +33,7 @@ class YitNote
 
         $notification = new Notification();
 
+        $notification->setPreparedNotification($PreparedNotification);
         $notification->setFromUser($carrentUser); //set sender
         $notification->setHeader($tr->trans($PreparedNotification->getCode(), array(), 'note'));  //set title
 

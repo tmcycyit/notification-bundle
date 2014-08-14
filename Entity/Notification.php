@@ -45,11 +45,11 @@ class Notification
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\NotificationType", cascade={"persist"})
-     * @ORM\JoinColumn(name="notification_type_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\PreparedNotification", cascade={"persist"})
+     * @ORM\JoinColumn(name="prepared_note_id", referencedColumnName="id")
      * @JMS\Groups({"list"})
      */
-    protected $notificationType;
+    protected $preparedNotification;
 
 
     /**
@@ -163,23 +163,23 @@ class Notification
     }
 
     /**
-     * @param NotificationType $notificationType
+     * @param PreparedNotification $preparedNotification
      * @return $this
      */
-    public function setNotificationType(\Yit\NotificationBundle\Entity\NotificationType $notificationType = null)
+    public function setPreparedNotification(\Yit\NotificationBundle\Entity\PreparedNotification $preparedNotification = null)
     {
-        $this->notificationType = $notificationType;
+        $this->preparedNotification = $preparedNotification;
 
         return $this;
     }
 
     /**
-     * Get notificationType
+     * Get preparedNotification
      *
      * @return \Yit\UserBundle\Entity\User
      */
-    public function getNotificationType()
+    public function getPreparedNotification()
     {
-        return $this->notificationType;
+        return $this->preparedNotification;
     }
 }

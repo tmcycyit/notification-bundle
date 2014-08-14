@@ -46,6 +46,8 @@ class RestNoteController extends FOSRestController
 
         $receives = $em->getRepository('YitNotificationBundle:NotificationStatus')->findReceiveByUserId($userId, $count);
 
+        //var_dump($receives); exit;
+
         return $receives;
     }
 

@@ -4,11 +4,14 @@
 namespace Yit\NotificationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="yit_prepared_notification")
  * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\PreparedNoteRepository")
+ * @UniqueEntity(fields="code", message="Տվյալ գործողությունը առկա է")
  */
 class PreparedNotification
 {
@@ -35,11 +38,12 @@ class PreparedNotification
      * @var
      * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\NotificationType", cascade={"persist"})
      * @ORM\JoinColumn(name="notification_type_id", referencedColumnName="id")
+     * @JMS\Groups({"list"})
      */
     protected $notificationType;
 
     /**
-     * @ORM\Column(name="code", type="string", length=50)
+     * @ORM\Column(name="code", type="string", length=50, unique=true)
      */
     protected $code;
 
@@ -117,9 +121,7 @@ class PreparedNotification
     }
 
     /**
-     * Get notificationType
-     *
-     * @return \Yit\UserBundle\Entity\User
+     * @return mixed
      */
     public function getNotificationType()
     {
