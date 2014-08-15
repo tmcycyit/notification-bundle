@@ -88,7 +88,9 @@ class PreparedNotificationAdmin extends Admin
                 'choices' =>$toUsers, 'required' => true,
                 'expanded' => true,
                 'multiple' => true,
-            ));
+            ))
+            ->add('content')
+        ;
     }
 
     /**

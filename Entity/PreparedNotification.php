@@ -137,6 +137,7 @@ class PreparedNotification
      */
     public function getReplacedNotification(array $values)
     {
+        var_dump($values); exit;
         // loop array and replace each key
         $rawContent = $this->content;
 

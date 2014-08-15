@@ -22,8 +22,9 @@ class YitNote
     /**
      * @param array $recievers
      * @param PreparedNotification $PreparedNotification
+     * @param array $arg
      */
-    public function sendNote( array $recievers, PreparedNotification $PreparedNotification)
+    public function sendNote( array $recievers, PreparedNotification $PreparedNotification, array $arg = null)
     {
         $carrentUser = $this->container->get('security.context')->getToken()->getUser();
         $tr = $this->container->get('translator');
@@ -36,6 +37,8 @@ class YitNote
         $notification->setPreparedNotification($PreparedNotification);
         $notification->setFromUser($carrentUser); //set sender
         $notification->setHeader($tr->trans($PreparedNotification->getCode(), array(), 'note'));  //set title
+        $notification->setContent($PreparedNotification->getContent());
+        //$PreparedNotification->getReplacedNotification($arg);
 
         $notification->setContent($PreparedNotification->getContent()); // set content
         foreach($recievers as $reciever)
@@ -52,6 +55,15 @@ class YitNote
         $em->persist($notification); //persist status
         $em->flush();
     }
+
+    public function getPreparedNoteByCode($actionCode)
+    {
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        return $em->getRepository('YitNotificationBundle:PreparedNotification')->findAllByCode($actionCode);
+    }
+
 
     /**
      * @param $user
