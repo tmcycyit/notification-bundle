@@ -37,6 +37,9 @@ class MainController extends Controller
      */
     public function showReceiveAction(Request $request)
     {
+        // adding actions
+        $tr = $this->get('translator');
+
         $user = $this->getUser(); // get current user
         if(!$user)
         {
@@ -59,9 +62,9 @@ class MainController extends Controller
         // Get a Grid instance
         $grid = $this->get('grid');
 
-//        $rowAction = new RowAction('delete', 'note-delete');
-//
-//        $grid->addRowAction($rowAction);
+        $rowAction = new RowAction($tr->trans('delete', array(), 'note'), 'delete');
+
+        $grid->addRowAction($rowAction);
 
         // Attach the source to the grid
         $grid->setSource($source);
@@ -146,6 +149,29 @@ class MainController extends Controller
         return $this->render( $templates, array('notification' => $notification) );
     }
 
+    /**
+     * This action is used to show all receive notifications of current user
+     *
+     * @Route("/delete/{id}" , name = "delete")
+     */
+    public function deleteAction($id)
+    {
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        $note = $em->getRepository('YitNotificationBundle:NotificationStatus')->find($id);
+        if($note)
+        {
+            $em->remove($note);
+            $em->flush();
+            return $this->redirect($this->generateUrl('show-receive'));
+        }
+        else
+        {
+            throw $this->createNotFoundException("Notification Not Found");
+        }
+    }
+
 
     /**
      * This function is used to get count of al  received, and unreaedable notification,
@@ -173,5 +199,6 @@ class MainController extends Controller
 
         // set massage count to twig global
         $this->container->get('twig')->addGlobal('noteCount', $massageCount);
+
     }
 }
