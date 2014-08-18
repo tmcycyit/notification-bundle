@@ -36,6 +36,16 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
             $pageItemCount = 4; // else set default value
         }
 
+        //get user group from config
+        if(isset($config['note_group']))
+        {
+            $userGroup = $config['note_group']; // if set, get from config
+        }
+        else
+        {
+            $userGroup = 'FOS\UserBundle\Entity\Group'; // else set default value
+        }
+
         //get item`s count in page from config
         if(isset($config['item_notes_dropdown']))
         {
@@ -55,6 +65,8 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
         $container->setParameter($this->getAlias() . '.item_notes_page', $pageItemCount);
         //insert page`s item in drop down
         $container->setParameter($this->getAlias() . '.item_notes_dropdown', $pageItemNotesCount);
+        //insert user group
+        $container->setParameter($this->getAlias() . '.user_group', $userGroup);
 
         //set tamplate
         $container->setParameter($this->getAlias() . '.templates.receiveDetailed', $config['templates']['receiveDetailed']);

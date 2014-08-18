@@ -12,6 +12,8 @@
         <parameter key="yit_notification.item_notes_page">%note_item_notes_page%</parameter>
         <!--parameter for pagination-->
         <parameter key="yit_notification.item_notes_dropdown">%note_item_notes_dropdown%</parameter>
+        <!--parameter for user group-->
+        <parameter key="yit_notification.user_group">%note_user_group%</parameter>
     </parameters>
 
     <services>

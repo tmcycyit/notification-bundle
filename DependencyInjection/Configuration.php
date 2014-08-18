@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode->children()
             ->scalarNode('note_user')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('note_group')->end()
             ->scalarNode('item_notes_page')->end()
             ->scalarNode('item_notes_dropdown')->end()
             ->arrayNode('templates')->addDefaultsIfNotSet()

@@ -53,8 +53,12 @@ class PreparedNotificationAdmin extends Admin
         $actions = $this->getConfigurationPool()->getContainer()->getParameter('actions');
         // get entity manager
         $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getEntityManager();
+
+        //get user group
+    $userGroup = $this->getConfigurationPool()->getContainer()->getParameter('yit_notification.user_group');
+
         // get all groups
-        $groups = $em->getRepository('ApplicationUserBundle:Group')->findAll();
+        $groups = $em->getRepository($userGroup)->findAll();
 
         // array for user to send note
         $toUsers = array();

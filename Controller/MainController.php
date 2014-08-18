@@ -2,6 +2,7 @@
 
 namespace Yit\NotificationBundle\Controller;
 
+use APY\DataGridBundle\Grid\Action\RowAction;
 use APY\DataGridBundle\Grid\Source\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -57,6 +58,10 @@ class MainController extends Controller
 
         // Get a Grid instance
         $grid = $this->get('grid');
+
+//        $rowAction = new RowAction('delete', 'note-delete');
+//
+//        $grid->addRowAction($rowAction);
 
         // Attach the source to the grid
         $grid->setSource($source);

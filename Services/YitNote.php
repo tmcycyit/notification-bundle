@@ -38,7 +38,6 @@ class YitNote
         $notification->setFromUser($carrentUser); //set sender
         $notification->setHeader($tr->trans($PreparedNotification->getCode(), array(), 'note'));  //set title
         $notification->setContent($PreparedNotification->getContent());
-        //$PreparedNotification->getReplacedNotification($arg);
 
         $notification->setContent($PreparedNotification->getContent()); // set content
         foreach($recievers as $reciever)
