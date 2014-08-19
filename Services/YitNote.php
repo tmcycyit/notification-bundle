@@ -33,13 +33,24 @@ class YitNote
         $em = $this->container->get('doctrine')->getManager();
 
         $notification = new Notification();
-
+        // set prepared notification
         $notification->setPreparedNotification($PreparedNotification);
         $notification->setFromUser($carrentUser); //set sender
         $notification->setHeader($tr->trans($PreparedNotification->getCode(), array(), 'note'));  //set title
-        $notification->setContent($PreparedNotification->getContent());
 
-        $notification->setContent($PreparedNotification->getContent()); // set content
+        // if arg is set
+        if($arg)
+        {
+            // get arg and replace it in content
+            $content = $PreparedNotification->getReplacedNotification($arg);
+            // set new content
+            $notification->setContent($content); // set content
+        }
+        else
+        {
+            // else read content from preapared notification
+            $notification->setContent($PreparedNotification->getContent()); // set content
+        }
         foreach($recievers as $reciever)
         {
             $notificationStatus = new NotificationStatus();
