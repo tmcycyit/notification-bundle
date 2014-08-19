@@ -22,14 +22,14 @@ class Notification
 
     /**
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Groups({"list"})
      */
     protected $header;
 
     /**
      *
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text", nullable=true)
      * @JMS\Groups({"list"})
      */
     protected $content;
