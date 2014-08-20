@@ -62,6 +62,8 @@ class MainController extends Controller
         // Get a Grid instance
         $grid = $this->get('grid');
 
+        $grid->setDefaultOrder('id', 'desc');
+
         $rowAction = new RowAction($tr->trans('delete', array(), 'note'), 'delete');
 
         $grid->addRowAction($rowAction);
