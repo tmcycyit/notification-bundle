@@ -52,7 +52,7 @@ class PreparedNotificationAdmin extends Admin
         // get action from config
         $actions = $this->getConfigurationPool()->getContainer()->getParameter('actions');
         // get entity manager
-        $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();
 
         //get user group
     $userGroup = $this->getConfigurationPool()->getContainer()->getParameter('yit_notification.user_group');
