@@ -50,12 +50,12 @@ class PreparedNotificationAdmin extends Admin
     public function configureFormFields(FormMapper $formMapper)
     {
         // get action from config
-        $actions = $this->getConfigurationPool()->getContainer()->getParameter('actions');
+        $actions = $this->getConfigurationPool()->getContainer()->getParameter('yit_note_actions');
         // get entity manager
         $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();
 
         //get user group
-    $userGroup = $this->getConfigurationPool()->getContainer()->getParameter('yit_notification.user_group');
+        $userGroup = $this->getConfigurationPool()->getContainer()->getParameter('yit_notification.user_group');
 
         // get all groups
         $groups = $em->getRepository($userGroup)->findAll();
