@@ -93,7 +93,6 @@ class PreparedNotificationAdmin extends Admin
                 'expanded' => true,
                 'multiple' => true,
             ))
-            ->add('content')
         ;
     }
 

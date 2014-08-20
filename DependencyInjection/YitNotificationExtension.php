@@ -57,8 +57,6 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
         }
 
 
-
-
         //insert user
         $container->setParameter($this->getAlias() . '.note_user', $config['note_user']);
         //insert page`s item
@@ -71,6 +69,11 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
         //set tamplate
         $container->setParameter($this->getAlias() . '.templates.receiveDetailed', $config['templates']['receiveDetailed']);
         $container->setParameter($this->getAlias() . '.templates.showReceive', $config['templates']['showReceive']);
+
+        //set admin classes
+        $container->setParameter($this->getAlias() . '.admin.note_type', $config['admin']['note_type']);
+        $container->setParameter($this->getAlias() . '.admin.prepared_note', $config['admin']['prepared_note']);
+
     }
 
     /**
