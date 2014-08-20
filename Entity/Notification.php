@@ -46,7 +46,7 @@ class Notification
     /**
      * @var
      * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\PreparedNotification", cascade={"persist"})
-     * @ORM\JoinColumn(name="prepared_note_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="prepared_note_id", referencedColumnName="id", onDelete="SET NULL")
      * @JMS\Groups({"list"})
      */
     protected $preparedNotification;
