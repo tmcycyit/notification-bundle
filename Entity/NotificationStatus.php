@@ -30,7 +30,7 @@ class NotificationStatus
      * @Grid\Column(field="notification.header", title="note.title")
      * @Grid\Column(field="notification.fromUser.email", title="note.sender")
      * @Grid\Column(field="notification.content", title="note.content")
-     * @Grid\Column(field="notification.created", title="note.created", type="date", format="d-m-Y")
+     * @Grid\Column(field="notification.created", title="note.created", type="datetime")
      */
     protected $notification;
 
