@@ -11,7 +11,7 @@ use APY\DataGridBundle\Grid\Mapping as Grid;
  * @ORM\Entity
  * @ORM\Table(name="yit_notification_status")
  * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\NotificationStatusRepository")
- * @Grid\Source(columns="id, notification.header, notification.fromUser.email, notification.created, notification.content")
+ * @Grid\Source(columns="id, notification.header, notification.userInfo , notification.fromUser.email, notification.created, notification.content")
  */
 class NotificationStatus
 {
@@ -31,6 +31,7 @@ class NotificationStatus
      * @Grid\Column(field="notification.fromUser.email", title="note.sender")
      * @Grid\Column(field="notification.content", title="note.content")
      * @Grid\Column(field="notification.created", title="note.created", type="datetime")
+     * @Grid\Column(field="notification.userInfo", title="note.userInfo")
      */
     protected $notification;
 

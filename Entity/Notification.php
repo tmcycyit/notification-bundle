@@ -34,6 +34,13 @@ class Notification
      */
     protected $content;
 
+    /**
+     *
+     * @ORM\Column(type="text", nullable=true)
+     * @JMS\Groups({"list"})
+     */
+    protected $userInfo;
+
 
     /**
      * @var
@@ -176,10 +183,33 @@ class Notification
     /**
      * Get preparedNotification
      *
-     * @return \Yit\UserBundle\Entity\User
+     * @return mixed
      */
     public function getPreparedNotification()
     {
         return $this->preparedNotification;
+    }
+
+    /**
+     * set User Info
+     *
+     * @param $userInfo
+     * @return $this
+     */
+    public function setUserInfo($userInfo)
+    {
+        $this->userInfo = $userInfo;
+
+        return $this;
+    }
+
+    /**
+     * Get User Info
+     *
+     * @return mixed
+     */
+    public function getUserInfo()
+    {
+        return $this->userInfo;
     }
 }

@@ -18,13 +18,13 @@ class YitNote
         $this->container = $container;
     }
 
-
     /**
      * @param array $recievers
      * @param PreparedNotification $PreparedNotification
      * @param array $arg
+     * @param null $userInfo
      */
-    public function sendNote( array $recievers, PreparedNotification $PreparedNotification, array $arg = null)
+    public function sendNote( array $recievers, PreparedNotification $PreparedNotification, array $arg = null, $userInfo = null)
     {
         $carrentUser = $this->container->get('security.context')->getToken()->getUser();
         $tr = $this->container->get('translator');
@@ -37,7 +37,7 @@ class YitNote
         $notification->setPreparedNotification($PreparedNotification);
         $notification->setFromUser($carrentUser); //set sender
         $notification->setHeader($tr->trans($PreparedNotification->getCode(), array(), 'note'));  //set title
-
+        $notification->setUserInfo($userInfo);
         // if arg is set
         if($arg)
         {
