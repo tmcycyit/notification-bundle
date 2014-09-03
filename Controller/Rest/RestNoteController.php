@@ -117,8 +117,8 @@ class RestNoteController extends FOSRestController
             foreach($notifications as $note)
             {
                 $note->setStatus(1);
-                $em->flush();
             }
+            $em->flush();
         }
         else
         {
