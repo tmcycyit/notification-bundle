@@ -104,26 +104,17 @@ class RestNoteController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
 
         // get  user
-        $userId = $this->container->get('security.context')->getToken()->getUser()->getId();
+        $user = $this->container->get('security.context')->getToken()->getUser();
 
         if($noteId == -1)
         {
-
-            $notifications = $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllReceiveByUserId($userId);
-            if(!$notifications)
-            {
-                throw new HttpException (Codes::HTTP_NOT_FOUND);
-            }
-            foreach($notifications as $note)
-            {
-                $note->setStatus(1);
-            }
-            $em->flush();
+            $em->createQuery ('Update YitNotificationBundle:NotificationStatus ns SET ns.status = 1 WHERE ns.toUser = :user')
+                ->setParameter('user', $user)->execute();
         }
         else
         {
             // get Last Modified field
-            $notification = $em->getRepository('YitNotificationBundle:NotificationStatus')->findNotificationById($noteId, $userId);
+            $notification = $em->getRepository('YitNotificationBundle:NotificationStatus')->findNotificationById($noteId, $user->getId());
             if($notification)
             {
                 $notification->setStatus(1);
