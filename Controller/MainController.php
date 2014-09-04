@@ -37,50 +37,50 @@ class MainController extends Controller
      */
     public function showReceiveAction(Request $request)
     {
-        // adding actions
-        $tr = $this->get('translator');
-
-        $user = $this->getUser(); // get current user
-        if(!$user)
-        {
-            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
-        }
-
-        // Creates a simple grid based on your entity (ORM)
-        $source = new Entity('YitNotificationBundle:NotificationStatus');
-
-        // create query
-        $entity = $source->getTableAlias();
-
-        $source->manipulateQuery(
-              function ($query) use ($entity, $user)
-              {
-                  $query->andWhere($entity . '.toUser = ' . $user->getId());
-              }
-          );
-
-        // Get a Grid instance
-        $grid = $this->get('grid');
-
-        $grid->setDefaultOrder('id', 'desc');
-
-        $rowAction = new RowAction($tr->trans('delete', array(), 'note'), 'delete');
-
-        $grid->addRowAction($rowAction);
-
-        // Attach the source to the grid
-        $grid->setSource($source);
-
-        // adding exports
-        $grid->addExport(new CSVExport('CSV', 'place_list'));
-
-        $grid->addExport(new ExcelExport('Excel', 'place_list'));
-
-        $grid->addExport(new PHPExcelPDFExport('PDF', 'place_list'));
-
-
-
-        return $grid->getGridResponse('YitNotificationBundle:Main:showReceive.html.twig');
+//        // adding actions
+//        $tr = $this->get('translator');
+//
+//        $user = $this->getUser(); // get current user
+//        if(!$user)
+//        {
+//            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
+//        }
+//
+//        // Creates a simple grid based on your entity (ORM)
+//        $source = new Entity('YitNotificationBundle:NotificationStatus');
+//
+//        // create query
+//        $entity = $source->getTableAlias();
+//
+//        $source->manipulateQuery(
+//              function ($query) use ($entity, $user)
+//              {
+//                  $query->andWhere($entity . '.toUser = ' . $user->getId());
+//              }
+//          );
+//
+//        // Get a Grid instance
+//        $grid = $this->get('grid');
+//
+//        $grid->setDefaultOrder('id', 'desc');
+//
+//        $rowAction = new RowAction($tr->trans('delete', array(), 'note'), 'delete');
+//
+//        $grid->addRowAction($rowAction);
+//
+//        // Attach the source to the grid
+//        $grid->setSource($source);
+//
+//        // adding exports
+//        $grid->addExport(new CSVExport('CSV', 'place_list'));
+//
+//        $grid->addExport(new ExcelExport('Excel', 'place_list'));
+//
+//        $grid->addExport(new PHPExcelPDFExport('PDF', 'place_list'));
+//
+//
+//
+//        return $grid->getGridResponse('YitNotificationBundle:Main:showReceive.html.twig');
 
         /*if ($this->get('security.context')->isGranted('ROLE_USER'))
         {
