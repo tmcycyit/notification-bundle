@@ -16,6 +16,7 @@ use Yit\NotificationBundle\Entity\PreparedNotification;
 use APY\DataGridBundle\Grid\Export\CSVExport;
 use APY\DataGridBundle\Grid\Export\PHPExcelPDFExport;
 use APY\DataGridBundle\Grid\Export\ExcelExport;
+use APY\DataGridBundle\Grid\Action\DeleteMassAction;
 
 
 /**
@@ -61,6 +62,9 @@ class MainController extends Controller
 
         // Get a Grid instance
         $grid = $this->get('grid');
+
+        // add checkbox with delete action
+        $grid->addMassAction(new DeleteMassAction());
 
         $grid->setDefaultOrder('id', 'desc');
 
