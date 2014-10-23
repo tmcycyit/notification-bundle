@@ -53,11 +53,14 @@ class YitNote
         }
         foreach($recievers as $reciever)
         {
-            $notificationStatus = new NotificationStatus();
-            $notificationStatus->setToUser($reciever); //set recievers
-            $notificationStatus->setStatus(0); //set status unread
-            $notificationStatus->setNotification($notification); // set relations
-            $em->persist($notificationStatus); //persist notification status
+            if($reciever != $carrentUser)
+            {
+                $notificationStatus = new NotificationStatus();
+                $notificationStatus->setToUser($reciever); //set recievers
+                $notificationStatus->setStatus(0); //set status unread
+                $notificationStatus->setNotification($notification); // set relations
+                $em->persist($notificationStatus); //persist notification status
+            }
         }
 
         $notification->setCreated(new \DateTime('now')); //set notifications date
