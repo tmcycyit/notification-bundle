@@ -29,12 +29,12 @@ class NotificationType
     protected $title;
 
     /**
-     * @ORM\Column(name="file_name", type="string", length=255)
+     * @ORM\Column(name="file_name", type="string", length=255, nullable=true)
      */
     private $fileName;
 
     /**
-     * @ORM\Column(name="file_size", type="integer")
+     * @ORM\Column(name="file_size", type="integer", nullable=true)
      */
     private $fileSize;
 
