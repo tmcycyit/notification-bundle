@@ -115,6 +115,21 @@ class YitNote
             return true;
         }
         return false;
+    }
 
+    /**
+     * @param $userId
+     * @return mixed
+     */
+    public function getUserNotes($userId)
+    {
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        $count = $this->container->getParameter('yit_notification.item_notes_dropdown');
+
+        $receives = $em->getRepository('YitNotificationBundle:NotificationStatus')->findReceiveByUserId($userId, $count);
+
+        return $receives;
     }
 }

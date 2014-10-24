@@ -39,16 +39,7 @@ class RestNoteController extends FOSRestController
 
     public function cgetAction($userId)
     {
-        // get entity manager
-        $em = $this->getDoctrine()->getManager();
-
-        $count = $this->container->getParameter('yit_notification.item_notes_dropdown');
-
-        $receives = $em->getRepository('YitNotificationBundle:NotificationStatus')->findReceiveByUserId($userId, $count);
-
-        //var_dump($receives); exit;
-
-        return $receives;
+        return $this->get('yit_note')->getUserNotes($userId);
     }
 
     /**
