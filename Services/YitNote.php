@@ -119,16 +119,17 @@ class YitNote
 
     /**
      * @param $userId
+     * @param $isRead
      * @return mixed
      */
-    public function getUserNotes($userId)
+    public function getUserNotes($userId, $isRead = true)
     {
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
         $count = $this->container->getParameter('yit_notification.item_notes_dropdown');
 
-        $receives = $em->getRepository('YitNotificationBundle:NotificationStatus')->findReceiveByUserId($userId, $count);
+        $receives = $em->getRepository('YitNotificationBundle:NotificationStatus')->findReceiveByUserId($userId, $count, $isRead);
 
         return $receives;
     }
