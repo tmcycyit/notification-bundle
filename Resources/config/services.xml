@@ -14,6 +14,7 @@
         <parameter key="yit_notification.item_notes_dropdown">%note_item_notes_dropdown%</parameter>
         <!--parameter for user group-->
         <parameter key="yit_notification.user_group">%note_user_group%</parameter>
+        <parameter key="yit_notification.note_grid">%note_grid%</parameter>
         <!--parameter for admin class-->
         <parameter key="yit_notification.admin.note_type"> </parameter>
         <parameter key="yit_notification.admin.prepared_note"> </parameter>

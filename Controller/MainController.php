@@ -13,6 +13,11 @@ use Yit\NotificationBundle\Entity\Notification;
 use Yit\NotificationBundle\Entity\NotificationStatus;
 use Yit\NotificationBundle\Entity\NotificationType;
 use Yit\NotificationBundle\Entity\PreparedNotification;
+use APY\DataGridBundle\Grid\Export\CSVExport;
+use APY\DataGridBundle\Grid\Export\PHPExcelPDFExport;
+use APY\DataGridBundle\Grid\Export\ExcelExport;
+use APY\DataGridBundle\Grid\Action\DeleteMassAction;
+
 
 
 /**
@@ -34,14 +39,60 @@ class MainController extends Controller
      */
     public function showReceiveAction()
     {
+        $user = $this->getUser(); // get current user
 
-        if ($this->get('security.context')->isGranted('ROLE_USER'))
-        {
-            $user = $this->getUser(); // get current user
-            if(!$user)
-            {
-                throw $this->createNotFoundException("User Not Found, You must authenticate first ");
-            }
+        if(!$user) {
+            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
+        }
+
+        // use grid
+        $noteGrid = $this->container->getParameter('yit_notification.note_grid');
+
+        if($noteGrid){
+
+            // adding actions
+            $tr = $this->get('translator');
+
+            // Creates a simple grid based on your entity (ORM)
+            $source = new Entity('YitNotificationBundle:NotificationStatus');
+
+            // create query
+            $entity = $source->getTableAlias();
+
+            $source->manipulateQuery(
+                function ($query) use ($entity, $user)
+                {
+                    $query->andWhere($entity . '.toUser = ' . $user->getId());
+                }
+            );
+
+            // Get a Grid instance
+            $grid = $this->get('grid');
+
+            // add checkbox with delete action
+            $grid->addMassAction(new DeleteMassAction());
+
+            $grid->setDefaultOrder('id', 'desc');
+
+            $rowAction = new RowAction($tr->trans('delete', array(), 'note'), 'delete');
+
+            $grid->addRowAction($rowAction);
+
+            // Attach the source to the grid
+            $grid->setSource($source);
+
+            // adding exports
+            $grid->addExport(new CSVExport('CSV', 'place_list'));
+
+            $grid->addExport(new ExcelExport('Excel', 'place_list'));
+
+            $grid->addExport(new PHPExcelPDFExport('PDF', 'place_list'));
+
+
+            return $grid->getGridResponse('YitNotificationBundle:Main:showReceive.html.twig',
+                array('noteGrid' => $noteGrid));
+        }
+        else {
 
             $em = $this->getDoctrine()->getManager();   //get entity manager
 
@@ -61,12 +112,8 @@ class MainController extends Controller
             $this->getNoteCount();
 
             $templates = $this->container->getParameter('yit_notification.templates.showReceive'); // get templates name
-            return $this->render( $templates, array('receives' => $pagination) );
-        }
-        else
-        {
-            return $this->redirect($this->generateUrl('fos_user_security_login')); // else go to login page
-        }
+            return $this->render( $templates, array('receives' => $pagination));
+         }
     }
 
 

@@ -25,6 +25,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('note_group')->end()
             ->scalarNode('item_notes_page')->end()
             ->scalarNode('item_notes_dropdown')->end()
+            ->booleanNode('note_grid')->end()
             ->arrayNode('admin')->addDefaultsIfNotSet()
             ->children()
             ->scalarNode('prepared_note')->defaultValue('Yit\NotificationBundle\Admin\PreparedNotificationAdmin')->cannotBeEmpty()->end()
