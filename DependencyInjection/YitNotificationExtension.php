@@ -56,6 +56,16 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
             $pageItemNotesCount = 5; // else set default value
         }
 
+        //get grid
+        if(isset($config['note_grid']))
+        {
+            $noteGrid = $config['note_grid']; // if set, get from config
+        }
+        else
+        {
+            $noteGrid = false; // else set default value
+        }
+
 
         //insert user
         $container->setParameter($this->getAlias() . '.note_user', $config['note_user']);
@@ -65,6 +75,8 @@ class YitNotificationExtension extends Extension implements PrependExtensionInte
         $container->setParameter($this->getAlias() . '.item_notes_dropdown', $pageItemNotesCount);
         //insert user group
         $container->setParameter($this->getAlias() . '.user_group', $userGroup);
+        // insert grid
+        $container->setParameter($this->getAlias() . '.note_grid', $noteGrid);
 
         //set tamplate
         $container->setParameter($this->getAlias() . '.templates.receiveDetailed', $config['templates']['receiveDetailed']);
