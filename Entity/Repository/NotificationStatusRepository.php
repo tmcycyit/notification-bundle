@@ -144,7 +144,7 @@ class NotificationStatusRepository extends EntityRepository
     public function removeAllOlder($month)
     {
         $interval = new \DateTime('now');
-        $interval->modify("-$month month");
+        $interval->modify("-$month day");
 
         $query = $this->getEntityManager()
             ->createQueryBuilder()
