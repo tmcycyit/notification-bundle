@@ -40,8 +40,10 @@ class RemoveCommand extends ContainerAwareCommand
         // get Entity manager
         $em = $this->getContainer()->get("doctrine")->getManager();
 
-//        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUserNotes(59);
-//        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+        $output->writeln("<info>Start ... </info>");
+
+        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllOlder(62);
+        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
 
         $output->writeln("<info>Success</info>");
     }
