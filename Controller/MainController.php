@@ -154,6 +154,19 @@ class MainController extends Controller
     /**
      * This action is used to show all receive notifications of current user
      *
+     * @Route("/delete-all/{userId}" , name = "yit_delete_all")
+     */
+    public function deleteAllAction($userId)
+    {
+        // remove notes
+        $this->get('yit_note')->removeAllByUser($userId);
+
+        return $this->redirect($this->generateUrl('show-receive'));
+    }
+
+    /**
+     * This action is used to show all receive notifications of current user
+     *
      * @Route("/delete/{id}" , name = "delete")
      */
     public function deleteAction($id)

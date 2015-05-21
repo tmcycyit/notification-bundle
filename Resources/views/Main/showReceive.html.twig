@@ -2,8 +2,15 @@
 {% block showreceive %}
 
     {% if noteGrid is defined %}
-sdfsdf
-        {#{{ grid(grid) }}#}
+
+        {% set user = app.user %}
+
+        {% if user %}
+
+            <a href="{{ path('yit_delete_all', {'userId': user.id}) }}">Delete All</a>
+       {% endif %}
+
+            {{ grid(grid) }}
 
     {% else %}
         <div id="container">
