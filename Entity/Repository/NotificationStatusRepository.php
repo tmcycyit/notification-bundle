@@ -171,7 +171,7 @@ class NotificationStatusRepository extends EntityRepository
         ;
 
 
-        return true;
+        return $ids;
     }
 
     /**
@@ -201,7 +201,7 @@ class NotificationStatusRepository extends EntityRepository
 
         }
 
-        return true;
+        return $ids;
     }
 
     /**
@@ -235,7 +235,7 @@ class NotificationStatusRepository extends EntityRepository
 
         }
 
-        return true;
+        return $ids;
     }
 
 }

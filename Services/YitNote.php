@@ -144,8 +144,10 @@ class YitNote
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
-        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllOlder($month);
+        $count = $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllOlder($month);
         $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+
+        return $count;
     }
 
 
@@ -157,7 +159,9 @@ class YitNote
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
-        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUserNotes($userId);
+        $count = $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUserNotes($userId);
         $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+
+        return $count;
     }
 }
