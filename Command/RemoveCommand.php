@@ -27,6 +27,11 @@ class RemoveCommand extends ContainerAwareCommand
         $this
             ->setName('yitNote:remove:old')
             ->setDescription('Remove old notifications')
+            ->addArgument(
+                'period',
+                InputArgument::REQUIRED,
+                'Period in days'
+            )
         ;
     }
 
@@ -40,11 +45,18 @@ class RemoveCommand extends ContainerAwareCommand
         // get Entity manager
         $em = $this->getContainer()->get("doctrine")->getManager();
 
-        $output->writeln("<info>Start ... </info>");
+        $period = $input->getArgument('period');
 
-        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllOlder(62);
-        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+        if(is_numeric($period) &&  $period > 0){
 
-        $output->writeln("<info>Success</info>");
+            $output->writeln("<info>Start ... </info>");
+
+            $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllOlder($period);
+            $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+
+            $output->writeln("<info>Success</info>");
+        }
+
+        $output->writeln("<info>$period is not number</info>");
     }
 }

@@ -77,4 +77,46 @@ class HistoryPeriodAdmin extends Admin
         $datagridMapper
                 ->add('period');
     }
+
+    public function executeCommand($object)
+    {
+
+        $period = $object->getPeriod();
+
+        if($period > 0){
+
+            // get container
+            $container = $this->getConfigurationPool()->getContainer();
+
+            // get kernel root dir
+            $kernelRootDir = $container->get('kernel')->getRootDir();
+
+            // create command
+            $command = $kernelRootDir . "/console  yitNote:remove:old " . $period;
+
+            // exec
+            exec($command, $output, $return);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($object)
+    {
+        $this->executeCommand($object);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($object)
+    {
+        $this->executeCommand($object);
+    }
+
+
+
+
 }
