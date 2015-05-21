@@ -52,6 +52,13 @@ class Notification
 
     /**
      * @var
+     * @ORM\OneToMany(targetEntity="NotificationStatus",  mappedBy="notification",  cascade={"persist", "remove"})
+     *
+     */
+    protected $notificationStatus;
+
+    /**
+     * @var
      * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\PreparedNotification", cascade={"persist"})
      * @ORM\JoinColumn(name="prepared_note_id", referencedColumnName="id", onDelete="SET NULL")
      * @JMS\Groups({"list"})
@@ -211,5 +218,46 @@ class Notification
     public function getUserInfo()
     {
         return $this->userInfo;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->notificationStatus = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add notificationStatus
+     *
+     * @param \Yit\NotificationBundle\Entity\NotificationStatus $notificationStatus
+     * @return Notification
+     */
+    public function addNotificationStatus(\Yit\NotificationBundle\Entity\NotificationStatus $notificationStatus)
+    {
+        $this->notificationStatus[] = $notificationStatus;
+
+        return $this;
+    }
+
+    /**
+     * Remove notificationStatus
+     *
+     * @param \Yit\NotificationBundle\Entity\NotificationStatus $notificationStatus
+     */
+    public function removeNotificationStatus(\Yit\NotificationBundle\Entity\NotificationStatus $notificationStatus)
+    {
+        $this->notificationStatus->removeElement($notificationStatus);
+    }
+
+    /**
+     * Get notificationStatus
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotificationStatus()
+    {
+        return $this->notificationStatus;
     }
 }

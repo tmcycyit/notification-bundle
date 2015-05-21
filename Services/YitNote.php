@@ -133,4 +133,31 @@ class YitNote
 
         return $receives;
     }
+
+    /**
+     * This function is used to remove older notes
+     *
+     * @param $month
+     */
+    public function removeOlder($month)
+    {
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllOlder($month);
+        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+    }
+
+
+    /**
+     * @param $userId
+     */
+    public function removeAllByUser($userId)
+    {
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUserNotes($userId);
+        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+    }
 }

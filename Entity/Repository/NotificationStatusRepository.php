@@ -136,4 +136,106 @@ class NotificationStatusRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
+
+    /**
+     * @param $month
+     * @return bool
+     */
+    public function removeAllOlder($month)
+    {
+        $interval = new \DateTime('now');
+        $interval->modify("-$month month");
+
+        $query = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('ns.id')
+            ->from('YitNotificationBundle:NotificationStatus', 'ns')
+            ->leftJoin('ns.notification', 'n')
+            ->where('n.created <=  :interval')
+            ->setParameter('interval', $interval->format('Y-m-d'))
+        ;
+
+
+        $ids =  array_map('current', $query->getQuery()->getResult());
+
+        if($ids){
+
+            $this->getEntityManager()
+                ->createQueryBuilder()
+                ->delete('YitNotificationBundle:NotificationStatus', 'ns')
+                ->where('ns.id in (:ids)')
+                ->setParameter('ids', $ids)
+                ->getQuery()->execute();
+
+        }
+        ;
+
+
+        return true;
+    }
+
+    /**
+     * @return array
+     */
+    public function removeAllUnStatus()
+    {
+
+        // get all ids
+        $ids = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('n.id')
+            ->from('YitNotificationBundle:Notification', 'n')
+            ->leftJoin('n.notificationStatus', 'ns')
+            ->where('ns is null')->getQuery()->getResult();
+        ;
+
+        if($ids){
+
+            $this->getEntityManager()
+                ->createQueryBuilder()
+                ->delete('YitNotificationBundle:Notification', 'n')
+                ->where('n.id in (:ids)')
+                ->setParameter('ids', $ids)
+                ->getQuery()->execute();
+            ;
+
+        }
+
+        return true;
+    }
+
+    /**
+     * @param $userId
+     * @return bool
+     */
+    public function removeAllUserNotes($userId)
+    {
+
+        // get all ids
+        $ids = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('n.id')
+            ->from('YitNotificationBundle:NotificationStatus', 'n')
+            ->leftJoin('n.toUser', 'ns')
+            ->where('ns .id = :user')
+            ->setParameter('user', $userId)
+            ->getQuery()
+            ->getResult();
+        ;
+
+        if($ids){
+
+            $this->getEntityManager()
+                ->createQueryBuilder()
+                ->delete('YitNotificationBundle:NotificationStatus', 'n')
+                ->where('n.id in (:ids)')
+                ->setParameter('ids', $ids)
+                ->getQuery()->execute();
+            ;
+
+        }
+
+        return true;
+    }
+
 }
