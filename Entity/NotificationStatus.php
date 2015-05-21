@@ -24,7 +24,7 @@ class NotificationStatus
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\Notification", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\Notification", inversedBy="notificationStatus", cascade={"persist"})
      * @ORM\JoinColumn(name="notification_id", referencedColumnName="id")
      * @JMS\Groups({"list"})
      * @Grid\Column(field="notification.header", title="note.title")
