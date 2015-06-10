@@ -64,8 +64,15 @@ class PreparedNotificationAdmin extends Admin
         $toUsers = array();
         foreach($groups as $group)
         {
-            // set selected value and selected options
-            $toUsers[$group->getCode()] = $group->getName();
+            if(method_exists($group, 'getCode')) {
+                // set selected value and selected options
+                $toUsers[$group->getCode()] = $group->getName();
+            }
+            else{
+                $roles = $group->getRoles();
+                $roles = reset($roles);
+                $toUsers[$roles] = $group->getName();
+            }
         }
 
         $codes = array();
