@@ -52,6 +52,7 @@ class NotificationType
         return '/' . $this->getUploadDir() . '/' . $this->getFileName();
     }
 
+    public $path;
     public function setPath() {}
 
     /**
