@@ -83,7 +83,7 @@ class PreparedNotificationAdmin extends Admin
         $formMapper
             ->add('notificationType', null, array(
                 'label'=> $this->trans('note_type', array(), 'note'),
-                'required' => true,
+                'required' => false,
                 'empty_value' => $this->trans('choose_type', array(), 'note'),
                 'empty_data'  => null
                 ))
