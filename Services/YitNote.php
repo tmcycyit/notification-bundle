@@ -99,6 +99,26 @@ class YitNote
 
     }
 
+
+    /**
+     * @param $user
+     * @return mixed
+     */
+    public function getNotesCountSortable($user)
+    {
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        // get all current user`s recieved notificiation
+        $massageCount['all'] = $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllReceiveByUserIdWithGroup($user->getId());
+
+        // get all current user`s unreadable notificiation
+        $massageCount['unreadable'] =  $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserIdWithGroup($user->getId());
+
+        return $massageCount;
+
+    }
+
     /**
      * @param $id
      * @param $userId

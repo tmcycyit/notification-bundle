@@ -29,6 +29,51 @@ class NotificationStatusRepository extends EntityRepository
 
 
     /**
+     * This function is used to find all receive notification by given user`s id and code
+     *
+     * @param $code
+     * @param $userId
+     * @return array
+     */
+    public function findAllReceiveByUserIdAndCode($userId, $code)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT ns, n, u FROM YitNotificationBundle:NotificationStatus ns
+                           LEFT JOIN ns.toUser u
+                           LEFT JOIN ns.notification n
+                           LEFT JOIN n.preparedNotification pn
+                           WHERE u = :userid and pn.code = :code
+                           ORDER BY n.created DESC
+                          ');
+        $query->setParameter('userid' , $userId);
+        $query->setParameter('code' , $code);
+        return $query->getResult();
+    }
+
+
+    /**
+     * This function is used to find all receive notification by given user`s id
+     *
+     * @param $userId
+     * @return array
+     */
+    public function findAllReceiveByUserIdWithGroup($userId)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT COUNT (ns) as cnt, pn.code as code FROM YitNotificationBundle:NotificationStatus ns
+                           LEFT JOIN ns.toUser u
+                           LEFT JOIN ns.notification n
+                           LEFT JOIN n.preparedNotification pn
+                           WHERE u = :userid
+                           GROUP BY pn
+                           ORDER BY n.created DESC
+                          ');
+        $query->setParameter('userid' , $userId);
+        return $query->getResult();
+    }
+
+
+    /**
      *  This function is used to find all unreadable receive notifications by given user`s id
      *
      * @param $userId
@@ -44,6 +89,26 @@ class NotificationStatusRepository extends EntityRepository
                           ');
         $query->setParameter('userid' , $userId);
         return count($query->getResult());
+    }
+
+    /**
+     *  This function is used to find all unreadable receive notifications by given user`s id
+     *
+     * @param $userId
+     * @return array
+     */
+    public function findAllUnReadableNotificationByUserIdWithGroup($userId)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT COUNT (s) as cnt, pn.code as code FROM YitNotificationBundle:NotificationStatus s
+                           LEFT JOIN s.toUser u
+                           LEFT JOIN s.notification n
+                           LEFT JOIN n.preparedNotification pn
+                           WHERE s.toUser = :userid AND s.status = 0
+                          GROUP BY pn
+                          ');
+        $query->setParameter('userid' , $userId);
+        return $query->getResult();
     }
 
     /**

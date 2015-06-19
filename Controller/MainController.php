@@ -35,9 +35,10 @@ class MainController extends Controller
      * This action is used to show all receive notifications of current user
      *
      * @Route("/" , name = "show-receive")
+     * @Route("/{code}" , name = "show-receive-with-code")
      * @Template()
      */
-    public function showReceiveAction()
+    public function showReceiveAction($code = null)
     {
         $user = $this->getUser(); // get current user
 
@@ -96,8 +97,15 @@ class MainController extends Controller
 
             $em = $this->getDoctrine()->getManager();   //get entity manager
 
-            // return all receives notes, or null
-            $receives = $em->getRepository(self::ENTITY)->findAllReceiveByUserId($user->getId());
+            if($code){
+                // return all receives notes, or null
+                $receives = $em->getRepository(self::ENTITY)->findAllReceiveByUserIdAndCode($user->getId(), $code);
+
+            }
+            else{
+                // return all receives notes, or null
+                $receives = $em->getRepository(self::ENTITY)->findAllReceiveByUserId($user->getId());
+            }
 
             // get pagination
             $paginator  = $this->get('knp_paginator');
