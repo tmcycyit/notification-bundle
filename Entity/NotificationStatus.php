@@ -11,7 +11,7 @@ use APY\DataGridBundle\Grid\Mapping as Grid;
  * @ORM\Entity
  * @ORM\Table(name="yit_notification_status", indexes={
  *                                                      @ORM\Index(name="note_count_idx", columns={"to_user_id", "status"}),
- *                                                      @ORM\Index(name="all_note_idx", columns={"to_user_id", "notification_id"})
+ *                                                      @ORM\Index(name="all_note_idx", columns={"to_user_id", "notification_id", "status"})
  *             })
  * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\NotificationStatusRepository")
  * @Grid\Source(columns="id, notification.header, notification.userInfo , notification.fromUser.email, notification.created, notification.content")

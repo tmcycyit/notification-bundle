@@ -82,7 +82,7 @@ class NotificationStatusRepository extends EntityRepository
     public function findAllUnReadableNotificationByUserId($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT count (s.id) FROM YitNotificationBundle:NotificationStatus s
+            ->createQuery('SELECT count (s) FROM YitNotificationBundle:NotificationStatus s
                            INNER JOIN s.toUser u
                            WHERE s.toUser = :userid AND s.status = 0
                           ');
