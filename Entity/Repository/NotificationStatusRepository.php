@@ -82,13 +82,12 @@ class NotificationStatusRepository extends EntityRepository
     public function findAllUnReadableNotificationByUserId($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT s, u, n FROM YitNotificationBundle:NotificationStatus s
+            ->createQuery('SELECT count (s.id) FROM YitNotificationBundle:NotificationStatus s
                            LEFT JOIN s.toUser u
-                           LEFT JOIN s.notification n
                            WHERE s.toUser = :userid AND s.status = 0
                           ');
         $query->setParameter('userid' , $userId);
-        return count($query->getResult());
+        return $query->getSingleScalarResult();
     }
 
     /**
@@ -184,11 +183,11 @@ class NotificationStatusRepository extends EntityRepository
     {
         $query = $this->getEntityManager()
                         ->createQueryBuilder()
-                        ->select('ns, n, u')
+                        ->select('ns')
                         ->from('YitNotificationBundle:NotificationStatus', 'ns')
                         ->leftJoin('ns.toUser', 'u')
                         ->leftJoin('ns.notification', 'n')
-                        ->where('u = :userid');
+                        ->where('u.id = :userId');
 
         if ($isRead) {
             $query->andWhere('ns.status = 0');
@@ -196,7 +195,7 @@ class NotificationStatusRepository extends EntityRepository
 
         $query->orderBy('n.created', 'DESC')
                 ->setMaxResults($count)
-                ->setParameter('userid' , $userId);
+                ->setParameter('userId' , $userId);
 
         return $query->getQuery()->getResult();
     }
