@@ -83,7 +83,7 @@ class NotificationStatusRepository extends EntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('SELECT count (s.id) FROM YitNotificationBundle:NotificationStatus s
-                           LEFT JOIN s.toUser u
+                           INNER JOIN s.toUser u
                            WHERE s.toUser = :userid AND s.status = 0
                           ');
         $query->setParameter('userid' , $userId);
@@ -185,8 +185,8 @@ class NotificationStatusRepository extends EntityRepository
                         ->createQueryBuilder()
                         ->select('ns')
                         ->from('YitNotificationBundle:NotificationStatus', 'ns')
-                        ->leftJoin('ns.toUser', 'u')
-                        ->leftJoin('ns.notification', 'n')
+                        ->innerJoin('ns.toUser', 'u')
+                        ->innerJoin('ns.notification', 'n')
                         ->where('u.id = :userId');
 
         if ($isRead) {
