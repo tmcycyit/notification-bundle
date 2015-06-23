@@ -44,10 +44,17 @@ class NotificationType
     private $file;
 
     /**
+     */
+    public function getPath()
+    {
+        return '/' . $this->getUploadDir() . '/' . $this->getFileName();
+    }
+
+    /**
      * @VirtualProperty
      * @JMS\Groups({"list"})
      */
-    public function getPath()
+    public function getFilePath()
     {
         return '/' . $this->getUploadDir() . '/' . $this->getFileName();
     }
