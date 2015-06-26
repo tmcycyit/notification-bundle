@@ -186,4 +186,35 @@ class YitNote
 
         return $count;
     }
+
+
+    /**
+     * @param $noteId
+     */
+    public function setReadToRead($noteId)
+    {
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        // get  user
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if($noteId == -1) {
+
+            $em->createQuery ('Update YitNotificationBundle:NotificationStatus ns SET ns.status = 1 WHERE ns.toUser = :user')
+                ->setParameter('user', $user)->execute();
+        }
+        else {
+
+            // get notification status by id
+            $notification = $em->getRepository('YitNotificationBundle:NotificationStatus')
+                ->findNotificationById($noteId, $user->getId());
+
+            if($notification) {
+
+                $notification->setStatus(1);
+                $em->flush();
+            }
+        }
+    }
 }

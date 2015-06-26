@@ -195,6 +195,23 @@ class MainController extends Controller
         }
     }
 
+    /**
+     * This action is used to set read
+     *
+     * @Route("/set-to-read/{noteId}" , name = "set_to_read")
+     *
+     * @param $noteId
+     * @return Response
+     */
+    public function setToReadAction($noteId)
+    {
+        $this->get('yit_note')->setReadToRead($noteId);
+        return $this->redirect(
+            array_key_exists("HTTP_REFERER", $_SERVER) ? $_SERVER['HTTP_REFERER'] : 'show-receive');
+
+
+    }
+
 
     /**
      * This function is used to get count of al  received, and unreaedable notification,

@@ -121,12 +121,11 @@ class NotificationStatusRepository extends EntityRepository
         $query = $this->getEntityManager()
             ->createQuery('SELECT ns FROM YitNotificationBundle:NotificationStatus ns
                            LEFT JOIN ns.toUser u
-                           LEFT JOIN ns.notification n
-                           WHERE n.id = :notificationId and u.id =:userId
+                           WHERE ns.id = :notificationId and u.id =:userId
                           ');
         $query->setParameter('notificationId' , $notificationId);
         $query->setParameter('userId' , $userId);
-        return $query->getSingleResult();
+        return $query->getOneOrNullResult();
     }
 
     /**
