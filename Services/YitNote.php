@@ -3,6 +3,8 @@
 namespace Yit\NotificationBundle\Services;
 
 use Symfony\Component\DependencyInjection\Container;
+use Yit\NotificationBundle\Entity\FastNote;
+use Yit\NotificationBundle\Entity\FastNoteStatus;
 use  Yit\NotificationBundle\Entity\Notification;
 use  Yit\NotificationBundle\Entity\NotificationStatus;
 use Yit\NotificationBundle\Entity\PreparedNotification;
@@ -17,6 +19,52 @@ class YitNote
     {
         $this->container = $container;
     }
+
+
+    /**
+     * This function is used to sent fast notifications
+     * 
+     * @param array $receivers
+     * @param $content
+     * @param $title
+     */
+    public function sendFastNote( array $receivers, $content, $title)
+    {
+        // get user
+        $currentUser = $this->container->get('security.context')->getToken()->getUser();
+
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        $fastNote = new FastNote();
+
+        // set prepared notification
+        $fastNote->setFromUser($currentUser); //set sender
+        $fastNote->setTitle($title);  //set title
+        $fastNote->setContent($content);  //set content
+
+
+        // loop for receivers
+        foreach($receivers as $receiver)
+        {
+            if($receiver != $currentUser)
+            {
+                $fastNoteStatus = new FastNoteStatus();
+
+                $fastNoteStatus->setToUser($receiver); //set $receiver
+                $fastNoteStatus->setStatus(0); //set status unread
+                $fastNote->addNoteStatus($fastNoteStatus);
+
+                $em->persist($fastNoteStatus); //persist notification status
+            }
+        }
+
+        $fastNote->setCreated(new \DateTime('now')); //set notifications date
+
+        $em->persist($fastNote); //persist status
+        $em->flush();
+    }
+
 
     /**
      * @param array $recievers

@@ -25,6 +25,10 @@ class FastNote
     protected $id;
 
     /**
+     * @ORM\Column(type="string",  nullable=true)
+     */
+    protected $title;
+    /**
      * @ORM\Column(type="text", nullable=true)
      */
     protected $content;
@@ -169,5 +173,28 @@ class FastNote
     public function getFromUser()
     {
         return $this->fromUser;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return FastNote
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }
