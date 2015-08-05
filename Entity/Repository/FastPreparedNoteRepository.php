@@ -18,7 +18,23 @@ class FastPreparedNoteRepository extends EntityRepository
      */
     public function findRolesByUser($fromUser)
     {
-        $code = 'ROLE_KINDERGARTEN';
+        // get all groups
+        $groups = $fromUser->getGroups();
+        $code = null;
+
+        // array for user to send note
+        foreach($groups as $group) {
+
+            if(method_exists($group, 'getCode')) {
+                // set selected value and selected options
+                $code = $group->getCode();
+            }
+            else{
+                $roles = $group->getRoles();
+                $roles = reset($roles);
+                $code = $roles;
+            }
+        }
 
         $query = $this->getEntityManager()
             ->createQuery('SELECT pn.toUserGroups FROM YitNotificationBundle:FastPreparedNote pn

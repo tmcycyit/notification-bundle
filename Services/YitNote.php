@@ -31,6 +31,28 @@ class YitNote
     }
 
     /**
+     * @return bool
+     */
+    public function mustSent()
+    {
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        // get user
+        $currentUser = $this->container->get('security.context')->getToken()->getUser();
+
+        // get roles
+        $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($currentUser);
+
+        // check data
+        if($roles && isset($roles['toUserGroups'])){
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @param $roles
      * @return array
      */
