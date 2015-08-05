@@ -11,24 +11,78 @@ use Yit\NotificationBundle\Entity\PreparedNotification;
 use Yit\NotificationBundle\Model\NoteUserInterface;
 use Symfony\Component\HttpKernel\Exception\HttpNotFoundException;
 
+/**
+ * Class YitNote
+ * @package Yit\NotificationBundle\Services
+ */
 class YitNote
 {
+    /**
+     * @var \Symfony\Component\DependencyInjection\Container
+     */
     protected  $container;
 
+    /**
+     * @param Container $container
+     */
     public function __construct(Container $container)
     {
         $this->container = $container;
     }
 
+    /**
+     * @param $roles
+     * @return array
+     */
+    private function getReceivers($roles)
+    {
+        // empty data for receivers
+        $receivers = array();
+
+        // check role
+        if($roles){
+
+            // get entity manager
+            $em = $this->container->get('doctrine')->getManager();
+
+            // get user repository
+            $userRepository = $this->container->getParameter('yit_notification.note_user');
+
+            // get toUsers roles
+            $toUserGroups = $roles['toUserGroups'];
+
+            // check to user roles
+            if($toUserGroups){
+
+                // create query builder
+                $builder = $em->createQueryBuilder();
+
+                $builder
+                    ->select('u')
+                    ->from($userRepository, 'u')
+                    ->join('u.groups', 'g')
+                ;
+                foreach($toUserGroups as $toUserGroup){
+
+                    $builder
+                        ->orWhere("g.roles LIKE '%" . $toUserGroup . "%' ");
+                }
+
+                // get receivers
+                $receivers =  $builder->getQuery()->getResult();
+            }
+        }
+        return $receivers;
+    }
+
 
     /**
      * This function is used to sent fast notifications
-     * 
-     * @param array $receivers
+     *
      * @param $content
      * @param $title
      */
-    public function sendFastNote( array $receivers, $content, $title)
+    public function sendFastNote($content, $title)
     {
         // get user
         $currentUser = $this->container->get('security.context')->getToken()->getUser();
@@ -43,12 +97,17 @@ class YitNote
         $fastNote->setTitle($title);  //set title
         $fastNote->setContent($content);  //set content
 
+        // get roles
+        $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($currentUser);
+
+        /// get receivers
+        $receivers = $this->getReceivers($roles);
 
         // loop for receivers
         foreach($receivers as $receiver)
         {
-            if($receiver != $currentUser)
-            {
+            // don`t send note himself
+            if($receiver != $currentUser) {
                 $fastNoteStatus = new FastNoteStatus();
 
                 $fastNoteStatus->setToUser($receiver); //set $receiver
