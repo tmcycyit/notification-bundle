@@ -54,7 +54,7 @@ class GetRolesExtension extends \Twig_Extension
         // get roles
         $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($user);
 
-        return $roles;
+        return json_encode($roles);
 
     }
 
@@ -63,6 +63,6 @@ class GetRolesExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'yit_note_must_sent_extension';
+        return 'yit_note_get_roles_extension';
     }
 }

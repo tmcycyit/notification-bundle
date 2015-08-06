@@ -73,7 +73,7 @@
         </service>
 
 
-        <service id="twig_filter_function_yit_note_get_roels" class="Yit\NotificationBundle\Twig\Extension\GetRolesExtension">
+        <service id="twig_filter_function_yit_note_get_roles" class="Yit\NotificationBundle\Twig\Extension\GetRolesExtension">
             <argument type="service" id="service_container" />
             <tag name="twig.extension"/>
         </service>
