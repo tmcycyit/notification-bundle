@@ -149,16 +149,40 @@ class RestNoteController extends FOSRestController
      */
     public function postFastSendAction(Request $request)
     {
+        // get all data
         $data = $request->request->all();
 
-        // get content
-        $content = "";
+        $roles = array();
 
-        // get title
-        $title = "";
+        // check and get title
+        if(array_key_exists('messageTitle', $data)){
+            $title = $data['messageTitle'];
+        }
+        else{
+            return new Response(Codes::HTTP_NOT_FOUND, 'Title not found');
+        }
 
-        // get roles
-        $roles = "";
+        // check and get content
+        if(array_key_exists('messageContent', $data)){
+            $content = $data['messageContent'];
+        }
+        else{
+            return new Response(Codes::HTTP_NOT_FOUND, 'Content not found');
+        }
+
+        // check and get selectedRoles
+        if(array_key_exists('selectedRoles', $data)){
+
+            $selectedRoles = $data['selectedRoles'];
+            if($selectedRoles){
+                foreach($selectedRoles as $selectedRole){
+                    $roles[$selectedRole]  = $selectedRole;
+                }
+            }
+        }
+        else{
+            return new Response(Codes::HTTP_NOT_FOUND, 'Roles not found');
+        }
 
         // get note service
         $noteService = $this->get('yitNote');
@@ -170,9 +194,7 @@ class RestNoteController extends FOSRestController
         $noteService->sendFastNote($content, $title, $receivers);
 
         // return response
-//        return new Response(Codes::HTTP_OK);
-
-        return $data;
+        return new Response(Codes::HTTP_OK);
 
     }
 }
