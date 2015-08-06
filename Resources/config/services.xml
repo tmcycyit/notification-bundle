@@ -67,6 +67,11 @@
             <tag name="doctrine.event_listener" event = "postPersist" method = "postPersist"/>
         </service>
 
+        <service id="twig_filter_function_yit_not_must_sent" class="Yit\NotificationBundle\Twig\Extension\MustSentExtension">
+            <argument type="service" id="service_container" />
+            <tag name="twig.extension"/>
+        </service>
+
     </services>
 
 </container>

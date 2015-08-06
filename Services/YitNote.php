@@ -45,7 +45,7 @@ class YitNote
         $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($currentUser);
 
         // check data
-        if($roles && isset($roles['toUserGroups'])){
+        if($roles){
             return true;
         }
 
