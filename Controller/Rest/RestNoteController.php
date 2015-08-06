@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use FOS\RestBundle\Util\Codes;
+use Yit\NotificationBundle\Entity\FastNote;
 
 /**
  * @package namespace Yit\NotificationBundle\Controller\Rest
@@ -108,6 +109,22 @@ class RestNoteController extends FOSRestController
         // get all notes
         $notes = $em->getRepository("YitNotificationBundle:FastNoteStatus")->findAllNewByUserId($userId);
 
+        // check notes
+        if($notes){
+
+            // loop for all notes
+            foreach($notes as $note){
+
+                // set status
+                $note->setStatus(FastNote::READ);
+
+                // persist
+                $em->persist($note);
+            }
+
+            // flush data
+            $em->flush();
+        }
         return $notes;
     }
 
