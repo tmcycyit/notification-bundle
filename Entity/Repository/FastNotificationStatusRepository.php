@@ -4,6 +4,7 @@ namespace Yit\NotificationBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Yit\NotificationBundle\Entity\FastNote;
 
 class FastNotificationStatusRepository extends EntityRepository
 {
@@ -24,6 +25,26 @@ class FastNotificationStatusRepository extends EntityRepository
                            ORDER BY n.created DESC
                           ');
         $query->setParameter('userid' , $userId);
+        return $query->getResult();
+    }
+
+    /**
+     * @param $userId
+     * @return array
+     */
+    public function findAllNewByUserId($userId)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT ns, n, u FROM YitNotificationBundle:FastNoteStatus ns
+                           LEFT JOIN ns.toUser u
+                           LEFT JOIN ns.fastNote n
+                           WHERE u.id = :userid and ns.status = :status
+                           ORDER BY n.created DESC
+                          ')
+            ->setParameter('userid' , $userId)
+            ->setParameter('status' , FastNote::UN_READ)
+        ;
+
         return $query->getResult();
     }
 }

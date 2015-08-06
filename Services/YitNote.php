@@ -125,7 +125,7 @@ class YitNote
                 $fastNoteStatus = new FastNoteStatus();
 
                 $fastNoteStatus->setToUser($receiver); //set $receiver
-                $fastNoteStatus->setStatus(0); //set status unread
+                $fastNoteStatus->setStatus(FastNote::UN_READ); //set status unread
                 $fastNote->addNoteStatus($fastNoteStatus);
 
                 $em->persist($fastNoteStatus); //persist notification status

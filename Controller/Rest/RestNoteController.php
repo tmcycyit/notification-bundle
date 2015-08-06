@@ -6,6 +6,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\View;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -93,7 +94,21 @@ class RestNoteController extends FOSRestController
     {
         $this->get('yit_note')->setReadToRead($noteId);
         return new Response(Codes::HTTP_OK);
+    }
 
+    /**
+     * @Rest\View()
+     * @Rest\Get("/notes/new/{userId}")
+     */
+    public function getNewAction($userId)
+    {
+        // get doctrine
+        $em = $this->getDoctrine()->getManager();
+
+        // get all notes
+        $notes = $em->getRepository("YitNotificationBundle:FastNoteStatus")->findAllNewByUserId($userId);
+
+        return $notes;
     }
 
 

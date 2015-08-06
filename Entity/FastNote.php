@@ -17,6 +17,9 @@ use JMS\Serializer\Annotation as JMS;
  */
 class FastNote
 {
+    const UN_READ = 0;
+    const READ = 1;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
