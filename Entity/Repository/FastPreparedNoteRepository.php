@@ -41,7 +41,21 @@ class FastPreparedNoteRepository extends EntityRepository
                            WHERE pn.formUserGroups = :code
                           ');
         $query->setParameter('code' , $code);
-        return $query->getOneOrNullResult();
-    }
 
+        // get result
+        $result = $query->getOneOrNullResult();
+
+        $result =  $result ? $result['toUserGroups'] : null;
+
+
+        $roles = array();
+
+        if($result){
+            foreach($result as $res){
+                $roles[$res] = $res;
+            }
+        }
+
+        return $roles;
+    }
 }

@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\FastNotificationStatusRepository")
  * @ORM\Table(name="yit_fast_note_status")
  */
 class FastNoteStatus

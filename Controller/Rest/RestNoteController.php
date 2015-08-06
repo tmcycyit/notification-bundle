@@ -4,7 +4,6 @@ namespace Yit\NotificationBundle\Controller\Rest;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
-use Sonata\MediaBundle\Entity\MediaManager;
 use FOS\RestBundle\Controller\Annotations\View;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
@@ -97,4 +96,34 @@ class RestNoteController extends FOSRestController
     }
 
 
+    /**
+     * This function is used to to get user groups;
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  section="Note",
+     *  description="This function is used to get user groups",
+     *  statusCodes={
+     *         200="Returned when successful",
+     *
+     *     }
+     * )
+     *
+     * @Rest\View()
+     * @return mixed
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     */
+
+    public function getGroupsAction()
+    {
+        $em = $this->getDoctrine();
+
+        // get current user
+        $user = $this->getUser();
+
+        // get roles
+        $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($user);
+
+        return $roles;
+    }
 }

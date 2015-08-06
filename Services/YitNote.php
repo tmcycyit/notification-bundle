@@ -56,7 +56,7 @@ class YitNote
      * @param $roles
      * @return array
      */
-    private function getReceivers($roles)
+    public  function getReceivers($roles)
     {
         // empty data for receivers
         $receivers = array();
@@ -70,11 +70,8 @@ class YitNote
             // get user repository
             $userRepository = $this->container->getParameter('yit_notification.note_user');
 
-            // get toUsers roles
-            $toUserGroups = $roles['toUserGroups'];
-
             // check to user roles
-            if($toUserGroups){
+            if($roles){
 
                 // create query builder
                 $builder = $em->createQueryBuilder();
@@ -84,7 +81,7 @@ class YitNote
                     ->from($userRepository, 'u')
                     ->join('u.groups', 'g')
                 ;
-                foreach($toUserGroups as $toUserGroup){
+                foreach($roles as $toUserGroup){
 
                     $builder
                         ->orWhere("g.roles LIKE '%" . $toUserGroup . "%' ");
@@ -103,8 +100,9 @@ class YitNote
      *
      * @param $content
      * @param $title
+     * @param $receivers
      */
-    public function sendFastNote($content, $title)
+    public function sendFastNote($content, $title, $receivers)
     {
         // get user
         $currentUser = $this->container->get('security.context')->getToken()->getUser();
@@ -118,12 +116,6 @@ class YitNote
         $fastNote->setFromUser($currentUser); //set sender
         $fastNote->setTitle($title);  //set title
         $fastNote->setContent($content);  //set content
-
-        // get roles
-        $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($currentUser);
-
-        /// get receivers
-        $receivers = $this->getReceivers($roles);
 
         // loop for receivers
         foreach($receivers as $receiver)
