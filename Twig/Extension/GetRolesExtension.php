@@ -54,7 +54,25 @@ class GetRolesExtension extends \Twig_Extension
         // get roles
         $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($user);
 
-        return json_encode($roles);
+        $result = array();
+
+        // get user repository
+        $userRepository = $this->container->getParameter('yit_notification.user_group');
+
+        foreach($roles as $role){
+            $builder = $em->createQueryBuilder();
+
+            $builder
+                ->select('g.name as name')
+                ->from($userRepository, 'g')
+                ->where('g.roles like :role')
+                ->setParameter('role', '%' . $role . '%');
+            $name = $builder->getQuery()->getOneOrNullResult();
+
+            $result[$role] = $name['name'];
+        }
+
+        return json_encode($result);
 
     }
 
