@@ -97,7 +97,7 @@ class RestNoteController extends FOSRestController
     }
 
     /**
-     * @Rest\View()
+     * @Rest\View(serializerGroups={"fast-new"})
      * @Rest\Get("/notes/new/{userId}")
      */
     public function getNewAction($userId)

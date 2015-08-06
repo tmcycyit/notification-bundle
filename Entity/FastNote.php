@@ -29,10 +29,12 @@ class FastNote
 
     /**
      * @ORM\Column(type="string",  nullable=true)
+     * @JMS\Groups({"fast-new"})
      */
     protected $title;
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @JMS\Groups({"fast-new"})
      */
     protected $content;
 

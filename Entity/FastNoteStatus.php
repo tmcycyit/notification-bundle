@@ -35,6 +35,7 @@ class FastNoteStatus
      * @var
      * @ORM\ManyToOne(targetEntity="FastNote", inversedBy="noteStatus", cascade={"persist"})
      * @ORM\JoinColumn(name="note_id", referencedColumnName="id")
+     * @JMS\Groups({"fast-new"})
      */
     protected  $fastNote;
 
