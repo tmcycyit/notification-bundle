@@ -151,6 +151,27 @@ class RestNoteController extends FOSRestController
     {
         $data = $request->request->all();
 
+        // get content
+        $content = "";
+
+        // get title
+        $title = "";
+
+        // get roles
+        $roles = "";
+
+        // get note service
+        $noteService = $this->get('yitNote');
+
+        // get receivers by role
+        $receivers = $noteService->getReceivers($roles);
+
+        // send note
+        $noteService->sendFastNote($content, $title, $receivers);
+
+        // return response
+//        return new Response(Codes::HTTP_OK);
+
         return $data;
 
     }
