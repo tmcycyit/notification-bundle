@@ -66,7 +66,9 @@ class GetRolesExtension extends \Twig_Extension
                 ->select('g.name as name')
                 ->from($userRepository, 'g')
                 ->where('g.roles like :role')
-                ->setParameter('role', '%' . $role . '%');
+                ->setParameter('role', '%' . $role . '%')
+                ->setMaxResults(1)
+            ;
             $name = $builder->getQuery()->getOneOrNullResult();
 
             $result[$role] = $name['name'];
