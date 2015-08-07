@@ -1,0 +1,40 @@
+{% extends yit_template %}
+{% block showreceive %}
+        <div id="container">
+            {% if receives is defined %}
+                {% if receives is not null %}
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" />
+                            </th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Sender</th>
+                            <th>Created at</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for receive in receives %}
+                            {% if receive.status == 1  %} <!-- if notification is read show without bold-->
+                                <tr>
+                            {% else %}
+                                <tr  class="bold">
+                            {% endif %}
+                            <td>
+                                <input type="checkbox" />
+                            </td>
+                            <td>{{ receive.fastNote.title }}</td>
+                            <td>{{ receive.fastNote.content }}</td>
+                            <td>{{ receive.fastNote.fromUser }}</td>
+                            <td>{{ receive.fastNote.created|date }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        {##}
+                    </table>
+                {% endif %}
+            {% endif %}
+        </div>
+{% endblock %}

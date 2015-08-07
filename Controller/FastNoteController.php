@@ -131,4 +131,36 @@ class FastNoteController extends Controller
         return $this->render( "YitNotificationBundle:FastNote:fastNoteList.html.twig", array('receives' => $pagination));
     }
 
+    /**
+     * @Route("/send-list" , name = "fast-note-list")
+     */
+    public function fastNoteSendListAction()
+    {
+        // get current user
+        $user = $this->getUser();
+
+        // check user
+        if(!$user) {
+            throw $this->createNotFoundException("User Not Found, You must authenticate first ");
+        }
+
+        //get entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // return all receives notes, or null
+        $receives = $em->getRepository(self::ENTITY)->findAllSendedByUserId($user->getId());
+
+        // get pagination
+        $paginator  = $this->get('knp_paginator');
+
+        //get count off notes in page
+        $per_page = $this->container->getParameter('yit_notification.item_notes_page');
+
+        //number of pages
+        $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
+
+        return $this->render( "YitNotificationBundle:FastNote:fastNoteList.html.twig", array('sending' => $pagination));
+    }
+
+
 }
