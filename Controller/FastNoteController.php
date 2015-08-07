@@ -132,7 +132,7 @@ class FastNoteController extends Controller
     }
 
     /**
-     * @Route("/send-list" , name = "fast-note-list")
+     * @Route("/send-list" , name = "fast-note-send-list")
      */
     public function fastNoteSendListAction()
     {
