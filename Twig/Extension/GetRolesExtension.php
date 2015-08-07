@@ -44,9 +44,10 @@ class GetRolesExtension extends \Twig_Extension
 
     /**
      * @param $user
-     * @return mixed
+     * @param bool $jsonEncode
+     * @return string
      */
-    public function noteGetRoles($user)
+    public function noteGetRoles($user, $jsonEncode = true)
     {
         // get em
         $em = $this->container->get('doctrine')->getManager();
@@ -74,7 +75,7 @@ class GetRolesExtension extends \Twig_Extension
             $result[$role] = $name['name'];
         }
 
-        return json_encode($result);
+        return $jsonEncode ?  json_encode($result) : $result;
 
     }
 

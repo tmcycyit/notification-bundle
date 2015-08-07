@@ -38,8 +38,8 @@ class FastNotificationStatusRepository extends EntityRepository
     public function findAllSendedByUserId($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT ns, n, u FROM YitNotificationBundle:FastNote ns
-                           LEFT JOIN ns.fromUser u
+            ->createQuery('SELECT n, u FROM YitNotificationBundle:FastNote n
+                           LEFT JOIN n.fromUser u
                            WHERE u = :userid
                            ORDER BY n.created DESC
                           ');

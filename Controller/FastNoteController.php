@@ -159,7 +159,7 @@ class FastNoteController extends Controller
         //number of pages
         $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
 
-        return $this->render( "YitNotificationBundle:FastNote:fastNoteList.html.twig", array('sending' => $pagination));
+        return $this->render( "YitNotificationBundle:FastNote:fastNoteSendList.html.twig", array('sending' => $pagination));
     }
 
 
