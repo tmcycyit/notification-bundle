@@ -1,5 +1,5 @@
 {
-    "name": "yit/notification-bundle",
+    "name": "tmcycyit/notification-bundle",
     "type": "symfony-bundle",
     "license": "tmcycyit",
     "autoload": {
