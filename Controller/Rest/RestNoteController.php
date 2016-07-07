@@ -14,7 +14,7 @@ use FOS\RestBundle\Util\Codes;
 use Yit\NotificationBundle\Entity\FastNote;
 
 /**
- * @package namespace Yit\NotificationBundle\Controller\Rest
+ * @package namespace Tmcycyit\NotificationBundle\Controller\Rest
  *
  * @Rest\RouteResource("note")
  * @Rest\Prefix("/yit")

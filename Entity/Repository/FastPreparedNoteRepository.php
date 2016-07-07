@@ -7,7 +7,7 @@ use Doctrine\ORM\Query;
 
 /**
  * Class FastPreparedNoteRepository
- * @package Yit\NotificationBundle\Entity\Repository
+ * @package Tmcycyit\NotificationBundle\Entity\Repository
  */
 class FastPreparedNoteRepository extends EntityRepository
 {

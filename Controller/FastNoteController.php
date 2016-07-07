@@ -22,7 +22,7 @@ use APY\DataGridBundle\Grid\Action\DeleteMassAction;
 /**
  *
  * Class MainController
- * @package Yit\NotificationBundle\Controller
+ * @package Tmcycyit\NotificationBundle\Controller
  * @Route("fast-notification")
  */
 class FastNoteController extends Controller

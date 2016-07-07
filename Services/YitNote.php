@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\HttpNotFoundException;
 
 /**
  * Class YitNote
- * @package Yit\NotificationBundle\Services
+ * @package Tmcycyit\NotificationBundle\Services
  */
 class YitNote
 {
