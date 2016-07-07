@@ -46,7 +46,7 @@
         </service>
 
         <!-- Admin page for Notification type  -->
-        <service id="yit.note.notification.history" class="Yit\NotificationBundle\Admin\HistoryPeriodAdmin">
+        <service id="yit.note.notification.history" class="Tmcycyit\NotificationBundle\Admin\HistoryPeriodAdmin">
             <tag name="sonata.admin" manager_type="orm" group="Notification" label="Notification history period"/>
             <argument/>
             <argument>Yit\NotificationBundle\Entity\HistoryPeriod</argument>
@@ -54,26 +54,26 @@
         </service>
 
 
-        <service id="yitnote" class="Yit\NotificationBundle\Services\YitNote">
+        <service id="yitnote" class="Tmcycyit\NotificationBundle\Services\YitNote">
             <argument type="service" id="service_container" > </argument>
         </service>
 
-        <service id="notification.form.type.file" class="Yit\NotificationBundle\Form\Type\FileFieldType">
+        <service id="notification.form.type.file" class="Tmcycyit\NotificationBundle\Form\Type\FileFieldType">
             <tag name="form.type" alias="fileField" />
         </service>
 
-        <service id="note_listener" class="Yit\NotificationBundle\Listener\NoteListener">
+        <service id="note_listener" class="Tmcycyit\NotificationBundle\Listener\NoteListener">
             <argument type="service" id="service_container" />
             <tag name="doctrine.event_listener" event = "postPersist" method = "postPersist"/>
         </service>
 
-        <service id="twig_filter_function_yit_note_must_sent" class="Yit\NotificationBundle\Twig\Extension\MustSentExtension">
+        <service id="twig_filter_function_yit_note_must_sent" class="Tmcycyit\NotificationBundle\Twig\Extension\MustSentExtension">
             <argument type="service" id="service_container" />
             <tag name="twig.extension"/>
         </service>
 
 
-        <service id="twig_filter_function_yit_note_get_roles" class="Yit\NotificationBundle\Twig\Extension\GetRolesExtension">
+        <service id="twig_filter_function_yit_note_get_roles" class="Tmcycyit\NotificationBundle\Twig\Extension\GetRolesExtension">
             <argument type="service" id="service_container" />
             <tag name="twig.extension"/>
         </service>
