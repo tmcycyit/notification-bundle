@@ -1,21 +1,21 @@
 <?php
 
-namespace Yit\NotificationBundle\Services;
+namespace Tmcycyit\NotificationBundle\Services;
 
 use Symfony\Component\DependencyInjection\Container;
-use Yit\NotificationBundle\Entity\FastNote;
-use Yit\NotificationBundle\Entity\FastNoteStatus;
-use  Yit\NotificationBundle\Entity\Notification;
-use  Yit\NotificationBundle\Entity\NotificationStatus;
-use Yit\NotificationBundle\Entity\PreparedNotification;
-use Yit\NotificationBundle\Model\NoteUserInterface;
+use Tmcycyit\NotificationBundle\Entity\FastNote;
+use Tmcycyit\NotificationBundle\Entity\FastNoteStatus;
+use  Tmcycyit\NotificationBundle\Entity\Notification;
+use  Tmcycyit\NotificationBundle\Entity\NotificationStatus;
+use Tmcycyit\NotificationBundle\Entity\PreparedNotification;
+use Tmcycyit\NotificationBundle\Model\NoteUserInterface;
 use Symfony\Component\HttpKernel\Exception\HttpNotFoundException;
 
 /**
  * Class YitNote
  * @package Tmcycyit\NotificationBundle\Services
  */
-class YitNote
+class TmcycyitNote
 {
     /**
      * @var \Symfony\Component\DependencyInjection\Container

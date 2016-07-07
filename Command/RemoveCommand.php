@@ -6,7 +6,7 @@
  * Time: 5:39 PM
  */
 
-namespace Yit\NotificationBundle\Command;
+namespace Tmcycyit\NotificationBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;

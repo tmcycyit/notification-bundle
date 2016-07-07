@@ -1,6 +1,6 @@
 <?php
 
-namespace Yit\NotificationBundle\DependencyInjection;
+namespace Tmcycyit\NotificationBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class YitNotificationExtension extends Extension implements PrependExtensionInterface
+class TmcycyitNotificationExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritDoc}

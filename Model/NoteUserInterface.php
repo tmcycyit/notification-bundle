@@ -1,6 +1,6 @@
 <?php
 
-namespace Yit\NotificationBundle\Model;
+namespace Tmcycyit\NotificationBundle\Model;
 
 interface NoteUserInterface
 {

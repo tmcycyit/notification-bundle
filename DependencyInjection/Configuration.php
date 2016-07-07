@@ -1,6 +1,6 @@
 <?php
 
-namespace Yit\NotificationBundle\DependencyInjection;
+namespace Tmcycyit\NotificationBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

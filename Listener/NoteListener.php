@@ -14,7 +14,7 @@ use Doctrine\Common\Persistence\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Symfony\Component\DependencyInjection\Container;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Yit\NotificationBundle\Entity\NotificationStatus;
+use Tmcycyit\NotificationBundle\Entity\NotificationStatus;
 
 
 class NoteListener

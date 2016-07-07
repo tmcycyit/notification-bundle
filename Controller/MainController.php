@@ -1,6 +1,6 @@
 <?php
 
-namespace Yit\NotificationBundle\Controller;
+namespace Tmcycyit\NotificationBundle\Controller;
 
 use APY\DataGridBundle\Grid\Action\RowAction;
 use APY\DataGridBundle\Grid\Source\Entity;
@@ -9,10 +9,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Yit\NotificationBundle\Entity\Notification;
-use Yit\NotificationBundle\Entity\NotificationStatus;
-use Yit\NotificationBundle\Entity\NotificationType;
-use Yit\NotificationBundle\Entity\PreparedNotification;
+use Tmcycyit\NotificationBundle\Entity\Notification;
+use Tmcycyit\NotificationBundle\Entity\NotificationStatus;
+use Tmcycyit\NotificationBundle\Entity\NotificationType;
+use Tmcycyit\NotificationBundle\Entity\PreparedNotification;
 use APY\DataGridBundle\Grid\Export\CSVExport;
 use APY\DataGridBundle\Grid\Export\PHPExcelPDFExport;
 use APY\DataGridBundle\Grid\Export\ExcelExport;

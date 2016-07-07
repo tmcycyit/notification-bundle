@@ -1,6 +1,6 @@
 <?php
 
-namespace Yit\NotificationBundle\Tests\Controller;
+namespace Tmcycyit\NotificationBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

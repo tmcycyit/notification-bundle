@@ -6,7 +6,7 @@
  * Time: 3:08 PM
  */
 
-namespace Yit\NotificationBundle\Twig\Extension;
+namespace Tmcycyit\NotificationBundle\Twig\Extension;
 use Symfony\Component\DependencyInjection\Container;
 
 

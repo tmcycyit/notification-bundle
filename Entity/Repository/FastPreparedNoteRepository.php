@@ -1,6 +1,6 @@
 <?php
 
-namespace Yit\NotificationBundle\Entity\Repository;
+namespace Tmcycyit\NotificationBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;

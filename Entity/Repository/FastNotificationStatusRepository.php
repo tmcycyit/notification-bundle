@@ -1,10 +1,10 @@
 <?php
 
-namespace Yit\NotificationBundle\Entity\Repository;
+namespace Tmcycyit\NotificationBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
-use Yit\NotificationBundle\Entity\FastNote;
+use Tmcycyit\NotificationBundle\Entity\FastNote;
 
 class FastNotificationStatusRepository extends EntityRepository
 {

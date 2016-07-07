@@ -6,7 +6,7 @@
  * Time: 11:41 PM
  */
 
-namespace Yit\NotificationBundle\Form\Type;
+namespace Tmcycyit\NotificationBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
