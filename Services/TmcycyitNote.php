@@ -42,7 +42,7 @@ class TmcycyitNote
         $currentUser = $this->container->get('security.context')->getToken()->getUser();
 
         // get roles
-        $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($currentUser);
+        $roles = $em->getRepository("TmcycyitNotificationBundle:FastPreparedNote")->findRolesByUser($currentUser);
 
         // check data
         if($roles){
@@ -197,7 +197,7 @@ class TmcycyitNote
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
-        return $em->getRepository('YitNotificationBundle:PreparedNotification')->findAllByCode($actionCode);
+        return $em->getRepository('TmcycyitNotificationBundle:PreparedNotification')->findAllByCode($actionCode);
     }
 
 
@@ -211,10 +211,10 @@ class TmcycyitNote
         $em = $this->container->get('doctrine')->getManager();
 
         // get all current user`s recieved notificiation
-        $massageCount['all'] = count($em->getRepository('YitNotificationBundle:NotificationStatus')->findAllReceiveByUserId($user->getId()));
+        $massageCount['all'] = count($em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->findAllReceiveByUserId($user->getId()));
 
         // get all current user`s unreadable notificiation
-        $massageCount['unreadable'] =  $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserId($user->getId());
+        $massageCount['unreadable'] =  $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserId($user->getId());
 
         return $massageCount;
 
@@ -231,10 +231,10 @@ class TmcycyitNote
         $em = $this->container->get('doctrine')->getManager();
 
         // get all current user`s recieved notificiation
-        $massageCount['all'] = $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllReceiveByUserIdWithGroup($user->getId());
+        $massageCount['all'] = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->findAllReceiveByUserIdWithGroup($user->getId());
 
         // get all current user`s unreadable notificiation
-        $massageCount['unreadable'] =  $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserIdWithGroup($user->getId());
+        $massageCount['unreadable'] =  $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserIdWithGroup($user->getId());
 
         return $massageCount;
 
@@ -250,7 +250,7 @@ class TmcycyitNote
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
-        $note = $em->getRepository('YitNotificationBundle:NotificationStatus')->findUserNotificationById($id, $userId);
+        $note = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->findUserNotificationById($id, $userId);
         if($note)
         {
             $em->remove($note);
@@ -272,7 +272,7 @@ class TmcycyitNote
 
         $count = $this->container->getParameter('yit_notification.item_notes_dropdown');
 
-        $receives = $em->getRepository('YitNotificationBundle:NotificationStatus')->findReceiveByUserId($userId, $count, $isRead);
+        $receives = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->findReceiveByUserId($userId, $count, $isRead);
 
         return $receives;
     }
@@ -287,8 +287,8 @@ class TmcycyitNote
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
-        $count = $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllOlder($month);
-        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+        $count = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeAllOlder($month);
+        $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeAllUnStatus();
 
         return $count;
     }
@@ -302,8 +302,8 @@ class TmcycyitNote
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
-        $count = $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUserNotes($userId);
-        $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+        $count = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeAllUserNotes($userId);
+        $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeAllUnStatus();
 
         return $count;
     }
@@ -322,13 +322,13 @@ class TmcycyitNote
 
         if($noteId == -1) {
 
-            $em->createQuery ('Update YitNotificationBundle:NotificationStatus ns SET ns.status = 1 WHERE ns.toUser = :user')
+            $em->createQuery ('Update TmcycyitNotificationBundle:NotificationStatus ns SET ns.status = 1 WHERE ns.toUser = :user')
                 ->setParameter('user', $user)->execute();
         }
         else {
 
             // get notification status by id
-            $notification = $em->getRepository('YitNotificationBundle:NotificationStatus')
+            $notification = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')
                 ->findNotificationById($noteId, $user->getId());
 
             if($notification) {
