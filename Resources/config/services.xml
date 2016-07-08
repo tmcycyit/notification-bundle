@@ -26,14 +26,14 @@
         <service id="yit.note.prepared.notification" class="%yit_notification.admin.prepared_note%">
             <tag name="sonata.admin" manager_type="orm" group="Notification" label="Prepared Notification"/>
             <argument/>
-            <argument>Yit\NotificationBundle\Entity\PreparedNotification</argument>
+            <argument>Tmcycyit\NotificationBundle\Entity\PreparedNotification</argument>
             <argument>SonataAdminBundle:CRUD</argument>
         </service>
 
-        <service id="yit.note.fast.prepared.notification" class="Yit\NotificationBundle\Admin\FastPreparedNotificationAdmin">
+        <service id="yit.note.fast.prepared.notification" class="Tmcycyit\NotificationBundle\Admin\FastPreparedNotificationAdmin">
             <tag name="sonata.admin" manager_type="orm" group="Notification" label="Fast Prepared Notification"/>
             <argument/>
-            <argument>Yit\NotificationBundle\Entity\FastPreparedNote</argument>
+            <argument>Tmcycyit\NotificationBundle\Entity\FastPreparedNote</argument>
             <argument>SonataAdminBundle:CRUD</argument>
         </service>
 
@@ -41,7 +41,7 @@
         <service id="yit.note.notification.type_note" class="%yit_notification.admin.note_type%">
             <tag name="sonata.admin" manager_type="orm" group="Notification" label="Notification type"/>
             <argument/>
-            <argument>Yit\NotificationBundle\Entity\NotificationType</argument>
+            <argument>Tmcycyit\NotificationBundle\Entity\NotificationType</argument>
             <argument>SonataAdminBundle:CRUD</argument>
         </service>
 
@@ -49,12 +49,12 @@
         <service id="yit.note.notification.history" class="Tmcycyit\NotificationBundle\Admin\HistoryPeriodAdmin">
             <tag name="sonata.admin" manager_type="orm" group="Notification" label="Notification history period"/>
             <argument/>
-            <argument>Yit\NotificationBundle\Entity\HistoryPeriod</argument>
+            <argument>Tmcycyit\NotificationBundle\Entity\HistoryPeriod</argument>
             <argument>SonataAdminBundle:CRUD</argument>
         </service>
 
 
-        <service id="yitnote" class="Tmcycyit\NotificationBundle\Services\YitNote">
+        <service id="yitnote" class="Tmcycyit\NotificationBundle\Services\TmcycyitNote">
             <argument type="service" id="service_container" > </argument>
         </service>
 
