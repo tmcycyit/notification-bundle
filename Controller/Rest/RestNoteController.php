@@ -67,7 +67,7 @@ class RestNoteController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
 
         // get Last Modified field
-        $count = $em->getRepository('YitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserId($userId);
+        $count = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->findAllUnReadableNotificationByUserId($userId);
 
         return array("count"=>$count);
     }
@@ -107,7 +107,7 @@ class RestNoteController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
 
         // get all notes
-        $notes = $em->getRepository("YitNotificationBundle:FastNoteStatus")->findAllNewByUserId($userId);
+        $notes = $em->getRepository("TmcycyitNotificationBundle:FastNoteStatus")->findAllNewByUserId($userId);
 
         // check notes
         if($notes){
@@ -155,7 +155,7 @@ class RestNoteController extends FOSRestController
         $user = $this->getUser();
 
         // get roles
-        $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($user);
+        $roles = $em->getRepository("TmcycyitNotificationBundle:FastPreparedNote")->findRolesByUser($user);
 
         return $roles;
     }

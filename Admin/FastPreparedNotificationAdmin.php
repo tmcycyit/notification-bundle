@@ -52,7 +52,7 @@ class FastPreparedNotificationAdmin extends Admin
         $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();
 
         //get user group
-        $userGroup = $this->getConfigurationPool()->getContainer()->getParameter('yit_notification.user_group');
+        $userGroup = $this->getConfigurationPool()->getContainer()->getParameter('tmcycyit_notification.user_group');
 
         // get all groups
         $groups = $em->getRepository($userGroup)->findAll();

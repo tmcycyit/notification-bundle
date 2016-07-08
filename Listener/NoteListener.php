@@ -6,7 +6,7 @@
  * Time: 2:27 PM
  */
 
-namespace Yit\NotificationBundle\Listener;
+namespace Tmcycyit\NotificationBundle\Listener;
 
 use Ads\MainBundle\Entity\Ad;
 use Ads\MainBundle\Entity\AdPart;
@@ -45,7 +45,7 @@ class NoteListener
             $em = $args->getEntityManager();
 
             // get period
-            $period = $em->getRepository('YitNotificationBundle:HistoryPeriod')->findAll();
+            $period = $em->getRepository('TmcycyitNotificationBundle:HistoryPeriod')->findAll();
 
             // check period
             if(count($period ) > 0){

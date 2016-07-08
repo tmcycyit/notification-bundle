@@ -19,7 +19,7 @@ class HistoryPeriodAdmin extends Admin
         $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
 
         // find all periods
-        $periods = $em->getRepository('YitNotificationBundle:HistoryPeriod')->findAll();
+        $periods = $em->getRepository('TmcycyitNotificationBundle:HistoryPeriod')->findAll();
 
         // remove create button, if there is one periods
         if(count($periods) >= 1)

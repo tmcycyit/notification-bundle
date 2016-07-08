@@ -17,7 +17,7 @@ class NotificationStatusRepository extends EntityRepository
     public function findAllReceiveByUserId($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT ns, n, u FROM YitNotificationBundle:NotificationStatus ns
+            ->createQuery('SELECT ns, n, u FROM TmcycyitNotificationBundle:NotificationStatus ns
                            LEFT JOIN ns.toUser u
                            LEFT JOIN ns.notification n
                            WHERE u = :userid
@@ -38,7 +38,7 @@ class NotificationStatusRepository extends EntityRepository
     public function findAllReceiveByUserIdAndCode($userId, $code)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT ns, n, u FROM YitNotificationBundle:NotificationStatus ns
+            ->createQuery('SELECT ns, n, u FROM TmcycyitNotificationBundle:NotificationStatus ns
                            LEFT JOIN ns.toUser u
                            LEFT JOIN ns.notification n
                            LEFT JOIN n.preparedNotification pn
@@ -60,7 +60,7 @@ class NotificationStatusRepository extends EntityRepository
     public function findAllReceiveByUserIdWithGroup($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT COUNT (ns) as cnt, pn.code as code FROM YitNotificationBundle:NotificationStatus ns
+            ->createQuery('SELECT COUNT (ns) as cnt, pn.code as code FROM TmcycyitNotificationBundle:NotificationStatus ns
                            LEFT JOIN ns.toUser u
                            LEFT JOIN ns.notification n
                            LEFT JOIN n.preparedNotification pn
@@ -82,7 +82,7 @@ class NotificationStatusRepository extends EntityRepository
     public function findAllUnReadableNotificationByUserId($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT count (s) FROM YitNotificationBundle:NotificationStatus s
+            ->createQuery('SELECT count (s) FROM TmcycyitNotificationBundle:NotificationStatus s
                            INNER JOIN s.toUser u
                            WHERE s.toUser = :userid AND s.status = 0
                           ');
@@ -99,7 +99,7 @@ class NotificationStatusRepository extends EntityRepository
     public function findAllUnReadableNotificationByUserIdWithGroup($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT COUNT (s) as cnt, pn.code as code FROM YitNotificationBundle:NotificationStatus s
+            ->createQuery('SELECT COUNT (s) as cnt, pn.code as code FROM TmcycyitNotificationBundle:NotificationStatus s
                            LEFT JOIN s.toUser u
                            LEFT JOIN s.notification n
                            LEFT JOIN n.preparedNotification pn
@@ -119,7 +119,7 @@ class NotificationStatusRepository extends EntityRepository
     public function findNotificationById($notificationId, $userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT ns FROM YitNotificationBundle:NotificationStatus ns
+            ->createQuery('SELECT ns FROM TmcycyitNotificationBundle:NotificationStatus ns
                            LEFT JOIN ns.toUser u
                            WHERE ns.id = :notificationId and u.id =:userId
                           ');
@@ -137,7 +137,7 @@ class NotificationStatusRepository extends EntityRepository
     public function findAllSendedByUserId($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT ns FROM YitNotificationBundle:NotificationStatus ns
+            ->createQuery('SELECT ns FROM TmcycyitNotificationBundle:NotificationStatus ns
                            LEFT JOIN ns.toUser u
                            LEFT JOIN ns.notification n
                            WHERE n.fromUser = :userid
@@ -156,7 +156,7 @@ class NotificationStatusRepository extends EntityRepository
     public function findUserNotificationById($notificationId, $userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT ns FROM YitNotificationBundle:NotificationStatus ns
+            ->createQuery('SELECT ns FROM TmcycyitNotificationBundle:NotificationStatus ns
                            LEFT JOIN ns.toUser u
                            LEFT JOIN ns.notification n
                            WHERE n.id = :notificationId AND u.id = :userId
@@ -183,7 +183,7 @@ class NotificationStatusRepository extends EntityRepository
         $query = $this->getEntityManager()
                         ->createQueryBuilder()
                         ->select('ns')
-                        ->from('YitNotificationBundle:NotificationStatus', 'ns')
+                        ->from('TmcycyitNotificationBundle:NotificationStatus', 'ns')
                         ->innerJoin('ns.toUser', 'u')
                         ->innerJoin('ns.notification', 'n')
                         ->where('u.id = :userId');
@@ -212,7 +212,7 @@ class NotificationStatusRepository extends EntityRepository
         $query = $this->getEntityManager()
             ->createQueryBuilder()
             ->select('ns.id')
-            ->from('YitNotificationBundle:NotificationStatus', 'ns')
+            ->from('TmcycyitNotificationBundle:NotificationStatus', 'ns')
             ->leftJoin('ns.notification', 'n')
             ->where('n.created <=  :interval')
             ->setParameter('interval', $interval->format('Y-m-d'))
@@ -225,7 +225,7 @@ class NotificationStatusRepository extends EntityRepository
 
             $this->getEntityManager()
                 ->createQueryBuilder()
-                ->delete('YitNotificationBundle:NotificationStatus', 'ns')
+                ->delete('TmcycyitNotificationBundle:NotificationStatus', 'ns')
                 ->where('ns.id in (:ids)')
                 ->setParameter('ids', $ids)
                 ->getQuery()->execute();
@@ -247,7 +247,7 @@ class NotificationStatusRepository extends EntityRepository
         $ids = $this->getEntityManager()
             ->createQueryBuilder()
             ->select('n.id')
-            ->from('YitNotificationBundle:Notification', 'n')
+            ->from('TmcycyitNotificationBundle:Notification', 'n')
             ->leftJoin('n.notificationStatus', 'ns')
             ->where('ns is null')->getQuery()->getResult();
         ;
@@ -256,7 +256,7 @@ class NotificationStatusRepository extends EntityRepository
 
             $this->getEntityManager()
                 ->createQueryBuilder()
-                ->delete('YitNotificationBundle:Notification', 'n')
+                ->delete('TmcycyitNotificationBundle:Notification', 'n')
                 ->where('n.id in (:ids)')
                 ->setParameter('ids', $ids)
                 ->getQuery()->execute();
@@ -278,7 +278,7 @@ class NotificationStatusRepository extends EntityRepository
         $ids = $this->getEntityManager()
             ->createQueryBuilder()
             ->select('n.id')
-            ->from('YitNotificationBundle:NotificationStatus', 'n')
+            ->from('TmcycyitNotificationBundle:NotificationStatus', 'n')
             ->leftJoin('n.toUser', 'ns')
             ->where('ns .id = :user')
             ->setParameter('user', $userId)
@@ -290,7 +290,7 @@ class NotificationStatusRepository extends EntityRepository
 
             $this->getEntityManager()
                 ->createQueryBuilder()
-                ->delete('YitNotificationBundle:NotificationStatus', 'n')
+                ->delete('TmcycyitNotificationBundle:NotificationStatus', 'n')
                 ->where('n.id in (:ids)')
                 ->setParameter('ids', $ids)
                 ->getQuery()->execute();

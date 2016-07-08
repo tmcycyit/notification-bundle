@@ -27,7 +27,7 @@ use APY\DataGridBundle\Grid\Action\DeleteMassAction;
  */
 class FastNoteController extends Controller
 {
-    const ENTITY = 'YitNotificationBundle:FastNoteStatus';
+    const ENTITY = 'TmcycyitNotificationBundle:FastNoteStatus';
 
     /**
      * @Route("/create" , name = "fast-note-create")
@@ -46,7 +46,7 @@ class FastNoteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // get roles
-        $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($user);
+        $roles = $em->getRepository("TmcycyitNotificationBundle:FastPreparedNote")->findRolesByUser($user);
 
         // create form
         $form = $this->createFormBuilder()
@@ -94,7 +94,7 @@ class FastNoteController extends Controller
             }
         }
 
-        return $this->render('YitNotificationBundle:FastNote:fastNoteCreate.html.twig', array(
+        return $this->render('TmcycyitNotificationBundle:FastNote:fastNoteCreate.html.twig', array(
             'form' => $form->createView(),
         ));
 
@@ -123,12 +123,12 @@ class FastNoteController extends Controller
         $paginator  = $this->get('knp_paginator');
 
         //get count off notes in page
-        $per_page = $this->container->getParameter('yit_notification.item_notes_page');
+        $per_page = $this->container->getParameter('tmcycyit_notification.item_notes_page');
 
         //number of pages
         $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
 
-        return $this->render( "YitNotificationBundle:FastNote:fastNoteList.html.twig", array('receives' => $pagination));
+        return $this->render( "TmcycyitNotificationBundle:FastNote:fastNoteList.html.twig", array('receives' => $pagination));
     }
 
     /**
@@ -154,12 +154,12 @@ class FastNoteController extends Controller
         $paginator  = $this->get('knp_paginator');
 
         //get count off notes in page
-        $per_page = $this->container->getParameter('yit_notification.item_notes_page');
+        $per_page = $this->container->getParameter('tmcycyit_notification.item_notes_page');
 
         //number of pages
         $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
 
-        return $this->render( "YitNotificationBundle:FastNote:fastNoteSendList.html.twig", array('sending' => $pagination));
+        return $this->render( "TmcycyitNotificationBundle:FastNote:fastNoteSendList.html.twig", array('sending' => $pagination));
     }
 
 

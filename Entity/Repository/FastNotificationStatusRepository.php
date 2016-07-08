@@ -18,7 +18,7 @@ class FastNotificationStatusRepository extends EntityRepository
     public function findAllReceiveByUserId($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT ns, n, u FROM YitNotificationBundle:FastNoteStatus ns
+            ->createQuery('SELECT ns, n, u FROM TmcycyitNotificationBundle:FastNoteStatus ns
                            LEFT JOIN ns.toUser u
                            LEFT JOIN ns.fastNote n
                            WHERE u = :userid
@@ -38,7 +38,7 @@ class FastNotificationStatusRepository extends EntityRepository
     public function findAllSendedByUserId($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT n, u FROM YitNotificationBundle:FastNote n
+            ->createQuery('SELECT n, u FROM TmcycyitNotificationBundle:FastNote n
                            LEFT JOIN n.fromUser u
                            WHERE u = :userid
                            ORDER BY n.created DESC
@@ -54,7 +54,7 @@ class FastNotificationStatusRepository extends EntityRepository
     public function findAllNewByUserId($userId)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT ns, n, u FROM YitNotificationBundle:FastNoteStatus ns
+            ->createQuery('SELECT ns, n, u FROM TmcycyitNotificationBundle:FastNoteStatus ns
                            LEFT JOIN ns.toUser u
                            LEFT JOIN ns.fastNote n
                            WHERE u.id = :userid and ns.status = :status

@@ -12,7 +12,7 @@ class PreparedNoteRepository extends EntityRepository
     {
 
         $query = $this->getEntityManager()
-            ->createQuery('SELECT pn, nt FROM YitNotificationBundle:PreparedNotification pn
+            ->createQuery('SELECT pn, nt FROM TmcycyitNotificationBundle:PreparedNotification pn
                            LEFT JOIN pn.notificationType nt
                            WHERE pn.code = :code
                           ');

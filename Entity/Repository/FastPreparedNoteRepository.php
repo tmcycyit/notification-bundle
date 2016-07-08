@@ -37,7 +37,7 @@ class FastPreparedNoteRepository extends EntityRepository
         }
 
         $query = $this->getEntityManager()
-            ->createQuery('SELECT pn.toUserGroups FROM YitNotificationBundle:FastPreparedNote pn
+            ->createQuery('SELECT pn.toUserGroups FROM TmcycyitNotificationBundle:FastPreparedNote pn
                            WHERE pn.formUserGroups = :code
                           ');
         $query->setParameter('code' , $code);

@@ -81,6 +81,6 @@ class NotificationTypeAdmin extends Admin
     }
 
     public function getFormTheme() {
-        return array('YitNotificationBundle:Admin:file.html.twig');
+        return array('TmcycyitNotificationBundle:Admin:file.html.twig');
     }
 }

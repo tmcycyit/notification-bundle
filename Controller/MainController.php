@@ -28,7 +28,7 @@ use APY\DataGridBundle\Grid\Action\DeleteMassAction;
  */
 class MainController extends Controller
 {
-    const ENTITY = 'YitNotificationBundle:NotificationStatus';
+    const ENTITY = 'TmcycyitNotificationBundle:NotificationStatus';
 
 
     /**
@@ -47,7 +47,7 @@ class MainController extends Controller
         }
 
         // use grid
-        $noteGrid = $this->container->getParameter('yit_notification.note_grid');
+        $noteGrid = $this->container->getParameter('tmcycyit_notification.note_grid');
 
         if($noteGrid){
 
@@ -55,7 +55,7 @@ class MainController extends Controller
             $tr = $this->get('translator');
 
             // Creates a simple grid based on your entity (ORM)
-            $source = new Entity('YitNotificationBundle:NotificationStatus');
+            $source = new Entity('TmcycyitNotificationBundle:NotificationStatus');
 
             // create query
             $entity = $source->getTableAlias();
@@ -90,7 +90,7 @@ class MainController extends Controller
             $grid->addExport(new PHPExcelPDFExport('PDF', 'place_list'));
 
 
-            return $grid->getGridResponse('YitNotificationBundle:Main:showReceive.html.twig',
+            return $grid->getGridResponse('TmcycyitNotificationBundle:Main:showReceive.html.twig',
                 array('noteGrid' => $noteGrid));
         }
         else {
@@ -111,7 +111,7 @@ class MainController extends Controller
             $paginator  = $this->get('knp_paginator');
 
             //get count off notes in page
-            $per_page = $this->container->getParameter('yit_notification.item_notes_page');
+            $per_page = $this->container->getParameter('tmcycyit_notification.item_notes_page');
 
             //number of pages
             $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
@@ -119,7 +119,7 @@ class MainController extends Controller
             //get note`s count, and set it in twig global
             $this->getNoteCount();
 
-            $templates = $this->container->getParameter('yit_notification.templates.showReceive'); // get templates name
+            $templates = $this->container->getParameter('tmcycyit_notification.templates.showReceive'); // get templates name
             return $this->render( $templates, array('receives' => $pagination));
          }
     }
@@ -155,7 +155,7 @@ class MainController extends Controller
         //get note`s count, and set it in twig global
         $this->getNoteCount();
 
-        $templates = $this->container->getParameter('yit_notification.templates.receiveDetailed'); // get templates name
+        $templates = $this->container->getParameter('tmcycyit_notification.templates.receiveDetailed'); // get templates name
         return $this->render( $templates, array('notification' => $notification) );
     }
 
@@ -182,7 +182,7 @@ class MainController extends Controller
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
-        $note = $em->getRepository('YitNotificationBundle:NotificationStatus')->find($id);
+        $note = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->find($id);
         if($note)
         {
             $em->remove($note);

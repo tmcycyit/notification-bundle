@@ -124,7 +124,7 @@ class TmcycyitNotificationExtension extends Extension implements PrependExtensio
         if (isset($bundles['AsseticBundle'])) //is assetic bundle set
         {
             //array for assetic
-            $insertionForAssetic = array('bundles' => array( 'YitNotificationBundle' ));
+            $insertionForAssetic = array('bundles' => array( 'TmcycyitNotificationBundle' ));
 
             // insert assetic bundle nume  into config.yml
             foreach ($container->getExtensions() as $name => $extension)

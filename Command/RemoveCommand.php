@@ -51,8 +51,8 @@ class RemoveCommand extends ContainerAwareCommand
 
             $output->writeln("<info>Start ... </info>");
 
-            $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllOlder($period);
-            $em->getRepository('YitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+            $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeAllOlder($period);
+            $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeAllUnStatus();
 
             $output->writeln("<info>Success</info>");
         }

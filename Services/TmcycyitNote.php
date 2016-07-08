@@ -68,7 +68,7 @@ class TmcycyitNote
             $em = $this->container->get('doctrine')->getManager();
 
             // get user repository
-            $userRepository = $this->container->getParameter('yit_notification.note_user');
+            $userRepository = $this->container->getParameter('tmcycyit_notification.note_user');
 
             // check to user roles
             if($roles){
@@ -270,7 +270,7 @@ class TmcycyitNote
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
-        $count = $this->container->getParameter('yit_notification.item_notes_dropdown');
+        $count = $this->container->getParameter('tmcycyit_notification.item_notes_dropdown');
 
         $receives = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->findReceiveByUserId($userId, $count, $isRead);
 

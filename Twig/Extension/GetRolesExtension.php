@@ -53,12 +53,12 @@ class GetRolesExtension extends \Twig_Extension
         $em = $this->container->get('doctrine')->getManager();
 
         // get roles
-        $roles = $em->getRepository("YitNotificationBundle:FastPreparedNote")->findRolesByUser($user);
+        $roles = $em->getRepository("TmcycyitNotificationBundle:FastPreparedNote")->findRolesByUser($user);
 
         $result = array();
 
         // get user repository
-        $userRepository = $this->container->getParameter('yit_notification.user_group');
+        $userRepository = $this->container->getParameter('tmcycyit_notification.user_group');
 
         foreach($roles as $role){
             $builder = $em->createQueryBuilder();
