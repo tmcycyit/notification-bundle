@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation as JMS;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\FastPreparedNoteRepository")
+ * @ORM\Entity(repositoryClass="Tmcycyit\NotificationBundle\Entity\Repository\FastPreparedNoteRepository")
  * @ORM\Table(name="yit_fast_prepared_notification")
  * @UniqueEntity(fields="formUserGroups", message="Տվյալ օգտատերը առկա է")
  */

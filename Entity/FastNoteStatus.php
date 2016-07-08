@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\FastNotificationStatusRepository")
+ * @ORM\Entity(repositoryClass="Tmcycyit\NotificationBundle\Entity\Repository\FastNotificationStatusRepository")
  * @ORM\Table(name="yit_fast_note_status")
  */
 class FastNoteStatus
@@ -41,7 +41,7 @@ class FastNoteStatus
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Tmcycyit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
      * @ORM\JoinColumn(name="to_user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected  $toUser;
@@ -83,10 +83,10 @@ class FastNoteStatus
     /**
      * Set fastNote
      *
-     * @param \Yit\NotificationBundle\Entity\FastNote $fastNote
+     * @param \Tmcycyit\NotificationBundle\Entity\FastNote $fastNote
      * @return FastNoteStatus
      */
-    public function setFastNote(\Yit\NotificationBundle\Entity\FastNote $fastNote = null)
+    public function setFastNote(\Tmcycyit\NotificationBundle\Entity\FastNote $fastNote = null)
     {
         $this->fastNote = $fastNote;
 
@@ -96,7 +96,7 @@ class FastNoteStatus
     /**
      * Get fastNote
      *
-     * @return \Yit\NotificationBundle\Entity\FastNote 
+     * @return \Tmcycyit\NotificationBundle\Entity\FastNote
      */
     public function getFastNote()
     {

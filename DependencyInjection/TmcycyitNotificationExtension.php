@@ -106,7 +106,7 @@ class TmcycyitNotificationExtension extends Extension implements PrependExtensio
             $insertionForDoctrine = array(
                 'orm' => array(
                     'resolve_target_entities' => array(
-                        'Yit\NotificationBundle\Model\NoteUserInterface' =>$config['note_user']
+                        'Tmcycyit\NotificationBundle\Model\NoteUserInterface' =>$config['note_user']
                     )
                 )
             );

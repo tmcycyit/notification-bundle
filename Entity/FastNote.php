@@ -47,7 +47,7 @@ class FastNote
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Tmcycyit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
      * @ORM\JoinColumn(name="from_user_id", referencedColumnName="id", onDelete="SET NULL")
      *
      */
@@ -126,10 +126,10 @@ class FastNote
     /**
      * Add noteStatus
      *
-     * @param \Yit\NotificationBundle\Entity\FastNoteStatus $noteStatus
+     * @param \Tmcycyit\NotificationBundle\Entity\FastNoteStatus $noteStatus
      * @return FastNote
      */
-    public function addNoteStatus(\Yit\NotificationBundle\Entity\FastNoteStatus $noteStatus)
+    public function addNoteStatus(\Tmcycyit\NotificationBundle\Entity\FastNoteStatus $noteStatus)
     {
         $this->noteStatus[] = $noteStatus;
         $noteStatus->setFastNote($this);
@@ -140,9 +140,9 @@ class FastNote
     /**
      * Remove noteStatus
      *
-     * @param \Yit\NotificationBundle\Entity\FastNoteStatus $noteStatus
+     * @param \Tmcycyit\NotificationBundle\Entity\FastNoteStatus $noteStatus
      */
-    public function removeNoteStatus(\Yit\NotificationBundle\Entity\FastNoteStatus $noteStatus)
+    public function removeNoteStatus(\Tmcycyit\NotificationBundle\Entity\FastNoteStatus $noteStatus)
     {
         $this->noteStatus->removeElement($noteStatus);
     }

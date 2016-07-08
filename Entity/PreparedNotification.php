@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity
  * @ORM\Table(name="yit_prepared_notification")
- * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\PreparedNoteRepository")
+ * @ORM\Entity(repositoryClass="Tmcycyit\NotificationBundle\Entity\Repository\PreparedNoteRepository")
  * @UniqueEntity(fields="code", message="Տվյալ գործողությունը առկա է")
  */
 class PreparedNotification
@@ -36,7 +36,7 @@ class PreparedNotification
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\NotificationType", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Tmcycyit\NotificationBundle\Entity\NotificationType", cascade={"persist"})
      * @ORM\JoinColumn(name="notification_type_id", referencedColumnName="id")
      * @JMS\Groups({"list"})
      */
@@ -113,7 +113,7 @@ class PreparedNotification
      * @param NotificationType $notificationType
      * @return $this
      */
-    public function setNotificationType(\Yit\NotificationBundle\Entity\NotificationType $notificationType = null)
+    public function setNotificationType(\Tmcycyit\NotificationBundle\Entity\NotificationType $notificationType = null)
     {
         $this->notificationType = $notificationType;
 

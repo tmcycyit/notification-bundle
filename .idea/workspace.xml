@@ -2,25 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="240d0e90-1ccc-4b88-98b9-f362abccc58f" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DependencyInjection/YitNotificationExtension.php" afterPath="$PROJECT_DIR$/DependencyInjection/TmcycyitNotificationExtension.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Admin/FastPreparedNotificationAdmin.php" afterPath="$PROJECT_DIR$/Admin/FastPreparedNotificationAdmin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Admin/HistoryPeriodAdmin.php" afterPath="$PROJECT_DIR$/Admin/HistoryPeriodAdmin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Admin/NotificationTypeAdmin.php" afterPath="$PROJECT_DIR$/Admin/NotificationTypeAdmin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Admin/PreparedNotificationAdmin.php" afterPath="$PROJECT_DIR$/Admin/PreparedNotificationAdmin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Command/RemoveCommand.php" afterPath="$PROJECT_DIR$/Command/RemoveCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller/FastNoteController.php" afterPath="$PROJECT_DIR$/Controller/FastNoteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller/MainController.php" afterPath="$PROJECT_DIR$/Controller/MainController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller/Rest/RestNoteController.php" afterPath="$PROJECT_DIR$/Controller/Rest/RestNoteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DependencyInjection/Configuration.php" afterPath="$PROJECT_DIR$/DependencyInjection/Configuration.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/Repository/FastNotificationStatusRepository.php" afterPath="$PROJECT_DIR$/Entity/Repository/FastNotificationStatusRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/Repository/FastPreparedNoteRepository.php" afterPath="$PROJECT_DIR$/Entity/Repository/FastPreparedNoteRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/Repository/NotificationStatusRepository.php" afterPath="$PROJECT_DIR$/Entity/Repository/NotificationStatusRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/Repository/PreparedNoteRepository.php" afterPath="$PROJECT_DIR$/Entity/Repository/PreparedNoteRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Listener/NoteListener.php" afterPath="$PROJECT_DIR$/Listener/NoteListener.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/config/services.xml" afterPath="$PROJECT_DIR$/Resources/config/services.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Services/TmcycyitNote.php" afterPath="$PROJECT_DIR$/Services/TmcycyitNote.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Twig/Extension/GetRolesExtension.php" afterPath="$PROJECT_DIR$/Twig/Extension/GetRolesExtension.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DependencyInjection/TmcycyitNotificationExtension.php" afterPath="$PROJECT_DIR$/DependencyInjection/TmcycyitNotificationExtension.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/FastNote.php" afterPath="$PROJECT_DIR$/Entity/FastNote.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/FastNoteStatus.php" afterPath="$PROJECT_DIR$/Entity/FastNoteStatus.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/FastPreparedNote.php" afterPath="$PROJECT_DIR$/Entity/FastPreparedNote.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/Notification.php" afterPath="$PROJECT_DIR$/Entity/Notification.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/NotificationStatus.php" afterPath="$PROJECT_DIR$/Entity/NotificationStatus.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/PreparedNotification.php" afterPath="$PROJECT_DIR$/Entity/PreparedNotification.php" />
     </list>
     <ignored path="notification-bundle.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,90 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controller/MainController.php">
+      <file leaf-file-name="TmcycyitNotificationExtension.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DependencyInjection/TmcycyitNotificationExtension.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.111111">
-              <caret line="157" column="74" selection-start-line="157" selection-start-column="74" selection-end-line="157" selection-end-column="74" />
-              <folding>
-                <element signature="e#58#103#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Resources/config/services.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.137931">
-              <caret line="40" column="67" selection-start-line="40" selection-start-column="67" selection-end-line="40" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FastNoteController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controller/FastNoteController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.37037">
-              <caret line="156" column="73" selection-start-line="156" selection-start-column="73" selection-end-line="156" selection-end-column="73" />
-              <folding>
-                <element signature="e#58#103#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TmcycyitNote.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Services/TmcycyitNote.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.111111">
-              <caret line="272" column="70" selection-start-line="272" selection-start-column="70" selection-end-line="272" selection-end-column="70" />
-              <folding>
-                <element signature="e#56#108#0#PHP" expanded="true" />
-                <marker date="1467958894745" expanded="true" signature="9860:9957" placeholder="Update YitNo..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetRolesExtension.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Twig/Extension/GetRolesExtension.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.4444447">
-              <caret line="60" column="79" selection-start-line="60" selection-start-column="79" selection-end-line="60" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NoteListener.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Listener/NoteListener.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40554592">
-              <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FastPreparedNotificationAdmin.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Admin/FastPreparedNotificationAdmin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.4444447">
-              <caret line="54" column="103" selection-start-line="54" selection-start-column="103" selection-end-line="54" selection-end-column="103" />
-              <folding>
-                <element signature="e#53#88#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PreparedNotificationAdmin.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Admin/PreparedNotificationAdmin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.4444447">
-              <caret line="57" column="103" selection-start-line="57" selection-start-column="103" selection-end-line="57" selection-end-column="103" />
+            <state vertical-scroll-proportion="0.6239168">
+              <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -141,14 +51,8 @@
       <list>
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/Entity/FastNote.php" />
-        <option value="$PROJECT_DIR$/Entity/FastNoteStatus.php" />
-        <option value="$PROJECT_DIR$/Entity/FastPreparedNote.php" />
         <option value="$PROJECT_DIR$/Entity/HistoryPeriod.php" />
-        <option value="$PROJECT_DIR$/Entity/Notification.php" />
-        <option value="$PROJECT_DIR$/Entity/NotificationStatus.php" />
         <option value="$PROJECT_DIR$/Entity/NotificationType.php" />
-        <option value="$PROJECT_DIR$/Entity/PreparedNotification.php" />
         <option value="$PROJECT_DIR$/Form/Type/FileFieldType.php" />
         <option value="$PROJECT_DIR$/Model/NoteUserInterface.php" />
         <option value="$PROJECT_DIR$/Tests/Controller/MainControllerTest.php" />
@@ -162,7 +66,6 @@
         <option value="$PROJECT_DIR$/Command/RemoveCommand.php" />
         <option value="$PROJECT_DIR$/Controller/Rest/RestNoteController.php" />
         <option value="$PROJECT_DIR$/DependencyInjection/Configuration.php" />
-        <option value="$PROJECT_DIR$/DependencyInjection/TmcycyitNotificationExtension.php" />
         <option value="$PROJECT_DIR$/Entity/Repository/FastNotificationStatusRepository.php" />
         <option value="$PROJECT_DIR$/Entity/Repository/FastPreparedNoteRepository.php" />
         <option value="$PROJECT_DIR$/Entity/Repository/NotificationStatusRepository.php" />
@@ -175,6 +78,13 @@
         <option value="$PROJECT_DIR$/Services/TmcycyitNote.php" />
         <option value="$PROJECT_DIR$/Twig/Extension/GetRolesExtension.php" />
         <option value="$PROJECT_DIR$/Listener/NoteListener.php" />
+        <option value="$PROJECT_DIR$/Entity/FastNote.php" />
+        <option value="$PROJECT_DIR$/Entity/FastNoteStatus.php" />
+        <option value="$PROJECT_DIR$/Entity/FastPreparedNote.php" />
+        <option value="$PROJECT_DIR$/Entity/Notification.php" />
+        <option value="$PROJECT_DIR$/Entity/NotificationStatus.php" />
+        <option value="$PROJECT_DIR$/Entity/PreparedNotification.php" />
+        <option value="$PROJECT_DIR$/DependencyInjection/TmcycyitNotificationExtension.php" />
       </list>
     </option>
   </component>
@@ -238,6 +148,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notification-bundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notification-bundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DependencyInjection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -295,9 +219,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25538972" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25538972" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -364,8 +288,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="103" column="24" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
           <folding>
-            <element signature="e#55#87#0#PHP" expanded="true" />
-            <marker date="1467892810407" expanded="true" signature="2866:2913" placeholder=" Get notification ..." />
+            <marker date="1467963079124" expanded="true" signature="2896:2943" placeholder=" Get notification ..." />
           </folding>
         </state>
       </provider>
@@ -410,7 +333,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
           <folding>
-            <element signature="e#53#88#0#PHP" expanded="true" />
+            <element signature="e#53#88#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -448,82 +371,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/FastNoteStatus.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.3333333">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding>
-            <element signature="e#134#166#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/FastPreparedNote.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-          <folding>
-            <element signature="e#55#87#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/NotificationStatus.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.3333333">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-          <folding>
-            <element signature="e#55#87#0#PHP" expanded="true" />
-            <marker date="1467892810407" expanded="true" signature="2866:2913" placeholder=" Get notification ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/NotificationType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.3333333">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-          <folding>
-            <element signature="e#55#87#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/PreparedNotification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3333335">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#55#87#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Twig/Extension/MustSentExtension.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46793762">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/FastNote.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.093587525">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding>
-            <element signature="e#134#166#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/HistoryPeriod.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12478336">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding>
-            <element signature="e#135#167#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -561,14 +413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/Notification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0">
-          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.333333">
@@ -590,7 +434,7 @@
         <state vertical-scroll-proportion="-7.111111">
           <caret line="21" column="65" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="65" />
           <folding>
-            <element signature="e#53#88#0#PHP" expanded="true" />
+            <element signature="e#53#88#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -608,7 +452,7 @@
         <state vertical-scroll-proportion="-12.703704">
           <caret line="54" column="58" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
           <folding>
-            <element signature="e#134#199#0#PHP" expanded="true" />
+            <element signature="e#134#199#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -618,7 +462,7 @@
         <state vertical-scroll-proportion="-7.111111">
           <caret line="157" column="63" selection-start-line="157" selection-start-column="63" selection-end-line="157" selection-end-column="63" />
           <folding>
-            <element signature="e#63#113#0#PHP" expanded="true" />
+            <element signature="e#63#113#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -628,27 +472,6 @@
         <state vertical-scroll-proportion="-8.037037">
           <caret line="31" column="61" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DependencyInjection/TmcycyitNotificationExtension.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.4444447">
-          <caret line="126" column="88" selection-start-line="126" selection-start-column="88" selection-end-line="126" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/Repository/FastNotificationStatusRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.37037">
-          <caret line="56" column="74" selection-start-line="56" selection-start-column="74" selection-end-line="56" selection-end-column="74" />
-          <folding>
-            <element signature="e#65#99#0#PHP" expanded="true" />
-            <marker date="1467958095317" expanded="true" signature="516:777" placeholder="SELECT ns, n..YitNotificationBundle..." />
-            <marker date="1467958095317" expanded="true" signature="1176:1376" placeholder="SELECT n, u ..YitNotificationBundle..." />
-            <marker date="1467958095317" expanded="true" signature="1683:1971" placeholder="SELECT ns, n..YitNotificationBundle..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -697,7 +520,7 @@
         <state vertical-scroll-proportion="-7.4444447">
           <caret line="54" column="103" selection-start-line="54" selection-start-column="103" selection-end-line="54" selection-end-column="103" />
           <folding>
-            <element signature="e#53#88#0#PHP" expanded="true" />
+            <element signature="e#53#88#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -715,7 +538,7 @@
         <state vertical-scroll-proportion="-11.37037">
           <caret line="156" column="73" selection-start-line="156" selection-start-column="73" selection-end-line="156" selection-end-column="73" />
           <folding>
-            <element signature="e#58#103#0#PHP" expanded="true" />
+            <element signature="e#58#103#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -725,7 +548,7 @@
         <state vertical-scroll-proportion="-7.111111">
           <caret line="157" column="74" selection-start-line="157" selection-start-column="74" selection-end-line="157" selection-end-column="74" />
           <folding>
-            <element signature="e#58#103#0#PHP" expanded="true" />
+            <element signature="e#58#103#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -759,8 +582,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Listener/NoteListener.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40554592">
-          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+        <state vertical-scroll-proportion="-4.6666665">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entity/FastNoteStatus.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0989011">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entity/FastPreparedNote.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0989011">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entity/HistoryPeriod.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.978022">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entity/Notification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0989011">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entity/NotificationStatus.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.5517242">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+          <folding>
+            <marker date="1467963079124" expanded="true" signature="2896:2943" placeholder=" Get notification ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entity/NotificationType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0989011">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entity/PreparedNotification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0989011">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entity/Repository/FastNotificationStatusRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06593407">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="19" />
+          <folding>
+            <element signature="e#65#99#0#PHP" expanded="true" />
+            <marker date="1467958095317" expanded="true" signature="516:777" placeholder="SELECT ns, n..YitNotificationBundle..." />
+            <marker date="1467958095317" expanded="true" signature="1176:1376" placeholder="SELECT n, u ..YitNotificationBundle..." />
+            <marker date="1467958095317" expanded="true" signature="1683:1971" placeholder="SELECT ns, n..YitNotificationBundle..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Entity/FastNote.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.093587525">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DependencyInjection/TmcycyitNotificationExtension.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6239168">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
           <folding />
         </state>
       </provider>

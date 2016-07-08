@@ -44,7 +44,7 @@ class Notification
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Tmcycyit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
      * @ORM\JoinColumn(name="from_user_id", referencedColumnName="id", onDelete="SET NULL")
      *
      */
@@ -59,7 +59,7 @@ class Notification
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\PreparedNotification", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Tmcycyit\NotificationBundle\Entity\PreparedNotification", cascade={"persist"})
      * @ORM\JoinColumn(name="prepared_note_id", referencedColumnName="id", onDelete="SET NULL")
      * @JMS\Groups({"list"})
      */
@@ -180,7 +180,7 @@ class Notification
      * @param PreparedNotification $preparedNotification
      * @return $this
      */
-    public function setPreparedNotification(\Yit\NotificationBundle\Entity\PreparedNotification $preparedNotification = null)
+    public function setPreparedNotification(\Tmcycyit\NotificationBundle\Entity\PreparedNotification $preparedNotification = null)
     {
         $this->preparedNotification = $preparedNotification;
 
@@ -231,10 +231,10 @@ class Notification
     /**
      * Add notificationStatus
      *
-     * @param \Yit\NotificationBundle\Entity\NotificationStatus $notificationStatus
+     * @param \Tmcycyit\NotificationBundle\Entity\NotificationStatus $notificationStatus
      * @return Notification
      */
-    public function addNotificationStatus(\Yit\NotificationBundle\Entity\NotificationStatus $notificationStatus)
+    public function addNotificationStatus(\Tmcycyit\NotificationBundle\Entity\NotificationStatus $notificationStatus)
     {
         $this->notificationStatus[] = $notificationStatus;
 
@@ -244,9 +244,9 @@ class Notification
     /**
      * Remove notificationStatus
      *
-     * @param \Yit\NotificationBundle\Entity\NotificationStatus $notificationStatus
+     * @param \Tmcycyit\NotificationBundle\Entity\NotificationStatus $notificationStatus
      */
-    public function removeNotificationStatus(\Yit\NotificationBundle\Entity\NotificationStatus $notificationStatus)
+    public function removeNotificationStatus(\Tmcycyit\NotificationBundle\Entity\NotificationStatus $notificationStatus)
     {
         $this->notificationStatus->removeElement($notificationStatus);
     }

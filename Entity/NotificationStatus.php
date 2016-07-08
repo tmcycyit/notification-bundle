@@ -13,7 +13,7 @@ use APY\DataGridBundle\Grid\Mapping as Grid;
  *                                                      @ORM\Index(name="note_count_idx", columns={"to_user_id", "status"}),
  *                                                      @ORM\Index(name="all_note_idx", columns={"to_user_id", "notification_id", "status"})
  *             })
- * @ORM\Entity(repositoryClass="Yit\NotificationBundle\Entity\Repository\NotificationStatusRepository")
+ * @ORM\Entity(repositoryClass="Tmcycyit\NotificationBundle\Entity\Repository\NotificationStatusRepository")
  * @Grid\Source(columns="id, notification.header, notification.userInfo , notification.fromUser.email, notification.created, notification.content")
  */
 class NotificationStatus
@@ -27,7 +27,7 @@ class NotificationStatus
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Entity\Notification", inversedBy="notificationStatus", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Tmcycyit\NotificationBundle\Entity\Notification", inversedBy="notificationStatus", cascade={"persist"})
      * @ORM\JoinColumn(name="notification_id", referencedColumnName="id")
      * @JMS\Groups({"list"})
      * @Grid\Column(field="notification.header", title="note.title")
@@ -40,7 +40,7 @@ class NotificationStatus
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Yit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Tmcycyit\NotificationBundle\Model\NoteUserInterface", cascade={"persist"})
      * @ORM\JoinColumn(name="to_user_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $toUser;
@@ -88,10 +88,10 @@ class NotificationStatus
     /**
      * Set notification
      *
-     * @param \Yit\NotificationBundle\Entity\Notification $notification
+     * @param \Tmcycyit\NotificationBundle\Entity\Notification $notification
      * @return NotificationStatus
      */
-    public function setNotification(\Yit\NotificationBundle\Entity\Notification $notification = null)
+    public function setNotification(\Tmcycyit\NotificationBundle\Entity\Notification $notification = null)
     {
         $this->notification = $notification;
 
@@ -101,7 +101,7 @@ class NotificationStatus
     /**
      * Get notification
      *
-     * @return \Yit\NotificationBundle\Entity\Notification
+     * @return \Tmcycyit\NotificationBundle\Entity\Notification
      */
     public function getNotification()
     {
