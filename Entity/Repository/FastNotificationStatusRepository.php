@@ -10,21 +10,24 @@ class FastNotificationStatusRepository extends EntityRepository
 {
 
     /**
+     *
      * This function is used to find all receive notification by given user`s id
      *
      * @param $userId
+     * @param int $noteType
      * @return array
      */
-    public function findAllReceiveByUserId($userId)
+    public function findAllReceiveByUserId($userId,$noteType = 0)
     {
         $query = $this->getEntityManager()
             ->createQuery('SELECT ns, n, u FROM TmcycyitNotificationBundle:FastNoteStatus ns
                            LEFT JOIN ns.toUser u
                            LEFT JOIN ns.fastNote n
-                           WHERE u = :userid
+                           WHERE u = :userid AND n.noteType = :noteType
                            ORDER BY n.created DESC
                           ');
         $query->setParameter('userid' , $userId);
+        $query->setParameter('noteType' , $noteType);
         return $query->getResult();
     }
 

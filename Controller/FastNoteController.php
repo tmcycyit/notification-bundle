@@ -101,9 +101,9 @@ class FastNoteController extends Controller
     }
 
     /**
-     * @Route("/list" , name = "fast-note-list")
+     * @Route("/list/{id}" , name = "fast-note-list")
      */
-    public function fastNoteListAction()
+    public function fastNoteListAction($id = null)
     {
         // get current user
         $user = $this->getUser();
@@ -117,7 +117,10 @@ class FastNoteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // return all receives notes, or null
-        $receives = $em->getRepository(self::ENTITY)->findAllReceiveByUserId($user->getId());
+        if ($id == null)
+            $receives = $em->getRepository(self::ENTITY)->findAllReceiveByUserId($user->getId());
+        else
+            $receives = $em->getRepository(self::ENTITY)->findAllReceiveByUserId($user->getId(),$id);
 
         // get pagination
         $paginator  = $this->get('knp_paginator');
@@ -128,7 +131,7 @@ class FastNoteController extends Controller
         //number of pages
         $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
 
-        return $this->render( "TmcycyitNotificationBundle:FastNote:fastNoteList.html.twig", array('receives' => $pagination));
+        return $this->render( "TmcycyitNotificationBundle:FastNote:fastNoteList.html.twig", array('receives' => $pagination, 'id' => $id));
     }
 
     /**

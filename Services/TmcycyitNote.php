@@ -12,7 +12,7 @@ use Tmcycyit\NotificationBundle\Model\NoteUserInterface;
 use Symfony\Component\HttpKernel\Exception\HttpNotFoundException;
 
 /**
- * Class YitNote
+ * Class TmcycyitNote
  * @package Tmcycyit\NotificationBundle\Services
  */
 class TmcycyitNote
@@ -122,6 +122,53 @@ class TmcycyitNote
         {
             // don`t send note himself
             if($receiver != $currentUser) {
+                $fastNoteStatus = new FastNoteStatus();
+
+                $fastNoteStatus->setToUser($receiver); //set $receiver
+                $fastNoteStatus->setStatus(FastNote::UN_READ); //set status unread
+                $fastNote->addNoteStatus($fastNoteStatus);
+
+                $em->persist($fastNoteStatus); //persist notification status
+            }
+        }
+
+        $fastNote->setCreated(new \DateTime('now')); //set notifications date
+
+        $em->persist($fastNote); //persist status
+        $em->flush();
+    }
+
+    /**
+     *
+     * This function is used to sent fast notifications
+     *
+     * @param $content
+     * @param $title
+     * @param $receivers
+     * @param $fromUser
+     * @param $noteType
+     * @throws \Throwable
+     */
+    public function sendFastNoteFromUser($content, $title, $receivers,$fromUser,$noteType)
+    {
+        // get user
+//        $currentUser = $this->container->get('security.context')->getToken()->getUser();
+
+        // get entity manager
+        $em = $this->container->get('doctrine')->getManager();
+
+        $fastNote = new FastNote();
+        // set prepared notification
+        $fastNote->setFromUser($fromUser); //set sender
+        $fastNote->setTitle($title);  //set title
+        $fastNote->setContent($content);  //set content
+        $fastNote->setNoteType($noteType);
+
+        // loop for receivers
+        foreach($receivers as $receiver)
+        {
+            // don`t send note himself
+            if($receiver != $fromUser) {
                 $fastNoteStatus = new FastNoteStatus();
 
                 $fastNoteStatus->setToUser($receiver); //set $receiver

@@ -59,6 +59,14 @@ class FastNote
      *
      */
     protected  $noteStatus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="note_type", type="integer")
+     */
+    protected $noteType = 0;
+
     /**
      * Constructor
      */
@@ -201,5 +209,20 @@ class FastNote
     public function getTitle()
     {
         return $this->title;
+    }
+    /**
+     * @return int
+     */
+    public function getNoteType()
+    {
+        return $this->noteType;
+    }
+
+    /**
+     * @param int $noteType
+     */
+    public function setNoteType($noteType)
+    {
+        $this->noteType = $noteType;
     }
 }
