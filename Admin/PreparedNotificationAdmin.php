@@ -50,7 +50,7 @@ class PreparedNotificationAdmin extends Admin
     public function configureFormFields(FormMapper $formMapper)
     {
         // get action from config
-        $actions = $this->getConfigurationPool()->getContainer()->getParameter('yit_note_actions');
+        $actions = $this->getConfigurationPool()->getContainer()->getParameter('tmcycyit_note_actions');
         // get entity manager
         $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();
 
