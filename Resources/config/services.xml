@@ -45,6 +45,14 @@
             <argument>SonataAdminBundle:CRUD</argument>
         </service>
 
+        <!-- Admin page for Notification  -->
+        <service id="yit.note.notification.notification" class="Tmcycyit\NotificationBundle\Admin\NotificationAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Notification" label="Notification"/>
+            <argument/>
+            <argument>Tmcycyit\NotificationBundle\Entity\Notification</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+
         <!-- Admin page for Notification type  -->
         <service id="yit.note.notification.history" class="Tmcycyit\NotificationBundle\Admin\HistoryPeriodAdmin">
             <tag name="sonata.admin" manager_type="orm" group="Notification" label="Notification history period"/>
