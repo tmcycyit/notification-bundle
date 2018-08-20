@@ -1,7 +1,7 @@
 {
     "name": "tmcycyit/notification-bundle",
     "type": "symfony-bundle",
-    "license": "tmcycyit",
+    "license": "MIT",
     "autoload": {
         "psr-0": { "Tmcycyit\\NotificationBundle": "" }
     },
