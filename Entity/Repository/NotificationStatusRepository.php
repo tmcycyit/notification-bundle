@@ -121,7 +121,7 @@ class NotificationStatusRepository extends EntityRepository
         $query = $this->getEntityManager()
             ->createQuery('SELECT ns FROM TmcycyitNotificationBundle:NotificationStatus ns
                            LEFT JOIN ns.toUser u
-                           WHERE ns.id = :notificationId and u.id =:userId
+                           WHERE ns.notification = :notificationId and u.id =:userId
                           ');
         $query->setParameter('notificationId' , $notificationId);
         $query->setParameter('userId' , $userId);
