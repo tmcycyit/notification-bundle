@@ -162,14 +162,20 @@ class MainController extends Controller
     /**
      * This action is used to show all receive notifications of current user
      *
-     * @Route("/delete-all/{userId}" , name = "yit_delete_all")
+     * @Route("/delete-all/{userId}/{code}" , name = "yit_delete_all")
      */
-    public function deleteAllAction($userId)
+    public function deleteAllAction($userId, $code=null)
     {
         // remove notes
-        $this->get('yit_note')->removeAllByUser($userId);
 
-        return $this->redirect($this->generateUrl('show-receive'));
+        if ($code){
+            $this->get('yit_note')->removeAllByUser($userId,$code);
+        } else {
+            $this->get('yit_note')->removeAllByUser($userId);
+        }
+        return $this->redirect(
+            array_key_exists("HTTP_REFERER", $_SERVER) ? $_SERVER['HTTP_REFERER'] : 'show-receive');
+        
     }
 
     /**
@@ -187,7 +193,9 @@ class MainController extends Controller
         {
             $em->remove($note);
             $em->flush();
-            return $this->redirect($this->generateUrl('show-receive'));
+            // return $this->redirect($this->generateUrl('show-receive'));
+            return $this->redirect(
+                array_key_exists("HTTP_REFERER", $_SERVER) ? $_SERVER['HTTP_REFERER'] : 'show-receive');
         }
         else
         {
@@ -198,14 +206,14 @@ class MainController extends Controller
     /**
      * This action is used to set read
      *
-     * @Route("/set-to-read/{noteId}" , name = "set_to_read")
+     * @Route("/set-to-read/{noteId}/{code}" , name = "set_to_read")
      *
      * @param $noteId
      * @return Response
      */
-    public function setToReadAction($noteId)
+    public function setToReadAction($noteId,$code=null)
     {
-        $this->get('yit_note')->setReadToRead($noteId);
+        $this->get('yit_note')->setReadToRead($noteId,$code);
         return $this->redirect(
             array_key_exists("HTTP_REFERER", $_SERVER) ? $_SERVER['HTTP_REFERER'] : 'show-receive');
 

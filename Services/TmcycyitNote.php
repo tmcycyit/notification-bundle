@@ -344,13 +344,18 @@ class TmcycyitNote
     /**
      * @param $userId
      */
-    public function removeAllByUser($userId)
+    public function removeAllByUser($userId,$code=null)
     {
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
 
-        $count = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeAllUserNotes($userId);
-        $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+        if ($code){
+            $count = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeCodeAllUserNotes($userId,$code);
+            $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeCodeAllUnStatus($code);
+        } else {
+            $count = $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeAllUserNotes($userId);
+            $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->removeAllUnStatus();
+        }        
 
         return $count;
     }
@@ -359,7 +364,7 @@ class TmcycyitNote
     /**
      * @param $noteId
      */
-    public function setReadToRead($noteId)
+    public function setReadToRead($noteId,$code=null)
     {
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
@@ -369,8 +374,14 @@ class TmcycyitNote
 
         if($noteId == -1) {
 
-            $em->createQuery ('Update TmcycyitNotificationBundle:NotificationStatus ns SET ns.status = 1 WHERE ns.toUser = :user')
-                ->setParameter('user', $user)->execute();
+            if ($code){
+                $em->getRepository('TmcycyitNotificationBundle:NotificationStatus')->updateCodeAllUserNotes($user,$code);
+            } else {
+                $em->createQuery ('Update TmcycyitNotificationBundle:NotificationStatus ns SET ns.status = 1 WHERE ns.toUser = :user')
+                    ->setParameter('user', $user)->execute();
+            }
+
+            
         }
         else {
 

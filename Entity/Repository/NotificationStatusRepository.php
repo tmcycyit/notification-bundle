@@ -268,6 +268,40 @@ class NotificationStatusRepository extends EntityRepository
     }
 
     /**
+     * @return array
+     */
+    public function removeCodeAllUnStatus($code)
+    {
+
+        // get all ids
+        $ids = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('n.id')
+            ->from('TmcycyitNotificationBundle:Notification', 'n')
+            ->leftJoin('n.notificationStatus', 'ns')
+            ->join('n.preparedNotification','pn')
+            ->where('ns is null and pn.code = :code')
+            ->setParameter('code',$code)
+            ->getQuery()->getResult();
+        ;
+
+        if($ids){
+
+            $this->getEntityManager()
+                ->createQueryBuilder()
+                ->delete('TmcycyitNotificationBundle:Notification', 'n')
+                ->where('n.id in (:ids)')
+                ->setParameter('ids', $ids)
+                ->getQuery()->execute();
+            ;
+
+        }
+
+        return $ids;
+    }
+    
+
+    /**
      * @param $userId
      * @return bool
      */
@@ -300,5 +334,80 @@ class NotificationStatusRepository extends EntityRepository
 
         return $ids;
     }
+
+    /**
+     * @param $userId
+     * @return bool
+     */
+    public function removeCodeAllUserNotes($userId,$code)
+    {
+        // get all ids
+        $ids = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('n.id')
+            ->from('TmcycyitNotificationBundle:NotificationStatus', 'n')
+            ->leftJoin('n.toUser', 'ns')
+            ->join('n.notification','nt')
+            ->join('nt.preparedNotification','pn')
+            ->where('ns .id = :user and pn.code = :code')
+            ->setParameter('user', $userId)
+            ->setParameter('code', $code)
+            ->getQuery()
+            ->getResult();
+        ;
+
+        if($ids){
+
+            $this->getEntityManager()
+                ->createQueryBuilder()
+                ->delete('TmcycyitNotificationBundle:NotificationStatus', 'n')
+                ->where('n.id in (:ids)')
+                ->setParameter('ids', $ids)
+                ->getQuery()->execute();
+            ;
+
+        }
+
+        return $ids;
+    }
+
+    /**
+     * @param $userId
+     * @return bool
+     */
+    public function updateCodeAllUserNotes($userId,$code)
+    {
+        // get all ids
+        $ids = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('n.id')
+            ->from('TmcycyitNotificationBundle:NotificationStatus', 'n')
+            ->leftJoin('n.toUser', 'ns')
+            ->join('n.notification','nt')
+            ->join('nt.preparedNotification','pn')
+            ->where('ns .id = :user and pn.code = :code')
+            ->setParameter('user', $userId)
+            ->setParameter('code', $code)
+            ->getQuery()
+            ->getResult();
+        ;
+
+        if($ids){
+
+            $this->getEntityManager()
+                ->createQueryBuilder()
+                ->update('TmcycyitNotificationBundle:NotificationStatus', 'n')
+                ->set('n.status',':status')
+                ->where('n.id in (:ids)')
+                ->setParameter('ids', $ids)
+                ->setParameter('status',1)
+                ->getQuery()->execute();
+            ;
+
+        }
+
+        return $ids;
+    }
+
 
 }
