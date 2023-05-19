@@ -16,7 +16,7 @@ class HistoryPeriodAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection)
     {
         // get entity manager
-        $em = $this->getConfigurationPool()->getContainer()->get('Doctrine')->getManager();
+        $em = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();
 
         // find all periods
         $periods = $em->getRepository('TmcycyitNotificationBundle:HistoryPeriod')->findAll();
