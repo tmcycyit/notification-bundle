@@ -82,7 +82,7 @@ class FastNoteController extends Controller
                 $toUserGroups = $data['toUserGroups'];
 
                 // get service
-                $yitNote = $this->get('yitNote');
+                $yitNote = $this->get('yitnote');
 
                 // get receivers
                 $receivers = $yitNote->getReceivers($toUserGroups);
@@ -103,7 +103,7 @@ class FastNoteController extends Controller
     /**
      * @Route("/list/{id}" , name = "fast-note-list")
      */
-    public function fastNoteListAction($id = null)
+    public function fastNoteListAction(Request $request,$id = null)
     {
         // get current user
         $user = $this->getUser();
@@ -129,7 +129,7 @@ class FastNoteController extends Controller
         $per_page = $this->container->getParameter('tmcycyit_notification.item_notes_page');
 
         //number of pages
-        $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
+        $pagination = $paginator->paginate($receives, $request->query->get('page', 1), $per_page );
 
         return $this->render( "TmcycyitNotificationBundle:FastNote:fastNoteList.html.twig", array('receives' => $pagination, 'id' => $id));
     }
@@ -137,7 +137,7 @@ class FastNoteController extends Controller
     /**
      * @Route("/send-list" , name = "fast-note-send-list")
      */
-    public function fastNoteSendListAction()
+    public function fastNoteSendListAction(Request $request)
     {
         // get current user
         $user = $this->getUser();
@@ -160,7 +160,7 @@ class FastNoteController extends Controller
         $per_page = $this->container->getParameter('tmcycyit_notification.item_notes_page');
 
         //number of pages
-        $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
+        $pagination = $paginator->paginate($receives, $request->query->get('page', 1), $per_page );
 
         return $this->render( "TmcycyitNotificationBundle:FastNote:fastNoteSendList.html.twig", array('sending' => $pagination));
     }

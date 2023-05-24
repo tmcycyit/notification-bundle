@@ -94,7 +94,7 @@ class RestNoteController extends FOSRestController
     public function patchReadAction($noteId)
     {
         $this->get('yit_note')->setReadToRead($noteId);
-        return new Response(Codes::HTTP_OK);
+        return new Response(Response::HTTP_OK);
     }
 
     /**
@@ -191,7 +191,7 @@ class RestNoteController extends FOSRestController
             $title = $data['messageTitle'];
         }
         else{
-            return new Response(Codes::HTTP_NOT_FOUND, 'Title not found');
+            return new Response(Response::HTTP_NOT_FOUND, 'Title not found');
         }
 
         // check and get content
@@ -199,7 +199,7 @@ class RestNoteController extends FOSRestController
             $content = $data['messageContent'];
         }
         else{
-            return new Response(Codes::HTTP_NOT_FOUND, 'Content not found');
+            return new Response(Response::HTTP_NOT_FOUND, 'Content not found');
         }
 
         // check and get selectedRoles
@@ -213,11 +213,11 @@ class RestNoteController extends FOSRestController
             }
         }
         else{
-            return new Response(Codes::HTTP_NOT_FOUND, 'Roles not found');
+            return new Response(Response::HTTP_NOT_FOUND, 'Roles not found');
         }
 
         // get note service
-        $noteService = $this->get('yitNote');
+        $noteService = $this->get('yitnote');
 
         // get receivers by role
         $receivers = $noteService->getReceivers($roles);
@@ -226,7 +226,7 @@ class RestNoteController extends FOSRestController
         $noteService->sendFastNote($content, $title, $receivers);
 
         // return response
-        return new Response(Codes::HTTP_OK);
+        return new Response(Response::HTTP_OK);
 
     }
 }

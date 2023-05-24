@@ -44,7 +44,7 @@ class MustSentExtension extends \Twig_Extension
      */
     public function mustSentNote()
     {
-        $mustSent = $this->container->get('yitNote')->mustSent();
+        $mustSent = $this->container->get('yitnote')->mustSent();
 
         return $mustSent;
 

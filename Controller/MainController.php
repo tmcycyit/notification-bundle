@@ -38,7 +38,7 @@ class MainController extends Controller
      * @Route("/{code}" , name = "show-receive-with-code")
      * @Template()
      */
-    public function showReceiveAction($code = null)
+    public function showReceiveAction(Request $request,$code = null)
     {
         $user = $this->getUser(); // get current user
 
@@ -114,7 +114,7 @@ class MainController extends Controller
             $per_page = $this->container->getParameter('tmcycyit_notification.item_notes_page');
 
             //number of pages
-            $pagination = $paginator->paginate($receives, $this->get('request')->query->get('page', 1), $per_page );
+            $pagination = $paginator->paginate($receives,$request->query->get('page', 1), $per_page );
 
             //get note`s count, and set it in twig global
             $this->getNoteCount();

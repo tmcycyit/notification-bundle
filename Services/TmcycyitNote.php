@@ -39,7 +39,7 @@ class TmcycyitNote
         $em = $this->container->get('doctrine')->getManager();
 
         // get user
-        $currentUser = $this->container->get('security.context')->getToken()->getUser();
+        $currentUser = $this->container->get('security.token_storage')->getToken()->getUser();
 
         // get roles
         $roles = $em->getRepository("TmcycyitNotificationBundle:FastPreparedNote")->findRolesByUser($currentUser);
@@ -105,7 +105,7 @@ class TmcycyitNote
     public function sendFastNote($content, $title, $receivers)
     {
         // get user
-        $currentUser = $this->container->get('security.context')->getToken()->getUser();
+        $currentUser = $this->container->get('security.token_storage')->getToken()->getUser();
 
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
@@ -152,7 +152,7 @@ class TmcycyitNote
     public function sendFastNoteFromUser($content, $title, $receivers,$fromUser,$noteType)
     {
         // get user
-//        $currentUser = $this->container->get('security.context')->getToken()->getUser();
+//        $currentUser = $this->container->get('security.token_storage')->getToken()->getUser();
 
         // get entity manager
         $em = $this->container->get('doctrine')->getManager();
@@ -196,7 +196,7 @@ class TmcycyitNote
     public function sendNote( array $recievers, PreparedNotification $PreparedNotification,
                               array $arg = null, $userInfo = null, $header = null)
     {
-        $carrentUser = $this->container->get('security.context')->getToken()->getUser();
+        $carrentUser = $this->container->get('security.token_storage')->getToken()->getUser();
         $tr = $this->container->get('translator');
 
         // get entity manager
@@ -370,7 +370,7 @@ class TmcycyitNote
         $em = $this->container->get('doctrine')->getManager();
 
         // get  user
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
         if($noteId == -1) {
 
