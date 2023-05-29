@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-
+use Tmcycyit\NotificationBundle\Form\Type\FileFieldType;
 
 
 class NotificationTypeAdmin extends Admin
@@ -49,7 +49,7 @@ class NotificationTypeAdmin extends Admin
     {
         $formMapper
                 ->add('file', 'file', array('required' => false))
-                ->add('path', 'fileField', array('required' => false, 'label' => ' '))
+                ->add('path', FileFieldType::class, array('required' => false, 'label' => 'path'))
                 ->add('title');
     }
 

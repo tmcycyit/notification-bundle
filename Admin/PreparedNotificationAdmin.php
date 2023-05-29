@@ -84,14 +84,14 @@ class PreparedNotificationAdmin extends Admin
             ->add('notificationType', null, array(
                 'label'=> $this->trans('note_type', array(), 'note'),
                 'required' => false,
-                'empty_value' => $this->trans('choose_type', array(), 'note'),
+                'placeholder' => $this->trans('choose_type', array(), 'note'),
                 'empty_data'  => null
                 ))
             ->add('code', 'choice', array(
                 'label'=> $this->trans('note_code', array(), 'note'),
                 'choices' =>$codes,
                 'required' => true,
-                'empty_value' => $this->trans('choose_code', array(), 'note'),
+                'placeholder' => $this->trans('choose_code', array(), 'note'),
                 'empty_data'  => null
             ))
             ->add('userGroups', 'choice', array(

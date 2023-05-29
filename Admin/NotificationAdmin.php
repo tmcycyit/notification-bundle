@@ -69,7 +69,7 @@ class NotificationAdmin extends Admin
                 'sonata_type_date_range',
                 array(
                     'required' => false,
-                    'widget' => 'single_text',
+                    'label' => 'single_text',
                     'attr' => array(
                         'class' => 'datepicker',
                         'data-date-format' => 'YYYY-MM-DD'
