@@ -50,7 +50,7 @@ class NoteListener
             // check period
             if(count($period ) > 0){
 
-                $this->container->get('yit_note')->removeOlder($period[0]->getPeriod());
+                $this->container->get('yitnote')->removeOlder($period[0]->getPeriod());
             }
         }
     }

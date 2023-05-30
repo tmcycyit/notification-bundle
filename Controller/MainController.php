@@ -169,9 +169,9 @@ class MainController extends Controller
         // remove notes
 
         if ($code){
-            $this->get('yit_note')->removeAllByUser($userId,$code);
+            $this->get('yitnote')->removeAllByUser($userId,$code);
         } else {
-            $this->get('yit_note')->removeAllByUser($userId);
+            $this->get('yitnote')->removeAllByUser($userId);
         }
         return $this->redirect(
             array_key_exists("HTTP_REFERER", $_SERVER) ? $_SERVER['HTTP_REFERER'] : 'show-receive');
@@ -213,7 +213,7 @@ class MainController extends Controller
      */
     public function setToReadAction($noteId,$code=null)
     {
-        $this->get('yit_note')->setReadToRead($noteId,$code);
+        $this->get('yitnote')->setReadToRead($noteId,$code);
         return $this->redirect(
             array_key_exists("HTTP_REFERER", $_SERVER) ? $_SERVER['HTTP_REFERER'] : 'show-receive');
 

@@ -41,7 +41,7 @@ class RestNoteController extends FOSRestController
 
     public function cgetAction($userId)
     {
-        return $this->get('yit_note')->getUserNotes($userId);
+        return $this->get('yitnote')->getUserNotes($userId);
     }
 
     /**
@@ -93,7 +93,7 @@ class RestNoteController extends FOSRestController
 
     public function patchReadAction($noteId)
     {
-        $this->get('yit_note')->setReadToRead($noteId);
+        $this->get('yitnote')->setReadToRead($noteId);
         return new Response(Response::HTTP_OK);
     }
 
